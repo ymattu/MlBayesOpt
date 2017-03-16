@@ -30,6 +30,8 @@
 #'   increasing kappa will make the optimized hyperparameters pursuing exploration.
 ##' @param eps  tunable parameter epsilon of Expected Improvement and Probability of Improvement, to balance exploitation against exploration,
 #'   increasing epsilon will make the optimized hyperparameters are more spread out across the whole range.
+#' @param kernel Kernel (aka correlation function) for the underlying Gaussian Process. This parameter should be a list
+#'   that specifies the type of correlation function along with the smoothness parameter. Popular choices are square exponential (default) or matern 5/2
 ##' @param classes set the number of classes. To use only with multiclass objectives.
 ##' @return Best parameters for xgboost.
 ##'
@@ -49,6 +51,7 @@ xgb_opt <- function(train_data,
                     acq = "ei",
                     kappa = 2.576,
                     eps = 0.0,
+                    kernel = list(type = "exponential", power = 2),
                     classes = NULL
 )
 {
@@ -109,6 +112,7 @@ xgb_opt <- function(train_data,
                                   acq,
                                   kappa,
                                   eps,
+                                  kernel,
                                   verbose = TRUE)
 
   return(opt_res)
