@@ -20,6 +20,9 @@
 #'   increasing epsilon will make the optimized hyperparameters are more spread out across the whole range.
 ##' @param kernel Kernel (aka correlation function) for the underlying Gaussian Process. This parameter should be a list
 #'   that specifies the type of correlation function along with the smoothness parameter. Popular choices are square exponential (default) or matern 5/2
+##' @importFrom e1071 svm
+##' @importFrom Matrix sparse.model.matrix
+##' @import rBayesianOptimization
 ##' @export
 svm_opt <- function(train_data,
                     train_label,
