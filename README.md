@@ -154,5 +154,5 @@ Round = 10	eta_opt = 0.4986	max_depth_opt = 5.0000	nrounds_opt = 94.3087	subsamp
 ```
 
 #ToDo
-- [] Make functions to execute cross validation
-- [] Fix minor bugs
+- [ ] Make functions to execute cross validation
+- [ ] Fix minor bugs
