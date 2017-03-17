@@ -17,6 +17,11 @@
 #'     \item \code{rank:pairwise} set xgboost to do ranking task by minimizing the pairwise loss.
 #'   }
 ##' @param evalmetric evaluation metrics for validation data. Users can pass a self-defined function to it. Default: metric will be assigned according to objective(rmse for regression, and error for classification, mean average precision for ranking). List is provided in detail section.
+##' @param eta_range The range of eta
+##' @param max_depth_range The range of max_depth
+##' @param nrounds_range The range of nrounds
+##' @param subsample_range The range of subsample rate
+##' @param bytree_range The range of colsample_bytree rate
 ##' @param init_points Number of randomly chosen points to sample the
 #'   target function before Bayesian Optimization fitting the Gaussian Process.
 ##' @param n_iter Total number of times the Bayesian Optimization is to repeated.
@@ -46,6 +51,11 @@ xgb_opt <- function(train_data,
                     test_label,
                     objectfun,
                     evalmetric,
+                    eta_range = c(0.1, 1L),
+                    max_depth_range = c(4L, 6L),
+                    nrounds_range = c(70, 160L),
+                    subsample_range = c(0.1, 1L),
+                    bytree_range = c(0.4, 1L),
                     init_points = 20,
                     n_iter = 1,
                     acq = "ei",
@@ -101,11 +111,11 @@ xgb_opt <- function(train_data,
 
 
   opt_res <- BayesianOptimization(xgb_holdout,
-                                  bounds = list(eta_opt = c(0.1, 1L),
-                                                max_depth_opt = c(4L, 6L),
-                                                nrounds_opt = c(70L, 160L),
-                                                subsample_opt = c(0.1, 1L),
-                                                bytree_opt = c(0.4, 1L)),
+                                  bounds = list(eta_opt = eta_range,
+                                                max_depth_opt = max_depth_range,
+                                                nrounds_opt = nrounds_range,
+                                                subsample_opt = subsample_range,
+                                                bytree_opt = bytree_range)
                                   init_points,
                                   init_grid_dt = NULL,
                                   n_iter,

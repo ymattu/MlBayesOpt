@@ -5,6 +5,8 @@
 ##' @param train_label The column of class to classify in the training data
 ##' @param test_data A data frame for training of xgboos
 ##' @param test_label The column of class to classify in the test data
+##' @param gamma_range The range of gamma. Default is c(10 ^ (-5), 10 ^ 5)
+##' @param c_range The range of C(Cost). Deafult is c(10 ^ (-2), 10 ^ 2)
 ##' @param init_points Number of randomly chosen points to sample the
 #'   target function before Bayesian Optimization fitting the Gaussian Process.
 ##' @param n_iter Total number of times the Bayesian Optimization is to repeated.
@@ -27,6 +29,8 @@ svm_opt <- function(train_data,
                     train_label,
                     test_data,
                     test_label,
+                    gamma_range = c(10 ^ (-5), 10 ^ 5),
+                    c_range = c(10 ^ (-2), 10 ^ 2),
                     init_points = 20,
                     n_iter = 1,
                     acq = "ei",
@@ -56,14 +60,9 @@ svm_opt <- function(train_data,
     list(Score = Pred, Pred = Pred)
   }
 
-  gamma_min <- 10^(-5)
-  gamma_max <- 10^5
-  cost_min <- 10^(-2)
-  cost_max <- 10^2
-
   opt_res <- BayesianOptimization(svm_holdout,
-                                  bounds = list(gamma_opt = c(gamma_min, gamma_max),
-                                                cost_opt = c(cost_min, cost_max)),
+                                  bounds = list(gamma_opt = gamma_range,
+                                                cost_opt = c_range),
                                   init_points,
                                   init_grid_dt = NULL,
                                   n_iter,
