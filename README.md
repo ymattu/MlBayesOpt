@@ -153,6 +153,6 @@ Best Parameters Found:
 Round = 10	eta_opt = 0.4986	max_depth_opt = 5.0000	nrounds_opt = 94.3087	subsample_opt = 0.9980	bytree_opt = 0.9219	Value = 1.0000 
 ```
 
-#ToDo
+# ToDo
 - [ ] Make functions to execute cross validation
 - [ ] Fix minor bugs
