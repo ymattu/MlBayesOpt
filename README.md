@@ -1,5 +1,12 @@
 # MlBayesOpt
+## Overview
 This is a R Pckage to tune parameters for machine learning(Support Vector Machine(RBF kernel), Random Forest, Xgboost), using Bayesian Optimization based on Gaussian Process. We can exxecute only Hold-Out tuning so far.
+
+## Dependencies
+- rBayesianOptimization
+- e1071
+- ranger
+- xgboost
 
 # To Install
 * the latest development version:  
@@ -147,5 +154,5 @@ Round = 10	eta_opt = 0.4986	max_depth_opt = 5.0000	nrounds_opt = 94.3087	subsamp
 ```
 
 #ToDo
-- [] Make functions to execute cross validation
-- [] Fix minor bugs
+- [ ] Make functions to execute cross validation
+- [ ] Fix minor bugs
