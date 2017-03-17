@@ -53,12 +53,10 @@ rf_opt <- function(train_data,
 
   rf_holdout <- function(num_trees_opt, mtry_opt) {
     model <- ranger(trainlabel ~., dtrain, num.trees = num_trees_opt, mtry = mtry_opt)
-    t.pred <- predict(model, data = dtest)
+    t.pred <- predict(model, dat = dtest)
     Pred <- sum(diag(table(testlabel, t.pred$predictions)))/nrow(dtest)
     list(Score = Pred, Pred = Pred)
   }
-
-
 
   opt_res <- BayesianOptimization(rf_holdout,
                                   bounds = list(num_trees_opt = num_tree_range,
