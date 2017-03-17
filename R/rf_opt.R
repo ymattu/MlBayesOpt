@@ -1,10 +1,12 @@
-##' Bayesian Optimization for SVM (Gaussian Kernel)
+##' Bayesian optimization for RandomForest
 ##'
-##' This function estimates parameters for SVM(Gaussian Kernel) based on bayesian optimization
+##' This function estimates parameters for xgboost based on bayesian optimization.
 ##' @param train_data A data frame for training of xgboost
 ##' @param train_label The column of class to classify in the training data
-##' @param test_data A data frame for training of xgboos
+##' @param test_data A data frame for training of xgboost
 ##' @param test_label The column of class to classify in the test data
+##' @param num_tree_range The range of the number of trees for forest. Default is c(1L, 1000L)
+##' @param mtry_range Value of mtry used
 ##' @param init_points Number of randomly chosen points to sample the
 #'   target function before Bayesian Optimization fitting the Gaussian Process.
 ##' @param n_iter Total number of times the Bayesian Optimization is to repeated.
@@ -20,21 +22,22 @@
 #'   increasing epsilon will make the optimized hyperparameters are more spread out across the whole range.
 ##' @param kernel Kernel (aka correlation function) for the underlying Gaussian Process. This parameter should be a list
 #'   that specifies the type of correlation function along with the smoothness parameter. Popular choices are square exponential (default) or matern 5/2
-##' @importFrom e1071 svm
+##' @import ranger
 ##' @import rBayesianOptimization
 ##' @export
-svm_opt <- function(train_data,
-                    train_label,
-                    test_data,
-                    test_label,
-                    init_points = 20,
-                    n_iter = 1,
-                    acq = "ei",
-                    kappa = 2.576,
-                    eps = 0.0,
-                    kernel = list(type = "exponential", power = 2))
+rf_opt <- function(train_data,
+                   train_label,
+                   test_data,
+                   test_label,
+                   num_tree_range = c(1L, 1000L),
+                   mtry_range,
+                   init_points = 20,
+                   n_iter = 1,
+                   acq = "ei",
+                   kappa = 2.576,
+                   eps = 0.0,
+                   kernel = list(type = "exponential", power = 2))
 {
-
   dtrain <- train_data
   dtest <- test_data
 
@@ -48,22 +51,18 @@ svm_opt <- function(train_data,
   } else{
     testlabel <- test_label}
 
-
-  svm_holdout <- function(gamma_opt, cost_opt){
-    model <- svm(trainlabel ~., dtrain, gamma = gamma_opt, cost = cost_opt)
-    t.pred <- predict(model, newdata = dtest)
-    Pred <- sum(diag(table(testlabel, t.pred)))/nrow(dtest)
+  rf_holdout <- function(num_trees_opt, mtry_opt) {
+    model <- ranger(trainlabel ~., dtrain, num.trees = num_trees_opt, mtry = mtry_opt)
+    t.pred <- predict(model, data = dtest)
+    Pred <- sum(diag(table(testlabel, t.pred$predictions)))/nrow(dtest)
     list(Score = Pred, Pred = Pred)
   }
 
-  gamma_min <- 10^(-5)
-  gamma_max <- 10^5
-  cost_min <- 10^(-2)
-  cost_max <- 10^2
 
-  opt_res <- BayesianOptimization(svm_holdout,
-                                  bounds = list(gamma_opt = c(gamma_min, gamma_max),
-                                                cost_opt = c(cost_min, cost_max)),
+
+  opt_res <- BayesianOptimization(rf_holdout,
+                                  bounds = list(num_trees_opt = num_tree_range,
+                                                mtry_opt = mtry_range),
                                   init_points,
                                   init_grid_dt = NULL,
                                   n_iter,

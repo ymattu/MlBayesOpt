@@ -15,5 +15,6 @@ Imports:
     xgboost,
     Matrix,
     rBayesianOptimization,
-    e1071
+    e1071,
+    ranger
 RoxygenNote: 5.0.1
