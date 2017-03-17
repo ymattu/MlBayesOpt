@@ -115,7 +115,7 @@ xgb_opt <- function(train_data,
                                                 max_depth_opt = max_depth_range,
                                                 nrounds_opt = nrounds_range,
                                                 subsample_opt = subsample_range,
-                                                bytree_opt = bytree_range)
+                                                bytree_opt = bytree_range),
                                   init_points,
                                   init_grid_dt = NULL,
                                   n_iter,
