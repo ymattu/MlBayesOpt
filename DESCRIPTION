@@ -2,7 +2,7 @@ Package: MlBayesOpt
 Type: Package
 Title: Parameter tuning for machine learning(Support Vector Machine, Random
     Forest, Xgboost), using bayesian optimization
-Version: 0.0.9100
+Version: 0.0.9200
 Author: ymattu
 Maintainer: Yuya Matsumura <mattu.yuya@gmail.com>
 Description: This package provides the parameter tuning using bayesian
