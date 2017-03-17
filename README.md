@@ -4,6 +4,7 @@ This is a R Pckage to tune parameters for machine learning(Support Vector Machin
 
 ## Dependencies
 - rBayesianOptimization
+- Matrix
 - e1071
 - ranger
 - xgboost
