@@ -14,5 +14,6 @@ LazyData: true
 Imports:
     xgboost,
     Matrix,
-    rBayesianOptimization
+    rBayesianOptimization,
+    e1071
 RoxygenNote: 5.0.1
