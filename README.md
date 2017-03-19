@@ -22,7 +22,7 @@ devtools::install_github("ymattu/MlBayesOpt")
 `train_mnist` and `test_mnist` are included in this pacakge. These are from https://github.com/ozt-ca/tjo.hatenablog.samples/tree/master/r_samples/public_lib/jp/mnist_reproduced
 
 ### iris
-`iris_train` and `iris_test` are included in this pacakge. `iris_train` is odd-numberes rows of `iris` data, and `iris_test`is even-numbered rows of `iris` data.
+`iris_train` and `iris_test` are included in this pacakge. `iris_train` is odd-numbered rows of `iris` data, and `iris_test`is even-numbered rows of `iris` data.
 
 ## SVM
 
