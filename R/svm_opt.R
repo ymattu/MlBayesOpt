@@ -24,6 +24,7 @@
 #'   that specifies the type of correlation function along with the smoothness parameter. Popular choices are square exponential (default) or matern 5/2
 ##' @importFrom e1071 svm
 ##' @import rBayesianOptimization
+##' @importFrom stats predict
 ##' @export
 svm_opt <- function(train_data,
                     train_label,
