@@ -43,6 +43,7 @@
 ##' @import xgboost
 ##' @importFrom Matrix sparse.model.matrix
 ##' @import rBayesianOptimization
+##' @importFrom stats predict
 ##' @export
 ##'
 xgb_opt <- function(train_data,
