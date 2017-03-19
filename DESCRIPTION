@@ -20,3 +20,4 @@ Imports:
     e1071,
     ranger
 RoxygenNote: 5.0.1
+Suggests: covr
