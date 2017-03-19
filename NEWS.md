@@ -1,2 +1,14 @@
 # MlBayesOpt 0.1.0
-the first release
+delete all warnings and notes
+
+# MlBayesOpt 0.9300
+add rf_opt()
+
+# MlBayesOpt 0.9200
+add parameter range to the arguments
+
+# MlBayesOpt 0.9100
+add svm_opt()
+
+# MlBayesOpt 0.0.900
+the first release. xgb_opt() only.
