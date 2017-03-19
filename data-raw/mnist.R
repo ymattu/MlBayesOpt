@@ -5,23 +5,3 @@ test_mnist <- read_csv("https://github.com/ozt-ca/tjo.hatenablog.samples/tree/ma
 
 devtools::use_data(train_mnist)
 devtools::use_data(test_mnist)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
