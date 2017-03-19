@@ -3,3 +3,5 @@
 LICENSE.md
 data-raw/
 ^NEWS$
+^appveyor\.yml$
+^\.travis\.yml$
