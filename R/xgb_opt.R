@@ -83,33 +83,61 @@ xgb_opt <- function(train_data,
     dtest <- xgb.DMatrix(test_mx, label = test_label)}
 
 
-  xgb_holdout <- function(object_fun,
-                          eval_met,
-                          num_classes,
-                          eta_opt,
-                          max_depth_opt,
-                          nrounds_opt,
-                          subsample_opt,
-                          bytree_opt) {
+  #about classes
+  if (objectfun == "binary:logistic"){
+    xgb_holdout <- function(object_fun,
+                            eval_met,
+                            num_classes,
+                            eta_opt,
+                            max_depth_opt,
+                            nrounds_opt,
+                            subsample_opt,
+                            bytree_opt) {
 
-    object_fun <- objectfun
-    eval_met <- evalmetric
-    num_classes <- classes
+      object_fun <- objectfun
+      eval_met <- evalmetric
 
-    model <- xgb.train(params = list(objective = object_fun,
-                                     num_class = num_classes,
-                                     eval_metric = eval_met,
-                                     eta = eta_opt,
-                                     max_depth = max_depth_opt,
-                                     subsample = subsample_opt,
-                                     colsample_bytree = bytree_opt),
-                       data = dtrain,
-                       nrounds = nrounds_opt)
-    t_pred <- predict(model, newdata = dtest)
-    Pred <- sum(diag(table(test_label, t_pred)))/nrow(test_data)
-    list(Score = Pred, Pred = Pred)
+      model <- xgb.train(params = list(objective = object_fun,
+                                       eval_metric = eval_met,
+                                       eta = eta_opt,
+                                       max_depth = max_depth_opt,
+                                       subsample = subsample_opt,
+                                       colsample_bytree = bytree_opt),
+                         data = dtrain,
+                         nrounds = nrounds_opt)
+      t_pred <- predict(model, newdata = dtest)
+      Pred <- sum(diag(table(test_label, t_pred)))/nrow(test_data)
+      list(Score = Pred, Pred = Pred)
+    }
+  } else{
+    xgb_holdout <- function(object_fun,
+                            eval_met,
+                            num_classes,
+                            eta_opt,
+                            max_depth_opt,
+                            nrounds_opt,
+                            subsample_opt,
+                            bytree_opt) {
+
+      object_fun <- objectfun
+      eval_met <- evalmetric
+
+      num_classes <- classes
+
+      model <- xgb.train(params = list(objective = object_fun,
+                                       num_class = num_classes,
+                                       eval_metric = eval_met,
+                                       eta = eta_opt,
+                                       max_depth = max_depth_opt,
+                                       subsample = subsample_opt,
+                                       colsample_bytree = bytree_opt),
+                         data = dtrain,
+                         nrounds = nrounds_opt)
+      t_pred <- predict(model, newdata = dtest)
+      Pred <- sum(diag(table(test_label, t_pred)))/nrow(test_data)
+      list(Score = Pred, Pred = Pred)
+    }
   }
-
 
   opt_res <- BayesianOptimization(xgb_holdout,
                                   bounds = list(eta_opt = eta_range,
