@@ -1,4 +1,4 @@
-# MlBayesOpt 0.1.1
+# MlBayesOpt 0.1.2
 fixed minor bugs
 
 # MlBayesOpt 0.1.1
