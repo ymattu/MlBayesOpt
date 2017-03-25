@@ -1,3 +1,9 @@
+# MlBayesOpt 0.1.1
+fixed minor bugs
+
+# MlBayesOpt 0.1.1
+xgb_opt() supports objective function "binary:logistic"
+
 # MlBayesOpt 0.1.0
 delete all warnings and notes
 
