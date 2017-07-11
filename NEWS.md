@@ -1,3 +1,6 @@
+# MlBayesOpt 0.2.0
+support for cross validation(xgboost only)
+
 # MlBayesOpt 0.1.2
 fixed minor bugs
 

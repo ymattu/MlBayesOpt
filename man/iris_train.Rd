@@ -12,4 +12,3 @@ iris_train
 odd-numbered rows of iris data
 }
 \keyword{datasets}
-

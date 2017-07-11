@@ -15,4 +15,3 @@ train_mnist
 produced from kaggle competition
 }
 \keyword{datasets}
-

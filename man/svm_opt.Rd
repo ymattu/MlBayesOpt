@@ -46,4 +46,3 @@ that specifies the type of correlation function along with the smoothness parame
 \description{
 This function estimates parameters for SVM(Gaussian Kernel) based on bayesian optimization
 }
-
