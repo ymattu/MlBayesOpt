@@ -12,4 +12,3 @@ iris_test
 even-numbered rows of iris data
 }
 \keyword{datasets}
-

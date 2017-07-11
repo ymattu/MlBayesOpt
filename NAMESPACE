@@ -2,6 +2,7 @@
 
 export(rf_opt)
 export(svm_opt)
+export(xgb_cv_opt)
 export(xgb_opt)
 import(rBayesianOptimization)
 import(ranger)

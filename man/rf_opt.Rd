@@ -45,4 +45,3 @@ that specifies the type of correlation function along with the smoothness parame
 \description{
 This function estimates parameters for xgboost based on bayesian optimization.
 }
-

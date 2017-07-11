@@ -99,6 +99,7 @@ xgb_opt <- function(train_data,
 
       model <- xgb.train(params = list(objective = object_fun,
                                        eval_metric = eval_met,
+                                       nthread = 1,
                                        eta = eta_opt,
                                        max_depth = max_depth_opt,
                                        subsample = subsample_opt,
@@ -126,6 +127,7 @@ xgb_opt <- function(train_data,
 
       model <- xgb.train(params = list(objective = object_fun,
                                        num_class = num_classes,
+                                       nthread = 1,
                                        eval_metric = eval_met,
                                        eta = eta_opt,
                                        max_depth = max_depth_opt,
@@ -157,4 +159,3 @@ xgb_opt <- function(train_data,
   return(opt_res)
 
 }
-
