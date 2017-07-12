@@ -69,7 +69,7 @@ that specifies the type of correlation function along with the smoothness parame
 \item{seed}{set seed.(default is 0)}
 }
 \value{
-a list of Bayesian Optimization result is returned:
+The score you specified in the evalmetric option and a list of Bayesian Optimization result is returned:
 \itemize{
   \item \code{Best_Par} a named vector of the best hyperparameter set found
   \item \code{Best_Value} the value of metrics achieved by the best hyperparameter set

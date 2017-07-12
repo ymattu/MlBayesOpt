@@ -39,7 +39,7 @@
 ##'   that specifies the type of correlation function along with the smoothness parameter. Popular choices are square exponential (default) or matern 5/2
 ##' @param classes set the number of classes. To use only with multiclass objectives.
 ##'
-##' @return a list of Bayesian Optimization result is returned:
+##' @return The test accuracy and a list of Bayesian Optimization result is returned:
 ##' \itemize{
 ##'   \item \code{Best_Par} a named vector of the best hyperparameter set found
 ##'   \item \code{Best_Value} the value of metrics achieved by the best hyperparameter set

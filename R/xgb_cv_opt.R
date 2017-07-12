@@ -40,7 +40,7 @@
 ##' @param classes set the number of classes. To use only with multiclass objectives.
 ##' @param seed set seed.(default is 0)
 ##'
-##' @return a list of Bayesian Optimization result is returned:
+##' @return The score you specified in the evalmetric option and a list of Bayesian Optimization result is returned:
 ##' \itemize{
 ##'   \item \code{Best_Par} a named vector of the best hyperparameter set found
 ##'   \item \code{Best_Value} the value of metrics achieved by the best hyperparameter set

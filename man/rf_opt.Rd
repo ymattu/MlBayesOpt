@@ -43,7 +43,7 @@ increasing epsilon will make the optimized hyperparameters are more spread out a
 that specifies the type of correlation function along with the smoothness parameter. Popular choices are square exponential (default) or matern 5/2}
 }
 \value{
-a list of Bayesian Optimization result is returned:
+The test accuracy and a list of Bayesian Optimization result is returned:
 \itemize{
   \item \code{Best_Par} a named vector of the best hyperparameter set found
   \item \code{Best_Value} the value of metrics achieved by the best hyperparameter set
