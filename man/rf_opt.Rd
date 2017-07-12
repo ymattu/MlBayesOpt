@@ -42,6 +42,15 @@ increasing epsilon will make the optimized hyperparameters are more spread out a
 \item{kernel}{Kernel (aka correlation function) for the underlying Gaussian Process. This parameter should be a list
 that specifies the type of correlation function along with the smoothness parameter. Popular choices are square exponential (default) or matern 5/2}
 }
+\value{
+a list of Bayesian Optimization result is returned:
+\itemize{
+  \item \code{Best_Par} a named vector of the best hyperparameter set found
+  \item \code{Best_Value} the value of metrics achieved by the best hyperparameter set
+  \item \code{History} a \code{data.table} of the bayesian optimization history
+  \item \code{Pred} a \code{data.table} with validation/cross-validation prediction for each round of bayesian optimization history
+}
+}
 \description{
 This function estimates parameters for xgboost based on bayesian optimization.
 }

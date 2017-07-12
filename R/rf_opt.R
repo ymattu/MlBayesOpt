@@ -8,20 +8,29 @@
 ##' @param num_tree_range The range of the number of trees for forest. Default is c(1L, 1000L)
 ##' @param mtry_range Value of mtry used
 ##' @param init_points Number of randomly chosen points to sample the
-#'   target function before Bayesian Optimization fitting the Gaussian Process.
+##'   target function before Bayesian Optimization fitting the Gaussian Process.
 ##' @param n_iter Total number of times the Bayesian Optimization is to repeated.
 ##' @param acq Acquisition function type to be used. Can be "ucb", "ei" or "poi".
-#' \itemize{
-#'   \item \code{ucb} GP Upper Confidence Bound
-#'   \item \code{ei} Expected Improvement
-#'   \item \code{poi} Probability of Improvement
-#' }
+##' \itemize{
+##'   \item \code{ucb} GP Upper Confidence Bound
+##'   \item \code{ei} Expected Improvement
+##'   \item \code{poi} Probability of Improvement
+##' }
 ##' @param kappa tunable parameter kappa of GP Upper Confidence Bound, to balance exploitation against exploration,
-#'   increasing kappa will make the optimized hyperparameters pursuing exploration.
+##'   increasing kappa will make the optimized hyperparameters pursuing exploration.
 ##' @param eps tunable parameter epsilon of Expected Improvement and Probability of Improvement, to balance exploitation against exploration,
-#'   increasing epsilon will make the optimized hyperparameters are more spread out across the whole range.
+##'   increasing epsilon will make the optimized hyperparameters are more spread out across the whole range.
 ##' @param kernel Kernel (aka correlation function) for the underlying Gaussian Process. This parameter should be a list
-#'   that specifies the type of correlation function along with the smoothness parameter. Popular choices are square exponential (default) or matern 5/2
+##'   that specifies the type of correlation function along with the smoothness parameter. Popular choices are square exponential (default) or matern 5/2
+##'
+##' @return a list of Bayesian Optimization result is returned:
+##' \itemize{
+##'   \item \code{Best_Par} a named vector of the best hyperparameter set found
+##'   \item \code{Best_Value} the value of metrics achieved by the best hyperparameter set
+##'   \item \code{History} a \code{data.table} of the bayesian optimization history
+##'   \item \code{Pred} a \code{data.table} with validation/cross-validation prediction for each round of bayesian optimization history
+##' }
+##'
 ##' @import ranger
 ##' @import rBayesianOptimization
 ##' @importFrom stats predict

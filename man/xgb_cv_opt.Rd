@@ -69,7 +69,13 @@ that specifies the type of correlation function along with the smoothness parame
 \item{seed}{set seed.(default is 0)}
 }
 \value{
-Best parameters for xgboost.
+a list of Bayesian Optimization result is returned:
+\itemize{
+  \item \code{Best_Par} a named vector of the best hyperparameter set found
+  \item \code{Best_Value} the value of metrics achieved by the best hyperparameter set
+  \item \code{History} a \code{data.table} of the bayesian optimization history
+  \item \code{Pred} a \code{data.table} with validation/cross-validation prediction for each round of bayesian optimization history
+}
 }
 \description{
 Bayesian Optimization for XGboost(Cross Varidation)

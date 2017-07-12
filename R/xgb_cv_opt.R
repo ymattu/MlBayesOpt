@@ -39,7 +39,14 @@
 ##'   that specifies the type of correlation function along with the smoothness parameter. Popular choices are square exponential (default) or matern 5/2
 ##' @param classes set the number of classes. To use only with multiclass objectives.
 ##' @param seed set seed.(default is 0)
-##' @return Best parameters for xgboost.
+##'
+##' @return a list of Bayesian Optimization result is returned:
+##' \itemize{
+##'   \item \code{Best_Par} a named vector of the best hyperparameter set found
+##'   \item \code{Best_Value} the value of metrics achieved by the best hyperparameter set
+##'   \item \code{History} a \code{data.table} of the bayesian optimization history
+##'   \item \code{Pred} a \code{data.table} with validation/cross-validation prediction for each round of bayesian optimization history
+##' }
 ##'
 ##' @import xgboost
 ##' @importFrom Matrix sparse.model.matrix
@@ -114,7 +121,13 @@ xgb_cv_opt <- function(data,
                    prediction = TRUE, showsd = TRUE,
                    early_stopping_rounds = 5, maximize = TRUE, verbose = 0,
                    nrounds = nrounds_opt)
-      list(Score = max(cv$evaluation_log[, 4]),
+
+      if (eval_met %in% c("auc", "logloss", "mlogloss")) {
+        s <- max(cv$evaluation_log[, 4])
+      } else {
+        s <- max(-(cv$evaluation_log[, 4]))
+      }
+      list(Score = s,
            Pred = cv$pred)
     }
   } else{
@@ -148,7 +161,12 @@ xgb_cv_opt <- function(data,
                    early_stopping_rounds = 5, maximize = TRUE, verbose = 0,
                    nrounds = nrounds_opt)
 
-      list(Score = max(cv$evaluation_log[, 4]),
+      if (eval_met %in% c("auc", "logloss", "mlogloss")) {
+        s <- max(cv$evaluation_log[, 4])
+      } else {
+        s <- max(-(cv$evaluation_log[, 4]))
+      }
+      list(Score = s,
            Pred = cv$pred)
     }
   }
