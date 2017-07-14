@@ -21,4 +21,7 @@ Imports:
     ranger,
     data.table,
     foreach
+Suggests:
+    MASS,
+    testthat
 RoxygenNote: 6.0.1
