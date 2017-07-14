@@ -63,8 +63,7 @@ res1 <- rf_opt(train_data = x_train,
                test_data = x_test,
                test_label = y_test,
                mtry_range = c(1L, ncol(x_train)),
-               # Doesn't work:
-               #num_tree_range = c(500L, 500L)
-               num_tree_range = c(500L, 501L)
+               num_tree_range = 500L
 )
 str(res1)
+
