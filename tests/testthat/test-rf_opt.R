@@ -13,7 +13,8 @@ mod <- rf_opt(
   train_label = iris_train$Species,
   test_data = iris_test,
   test_label = iris_test$Species,
-  mtry_range = c(1L, 4L)
+  mtry_range = c(1L, 4L),
+  kappa = 10
 )
 
 print(mod)
@@ -63,7 +64,8 @@ res1 <- rf_opt(train_data = x_train,
                test_data = x_test,
                test_label = y_test,
                mtry_range = c(1L, ncol(x_train)),
-               num_tree_range = 500L
+               num_tree_range = 500L,
+               kapp = 10
 )
 str(res1)
 
