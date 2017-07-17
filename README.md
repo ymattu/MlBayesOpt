@@ -4,7 +4,10 @@
 [![Coverage Status](https://img.shields.io/codecov/c/github/ymattu/MlBayesOpt/master.svg)](https://codecov.io/github/ymattu/MlBayesOpt?branch=master)
 
 ## Overview
-This is an R Pckage to tune parameters for machine learning(Support Vector Machine(RBF kernel), Random Forest, Xgboost), using Bayesian Optimization based on Gaussian Process. We can exxecute only Hold-Out tuning so far.
+This is an R package to tune hyperparameters for machine learning algorithms
+using Bayesian Optimization based on Gaussian Processes. Algorithms currently
+supported are: support vector machines, random forest, and xgboost. We can
+execute only hold-out tuning so far.
 
 ## Dependencies
 - rBayesianOptimization
