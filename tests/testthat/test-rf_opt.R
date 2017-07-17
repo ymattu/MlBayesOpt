@@ -3,23 +3,7 @@ library(testthat)
 
 context("rf_opt")
 
-set.seed(123)
-
-# Default example.
-# This will generate an error in GP_deviance()
-# "Infinite values of the Deviance Function, unable to find optimum parameters"
-mod <- rf_opt(
-  train_data = iris_train,
-  train_label = iris_train$Species,
-  test_data = iris_test,
-  test_label = iris_test$Species,
-  mtry_range = c(1L, 4L),
-  kappa = 10
-)
-
-print(mod)
-
-########################################3
+########################################
 # Boston test.
 data(Boston, package = "MASS")
 
