@@ -4,9 +4,11 @@
 \alias{rf_opt}
 \title{Bayesian optimization for RandomForest}
 \usage{
-rf_opt(train_data, train_label, test_data, test_label, num_tree_range = c(1L,
-  1000L), mtry_range, init_points = 20, n_iter = 1, acq = "ei",
-  kappa = 2.576, eps = 0, kernel = list(type = "exponential", power = 2))
+rf_opt(train_data, train_label, test_data, test_label, num_tree_range = 500L,
+  mtry_range = c(1L, ncol(train_data)), min_node_size_range = c(1L,
+  as.integer(sqrt(nrow(train_data)))), init_points = 20, n_iter = 1,
+  acq = "ei", kappa = 2.576, eps = 0, kernel = list(type =
+  "exponential", power = 2))
 }
 \arguments{
 \item{train_data}{A data frame for training of xgboost}
@@ -17,9 +19,13 @@ rf_opt(train_data, train_label, test_data, test_label, num_tree_range = c(1L,
 
 \item{test_label}{The column of class to classify in the test data}
 
-\item{num_tree_range}{The range of the number of trees for forest. Default is c(1L, 1000L)}
+\item{num_tree_range}{The range of the number of trees for forest. Defaults
+to 500 (no optimization).}
 
-\item{mtry_range}{Value of mtry used}
+\item{mtry_range}{Value of mtry used. Defaults from 1 to number of columns.}
+
+\item{min_node_size_range}{The range of minimum node sizes to best tested.
+Default min is 1 and max is sqrt(nrow(train_data)).}
 
 \item{init_points}{Number of randomly chosen points to sample the
 target function before Bayesian Optimization fitting the Gaussian Process.}
