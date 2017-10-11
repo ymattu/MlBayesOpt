@@ -9,7 +9,7 @@ Description: This package provides the parameter tuning using bayesian
     optimization. In this package, youcan tune parematers of Suppot Vector Machine,
     Random Forest, and Xgboost.
 Depends:
-    R (>= 3.10)
+    R (>= 3.1.0)
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
