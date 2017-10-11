@@ -6,7 +6,7 @@
 \usage{
 rf_opt(train_data, train_label, test_data, test_label, num_tree_range = 500L,
   mtry_range = c(1L, ncol(train_data)), min_node_size_range = c(1L,
-  as.integer(sqrt(nrow(train_data)))), init_points = 20, n_iter = 1,
+  as.integer(sqrt(nrow(train_data)))), init_points = 10, n_iter = 20,
   acq = "ei", kappa = 2.576, eps = 0, optkernel = list(type =
   "exponential", power = 2))
 }

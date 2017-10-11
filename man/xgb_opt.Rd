@@ -7,7 +7,7 @@
 xgb_opt(train_data, train_label, test_data, test_label, objectfun, evalmetric,
   eta_range = c(0.1, 1L), max_depth_range = c(4L, 6L),
   nrounds_range = c(70, 160L), subsample_range = c(0.1, 1L),
-  bytree_range = c(0.4, 1L), init_points = 20, n_iter = 1, acq = "ei",
+  bytree_range = c(0.4, 1L), init_points = 10, n_iter = 20, acq = "ei",
   kappa = 2.576, eps = 0, optkernel = list(type = "exponential", power =
   2), classes = NULL)
 }
