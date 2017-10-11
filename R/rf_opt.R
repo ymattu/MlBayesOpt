@@ -37,6 +37,8 @@
 ##' @import ranger
 ##' @import rBayesianOptimization
 ##' @importFrom stats predict
+##' @importFrom rlang enquo !!
+##' @importFrom dplyr select %>%
 ##' @export
 rf_opt <- function(train_data,
                    train_label,
@@ -55,16 +57,22 @@ rf_opt <- function(train_data,
   dtrain <- train_data
   dtest <- test_data
 
-  if (class(train_label) != "factor") {
-    trainlabel <- as.factor(train_label)
+  quo_train_label <- enquo(train_label)
+  data_train_label <- (dtrain %>% select(!! quo_train_label))[[1]]
+
+  quo_test_label <- enquo(test_label)
+  data_test_label <- (dtest %>% select(!! quo_test_label))[[1]]
+
+  if (class(data_train_label) != "factor") {
+    trainlabel <- as.factor(data_train_label)
   } else {
-    trainlabel <- train_label
+    trainlabel <- data_train_label
   }
 
-  if (class(test_label) != "factor") {
-    testlabel <- as.factor(train_label)
+  if (class(data_test_label) != "factor") {
+    testlabel <- as.factor(data_train_label)
   } else {
-    testlabel <- test_label
+    testlabel <- data_test_label
   }
 
   # Ranger does not seem to support Y being a vector outside of the dataframe,
@@ -103,6 +111,7 @@ rf_opt <- function(train_data,
                                   acq,
                                   kappa,
                                   eps,
+                                  optkernel,
                                   verbose = TRUE)
 
   return(opt_res)

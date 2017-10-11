@@ -192,7 +192,7 @@ xgb_cv_opt <- function(data,
                                   acq,
                                   kappa,
                                   eps,
-                                  kernel,
+                                  optkernel,
                                   verbose = TRUE)
 
   return(opt_res)

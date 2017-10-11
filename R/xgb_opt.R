@@ -51,6 +51,8 @@
 ##' @importFrom Matrix sparse.model.matrix
 ##' @import rBayesianOptimization
 ##' @importFrom stats predict
+##' @importFrom rlang enquo !!
+##' @importFrom dplyr select %>%
 ##' @export
 ##'
 xgb_opt <- function(train_data,
@@ -74,20 +76,26 @@ xgb_opt <- function(train_data,
 )
 {
 
-  train_mx <- sparse.model.matrix(train_label ~ ., train_data)
-  test_mx <- sparse.model.matrix(test_label ~ ., test_data)
+  quo_train_label <- enquo(train_label)
+  data_train_label <- (train_data %>% select(!! quo_train_label))[[1]]
 
-  if (class(train_label) == "factor"){
-    dtrain <- xgb.DMatrix(train_mx, label = as.integer(train_label) - 1)
+  quo_test_label <- enquo(test_label)
+  data_test_label <- (test_data %>% select(!! quo_test_label))[[1]]
+
+  train_mx <- sparse.model.matrix(data_train_label ~ ., train_data)
+  test_mx <- sparse.model.matrix(data_test_label ~ ., test_data)
+
+  if (class(data_train_label) == "factor"){
+    dtrain <- xgb.DMatrix(train_mx, label = as.integer(data_train_label) - 1)
   } else{
-    dtrain <- xgb.DMatrix(train_mx, label = train_label)}
+    dtrain <- xgb.DMatrix(train_mx, label = data_train_label)}
 
 
-  if (class(test_label) == "factor"){
-    dtest <- xgb.DMatrix(test_mx, label = as.integer(test_label) - 1)
+  if (class(data_test_label) == "factor"){
+    dtest <- xgb.DMatrix(test_mx, label = as.integer(data_test_label) - 1)
 
   } else{
-    dtest <- xgb.DMatrix(test_mx, label = test_label)}
+    dtest <- xgb.DMatrix(test_mx, label = data_test_label)}
 
 
   #about classes
@@ -114,7 +122,7 @@ xgb_opt <- function(train_data,
                          data = dtrain,
                          nrounds = nrounds_opt)
       t_pred <- predict(model, newdata = dtest)
-      Pred <- sum(diag(table(test_label, t_pred)))/nrow(test_data)
+      Pred <- sum(diag(table(data_test_label, t_pred)))/nrow(test_data)
       list(Score = Pred, Pred = Pred)
     }
   } else{
@@ -143,7 +151,7 @@ xgb_opt <- function(train_data,
                          data = dtrain,
                          nrounds = nrounds_opt)
       t_pred <- predict(model, newdata = dtest)
-      Pred <- sum(diag(table(test_label, t_pred)))/nrow(test_data)
+      Pred <- sum(diag(table(data_test_label, t_pred)))/nrow(test_data)
       list(Score = Pred, Pred = Pred)
     }
   }
@@ -160,7 +168,7 @@ xgb_opt <- function(train_data,
                                   acq,
                                   kappa,
                                   eps,
-                                  kernel,
+                                  optkernel,
                                   verbose = TRUE)
 
   return(opt_res)
