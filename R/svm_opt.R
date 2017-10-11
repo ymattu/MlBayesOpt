@@ -46,7 +46,7 @@ svm_opt <- function(train_data,
                     acq = "ei",
                     kappa = 2.576,
                     eps = 0.0,
-                    kernel = list(type = "exponential", power = 2))
+                    optkernel = list(type = "exponential", power = 2))
 {
 
   dtrain <- train_data
