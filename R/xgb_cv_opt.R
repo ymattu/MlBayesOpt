@@ -52,6 +52,8 @@
 ##' @importFrom Matrix sparse.model.matrix
 ##' @import rBayesianOptimization
 ##' @importFrom stats predict
+##' @importFrom rlang enquo !!
+##' @importFrom dplyr select %>%
 ##' @export
 xgb_cv_opt <- function(data,
                        label,
@@ -73,25 +75,32 @@ xgb_cv_opt <- function(data,
                        seed = 0
 )
 {
-
   if(class(data)[1] == "dgCMatrix")
   {dtrain <- xgb.DMatrix(data,
                          label = label)
-  }
-  else
-  {
-    mx <- sparse.model.matrix(label ~ ., data)
-
-    if (class(label) == "factor"){
-      dtrain <- xgb.DMatrix(mx, label = as.integer(label) - 1)
-    } else{
-      dtrain <- xgb.DMatrix(mx, label = label)}
-  }
-
   xg_watchlist <- list(msr = dtrain)
 
   cv_folds <- KFold(label, nfolds = n_folds,
                     stratified = TRUE, seed = seed)
+  }
+  else
+  {
+    quolabel <- enquo(label)
+    datalabel <- (data %>% select(!! quolabel))[[1]]
+
+    mx <- sparse.model.matrix(datalabel ~ ., data)
+
+    if (class(datalabel) == "factor"){
+      dtrain <- xgb.DMatrix(mx, label = as.integer(datalabel) - 1)
+    } else{
+      dtrain <- xgb.DMatrix(mx, label = datalabel)
+      }
+
+    xg_watchlist <- list(msr = dtrain)
+
+    cv_folds <- KFold(datalabel, nfolds = n_folds,
+                      stratified = TRUE, seed = seed)
+  }
 
   #about classes
   if (objectfun == "binary:logistic"){
