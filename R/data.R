@@ -10,19 +10,26 @@
 #'
 "iris_test"
 
-#' produced from kaggle competition
+#' produced from fashion-mnist data
 #'
-#' produced from kaggle competition
+#' produced from fashion-mnist data
 #'
-#' @source \url{https://github.com/ozt-ca/tjo.hatenablog.samples/tree/master/r_samples/public_lib/jp/mnist_reproduced}
+#' @source \url{https://github.com/ymattu/fashion-mnist-csv}
 #'
-"train_mnist"
+"fashion_train"
 
-#' produced from kaggle competition
+#' produced from fashion-mnist data
 #'
-#' produced from kaggle competition
+#' produced from fashion-mnist data
 #'
-#' @source \url{https://github.com/ozt-ca/tjo.hatenablog.samples/tree/master/r_samples/public_lib/jp/mnist_reproduced}
+#' @source \url{https://github.com/ymattu/fashion-mnist-csv}
 #'
-"test_mnist"
+"fashion_test"
 
+#' produced from fashion-mnist data
+#'
+#' produced from fashion-mnist data
+#'
+#' @source \url{https://github.com/ymattu/fashion-mnist-csv}
+#'
+"fashion"

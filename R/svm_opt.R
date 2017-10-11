@@ -7,12 +7,12 @@
 ##' @param test_label The column of class to classify in the test data
 ##' @param gamma_range The range of gamma. Default is c(10 ^ (-5), 10 ^ 5)
 ##' @param c_range The range of C(Cost). Deafult is c(10 ^ (-2), 10 ^ 2)
-##' @param svm_kenel Kernel used in SVM. You might consider changing some of the following parameters, depending on the kernel type.
+##' @param svm_kernel Kernel used in SVM. You might consider changing some of the following parameters, depending on the kernel type.
 ##' \itemize{
-##'   \item **linear:** $u'v$
-##'   \item **polynomial:** $(\gamma u'v +coef0)^{degree}$
-##'   \item **radial basis:** $\exp(-\gamma|u-v|^2$
-##'   \item **sigmoid:** $tanh(\gamma u'v + coef0)$
+##'   \item **linear:** \eqn{u'v}
+##'   \item **polynomial:** \eqn{(\gamma u'v +coef0)^{degree}}
+##'   \item **radial basis:** \eqn{\exp(-\gamma|u-v|^2)}
+##'   \item **sigmoid:** \eqn{tanh(\gamma u'v + coef0)}
 ##' }
 ##' @param degree Parameter needed for kernel of type polynomial (default: 3)
 ##' @param init_points Number of randomly chosen points to sample the

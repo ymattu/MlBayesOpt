@@ -23,6 +23,14 @@ svm_opt(train_data, train_label, test_data, test_label,
 
 \item{c_range}{The range of C(Cost). Deafult is c(10 ^ (-2), 10 ^ 2)}
 
+\item{svm_kernel}{Kernel used in SVM. You might consider changing some of the following parameters, depending on the kernel type.
+\itemize{
+  \item **linear:** \eqn{u'v}
+  \item **polynomial:** \eqn{(\gamma u'v +coef0)^{degree}}
+  \item **radial basis:** \eqn{\exp(-\gamma|u-v|^2)}
+  \item **sigmoid:** \eqn{tanh(\gamma u'v + coef0)}
+}}
+
 \item{degree}{Parameter needed for kernel of type polynomial (default: 3)}
 
 \item{init_points}{Number of randomly chosen points to sample the
@@ -45,14 +53,6 @@ increasing epsilon will make the optimized hyperparameters are more spread out a
 
 \item{optkernel}{Kernel (aka correlation function) for the underlying Gaussian Process. This parameter should be a list
 that specifies the type of correlation function along with the smoothness parameter. Popular choices are square exponential (default) or matern 5/2}
-
-\item{svm_kenel}{Kernel used in SVM. You might consider changing some of the following parameters, depending on the kernel type.
-\itemize{
-  \item **linear:** $u'v$
-  \item **polynomial:** $(\gamma u'v +coef0)^{degree}$
-  \item **radial basis:** $\exp(-\gamma|u-v|^2$
-  \item **sigmoid:** $tanh(\gamma u'v + coef0)$
-}}
 }
 \value{
 The test accuracy and a list of Bayesian Optimization result is returned:
