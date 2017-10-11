@@ -7,7 +7,7 @@
 rf_opt(train_data, train_label, test_data, test_label, num_tree_range = 500L,
   mtry_range = c(1L, ncol(train_data)), min_node_size_range = c(1L,
   as.integer(sqrt(nrow(train_data)))), init_points = 20, n_iter = 1,
-  acq = "ei", kappa = 2.576, eps = 0, kernel = list(type =
+  acq = "ei", kappa = 2.576, eps = 0, optkernel = list(type =
   "exponential", power = 2))
 }
 \arguments{
@@ -45,7 +45,7 @@ increasing kappa will make the optimized hyperparameters pursuing exploration.}
 \item{eps}{tunable parameter epsilon of Expected Improvement and Probability of Improvement, to balance exploitation against exploration,
 increasing epsilon will make the optimized hyperparameters are more spread out across the whole range.}
 
-\item{kernel}{Kernel (aka correlation function) for the underlying Gaussian Process. This parameter should be a list
+\item{optkernel}{Kernel (aka correlation function) for the underlying Gaussian Process. This parameter should be a list
 that specifies the type of correlation function along with the smoothness parameter. Popular choices are square exponential (default) or matern 5/2}
 }
 \value{

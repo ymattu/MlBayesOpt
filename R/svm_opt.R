@@ -7,6 +7,14 @@
 ##' @param test_label The column of class to classify in the test data
 ##' @param gamma_range The range of gamma. Default is c(10 ^ (-5), 10 ^ 5)
 ##' @param c_range The range of C(Cost). Deafult is c(10 ^ (-2), 10 ^ 2)
+##' @param svm_kenel Kernel used in SVM. You might consider changing some of the following parameters, depending on the kernel type.
+##' \itemize{
+##'   \item **linear:** $u'v$
+##'   \item **polynomial:** $(\gamma u'v +coef0)^{degree}$
+##'   \item **radial basis:** $\exp(-\gamma|u-v|^2$
+##'   \item **sigmoid:** $tanh(\gamma u'v + coef0)$
+##' }
+##' @param degree Parameter needed for kernel of type polynomial (default: 3)
 ##' @param init_points Number of randomly chosen points to sample the
 ##'   target function before Bayesian Optimization fitting the Gaussian Process.
 ##' @param n_iter Total number of times the Bayesian Optimization is to repeated.
@@ -20,7 +28,7 @@
 ##'   increasing kappa will make the optimized hyperparameters pursuing exploration.
 ##' @param eps tunable parameter epsilon of Expected Improvement and Probability of Improvement, to balance exploitation against exploration,
 ##'   increasing epsilon will make the optimized hyperparameters are more spread out across the whole range.
-##' @param kernel Kernel (aka correlation function) for the underlying Gaussian Process. This parameter should be a list
+##' @param optkernel Kernel (aka correlation function) for the underlying Gaussian Process. This parameter should be a list
 ##'   that specifies the type of correlation function along with the smoothness parameter. Popular choices are square exponential (default) or matern 5/2
 ##'
 ##' @return The test accuracy and a list of Bayesian Optimization result is returned:
@@ -41,13 +49,21 @@ svm_opt <- function(train_data,
                     test_label,
                     gamma_range = c(10 ^ (-5), 10 ^ 5),
                     c_range = c(10 ^ (-2), 10 ^ 2),
-                    init_points = 20,
-                    n_iter = 1,
+                    svm_kernel = "radial",
+                    degree = 3,
+                    init_points = 10,
+                    n_iter = 20,
                     acq = "ei",
                     kappa = 2.576,
                     eps = 0.0,
                     optkernel = list(type = "exponential", power = 2))
 {
+  pkernel <- pmatch(svm_kernel, c("linear",
+                             "polynomial",
+                             "radial",
+                             "sigmoid"), 99) - 1
+
+  if (pkernel > 10) stop("wrong kernel specification!")
 
   dtrain <- train_data
   dtest <- test_data
@@ -64,7 +80,11 @@ svm_opt <- function(train_data,
 
 
   svm_holdout <- function(gamma_opt, cost_opt){
-    model <- svm(trainlabel ~., dtrain, gamma = gamma_opt, cost = cost_opt)
+    model <- svm(trainlabel ~., dtrain,
+                 gamma = gamma_opt,
+                 cost = cost_opt,
+                 kernel = svm_kernel,
+                 degree = degree)
     t.pred <- predict(model, newdata = dtest)
     Pred <- sum(diag(table(testlabel, t.pred)))/nrow(dtest)
     list(Score = Pred, Pred = Pred)

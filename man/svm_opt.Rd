@@ -6,8 +6,9 @@
 \usage{
 svm_opt(train_data, train_label, test_data, test_label,
   gamma_range = c(10^(-5), 10^5), c_range = c(10^(-2), 10^2),
-  init_points = 20, n_iter = 1, acq = "ei", kappa = 2.576, eps = 0,
-  kernel = list(type = "exponential", power = 2))
+  svm_kernel = "radial", degree = 3, init_points = 20, n_iter = 1,
+  acq = "ei", kappa = 2.576, eps = 0, optkernel = list(type =
+  "exponential", power = 2))
 }
 \arguments{
 \item{train_data}{A data frame for training of xgboost}
@@ -21,6 +22,8 @@ svm_opt(train_data, train_label, test_data, test_label,
 \item{gamma_range}{The range of gamma. Default is c(10 ^ (-5), 10 ^ 5)}
 
 \item{c_range}{The range of C(Cost). Deafult is c(10 ^ (-2), 10 ^ 2)}
+
+\item{degree}{Parameter needed for kernel of type polynomial (default: 3)}
 
 \item{init_points}{Number of randomly chosen points to sample the
 target function before Bayesian Optimization fitting the Gaussian Process.}
@@ -40,8 +43,16 @@ increasing kappa will make the optimized hyperparameters pursuing exploration.}
 \item{eps}{tunable parameter epsilon of Expected Improvement and Probability of Improvement, to balance exploitation against exploration,
 increasing epsilon will make the optimized hyperparameters are more spread out across the whole range.}
 
-\item{kernel}{Kernel (aka correlation function) for the underlying Gaussian Process. This parameter should be a list
+\item{optkernel}{Kernel (aka correlation function) for the underlying Gaussian Process. This parameter should be a list
 that specifies the type of correlation function along with the smoothness parameter. Popular choices are square exponential (default) or matern 5/2}
+
+\item{svm_kenel}{Kernel used in SVM. You might consider changing some of the following parameters, depending on the kernel type.
+\itemize{
+  \item **linear:** $u'v$
+  \item **polynomial:** $(\gamma u'v +coef0)^{degree}$
+  \item **radial basis:** $\exp(-\gamma|u-v|^2$
+  \item **sigmoid:** $tanh(\gamma u'v + coef0)$
+}}
 }
 \value{
 The test accuracy and a list of Bayesian Optimization result is returned:

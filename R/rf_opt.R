@@ -23,7 +23,7 @@
 ##'   increasing kappa will make the optimized hyperparameters pursuing exploration.
 ##' @param eps tunable parameter epsilon of Expected Improvement and Probability of Improvement, to balance exploitation against exploration,
 ##'   increasing epsilon will make the optimized hyperparameters are more spread out across the whole range.
-##' @param kernel Kernel (aka correlation function) for the underlying Gaussian Process. This parameter should be a list
+##' @param optkernel Kernel (aka correlation function) for the underlying Gaussian Process. This parameter should be a list
 ##'   that specifies the type of correlation function along with the smoothness parameter. Popular choices are square exponential (default) or matern 5/2
 ##'
 ##' @return The test accuracy and a list of Bayesian Optimization result is returned:
@@ -45,8 +45,8 @@ rf_opt <- function(train_data,
                    num_tree_range = 500L,
                    mtry_range = c(1L, ncol(train_data)),
                    min_node_size_range = c(1L, as.integer(sqrt(nrow(train_data)))),
-                   init_points = 20,
-                   n_iter = 1,
+                   init_points = 10,
+                   n_iter = 20,
                    acq = "ei",
                    kappa = 2.576,
                    eps = 0.0,
