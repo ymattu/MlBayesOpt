@@ -1,13 +1,12 @@
 Package: MlBayesOpt
 Type: Package
-Title: Parameter tuning for machine learning(Support Vector Machine, Random
-    Forest, Xgboost), using bayesian optimization
+Title: Parameter Tuning for Machine Learning, Using Bayesian Optimization
 Version: 0.2.2
-Author: ymattu
+Author: Authors@R: c(person(given = "Yuya", family = "Matsumura", email = "mattu.yuya@gmail.com", role  = c("aut", "cre")))
 Maintainer: Yuya Matsumura <mattu.yuya@gmail.com>
 Description: This package provides the parameter tuning using bayesian
-    optimization. In this package, youcan tune parematers of Suppot Vector Machine,
-    Random Forest, and Xgboost.
+    optimization. In this package, you can tune parematers of Suppot Vector Machine,
+    Random Forest, and XGboost.
 Depends:
     R (>= 3.1.0)
 License: GPL-2
@@ -27,3 +26,5 @@ Suggests:
     MASS,
     testthat
 RoxygenNote: 6.0.1
+URL: https://github.com/ymattu/MlBayesOpt
+BugReports: https://github.com/ymattu/MlBayesOpt/issues
