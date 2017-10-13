@@ -1,11 +1,9 @@
 ##' Bayesian Optimization for SVM (Gaussian Kernel)
 ##'
 ##' This function estimates parameters for SVM(Gaussian Kernel) based on bayesian optimization
-##' @param train_data A data frame for training of xgboost
-##' @param train_label The column of class to classify in the training data
-##' @param test_data A data frame for training of xgboos
-##' @param test_label The column of class to classify in the test data
-##' @param gamma_range The range of gamma. Default is c(10 ^ (-5), 10 ^ 5)
+##' @param data data
+##' @param label label for classification
+##' @param gamma_range The range of gamma. Default is c(10 ^ (-3), 10 ^ 1)
 ##' @param c_range The range of C(Cost). Deafult is c(10 ^ (-2), 10 ^ 2)
 ##' @param svm_kernel Kernel used in SVM. You might consider changing some of the following parameters, depending on the kernel type.
 ##' \itemize{
@@ -46,21 +44,19 @@
 ##' @importFrom rlang enquo !!
 ##' @importFrom dplyr select %>%
 ##' @export
-svm_cv_opt <- function(train_data,
-                    train_label,
-                    test_data,
-                    test_label,
-                    gamma_range = c(10 ^ (-5), 10 ^ 5),
-                    c_range = c(10 ^ (-2), 10 ^ 2),
-                    svm_kernel = "radial",
-                    degree = 3,
-                    n_folds = 0,
-                    init_points = 10,
-                    n_iter = 20,
-                    acq = "ei",
-                    kappa = 2.576,
-                    eps = 0.0,
-                    optkernel = list(type = "exponential", power = 2))
+svm_cv_opt <- function(data,
+                       label,
+                       gamma_range = c(10 ^ (-3), 10 ^ 1),
+                       cost_range = c(10 ^ (-2), 10 ^ 2),
+                       svm_kernel = "radial",
+                       degree = 3,
+                       n_folds = 0,
+                       init_points = 10,
+                       n_iter = 20,
+                       acq = "ei",
+                       kappa = 2.576,
+                       eps = 0.0,
+                       optkernel = list(type = "exponential", power = 2))
 {
   pkernel <- pmatch(svm_kernel,
                     c("linear",
@@ -70,39 +66,30 @@ svm_cv_opt <- function(train_data,
 
   if (pkernel > 10) stop("wrong kernel specification!")
 
-  dtrain <- train_data
-  dtest <- test_data
+  ddata <- data
 
-  quo_train_label <- enquo(train_label)
-  data_train_label <- (dtrain %>% select(!! quo_train_label))[[1]]
+  quo_label <- enquo(label)
+  data_label <- (data %>% select(!! quo_label))[[1]]
 
-  quo_test_label <- enquo(test_label)
-  data_test_label <- (dtest %>% select(!! quo_test_label))[[1]]
-
-  if (class(data_train_label) != "factor"){
-    trainlabel <- as.factor(data_train_label)
+  if (class(data_label) != "factor"){
+    dlabel <- as.factor(data_label)
   } else{
-    trainlabel <- data_train_label}
-
-  if (class(data_test_label) != "factor"){
-    testlabel <- as.factor(data_test_label)
-  } else{
-    testlabel <- data_test_label}
+    dlabel <- data_label}
 
 
-  svm_holdout <- function(gamma_opt, cost_opt){
-    model <- svm(trainlabel ~., dtrain,
+  svm_cv <- function(gamma_opt, cost_opt){
+    model <- svm(dlabel ~., ddata,
                  gamma = gamma_opt,
                  cost = cost_opt,
                  kernel = svm_kernel,
                  degree = degree,
                  cross = n_folds)
-    t.pred <- predict(model, newdata = dtest)
-    Pred <- sum(diag(table(testlabel, t.pred)))/nrow(dtest)
-    list(Score = Pred, Pred = Pred)
+    s <- model$tot.accuracy / 100
+    p <- model$fitted
+    list(Score = s, Pred = p)
   }
 
-  opt_res <- BayesianOptimization(svm_holdout,
+  opt_res <- BayesianOptimization(svm_cv,
                                   bounds = list(gamma_opt = gamma_range,
                                                 cost_opt = c_range),
                                   init_points,

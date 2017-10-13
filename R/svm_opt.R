@@ -5,7 +5,7 @@
 ##' @param train_label The column of class to classify in the training data
 ##' @param test_data A data frame for training of xgboos
 ##' @param test_label The column of class to classify in the test data
-##' @param gamma_range The range of gamma. Default is c(10 ^ (-5), 10 ^ 5)
+##' @param gamma_range The range of gamma. Default is c(10 ^ (-3), 10 ^ 1)
 ##' @param c_range The range of C(Cost). Deafult is c(10 ^ (-2), 10 ^ 2)
 ##' @param svm_kernel Kernel used in SVM. You might consider changing some of the following parameters, depending on the kernel type.
 ##' \itemize{
@@ -49,7 +49,7 @@ svm_opt <- function(train_data,
                     train_label,
                     test_data,
                     test_label,
-                    gamma_range = c(10 ^ (-5), 10 ^ 5),
+                    gamma_range = c(10 ^ (-3), 10 ^ 1),
                     c_range = c(10 ^ (-2), 10 ^ 2),
                     svm_kernel = "radial",
                     degree = 3,
