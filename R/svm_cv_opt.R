@@ -47,7 +47,7 @@
 svm_cv_opt <- function(data,
                        label,
                        gamma_range = c(10 ^ (-3), 10 ^ 1),
-                       cost_range = c(10 ^ (-2), 10 ^ 2),
+                       c_range = c(10 ^ (-2), 10 ^ 2),
                        svm_kernel = "radial",
                        degree = 3,
                        n_folds = 0,
