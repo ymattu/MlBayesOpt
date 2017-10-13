@@ -1,6 +1,6 @@
 library(MlBayesOpt)
 
-context("xgb_opt")
+context("svm_opt")
 
 data(iris_train, package = "MlBayesOpt")
 data(iris_test, package = "MlBayesOpt")
