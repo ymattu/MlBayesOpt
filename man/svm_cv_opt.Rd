@@ -4,11 +4,10 @@
 \alias{svm_cv_opt}
 \title{Bayesian Optimization for SVM (Gaussian Kernel)}
 \usage{
-svm_cv_opt(data, label, gamma_range = c(10^(-3), 10^1),
-  cost_range = c(10^(-2), 10^2), svm_kernel = "radial", degree = 3,
-  n_folds = 0, init_points = 10, n_iter = 20, acq = "ei",
-  kappa = 2.576, eps = 0, optkernel = list(type = "exponential", power =
-  2))
+svm_cv_opt(data, label, gamma_range = c(10^(-3), 10^1), c_range = c(10^(-2),
+  10^2), svm_kernel = "radial", degree = 3, n_folds = 0,
+  init_points = 10, n_iter = 20, acq = "ei", kappa = 2.576, eps = 0,
+  optkernel = list(type = "exponential", power = 2))
 }
 \arguments{
 \item{data}{data}
@@ -16,6 +15,8 @@ svm_cv_opt(data, label, gamma_range = c(10^(-3), 10^1),
 \item{label}{label for classification}
 
 \item{gamma_range}{The range of gamma. Default is c(10 ^ (-3), 10 ^ 1)}
+
+\item{c_range}{The range of C(Cost). Deafult is c(10 ^ (-2), 10 ^ 2)}
 
 \item{svm_kernel}{Kernel used in SVM. You might consider changing some of the following parameters, depending on the kernel type.
 \itemize{
@@ -49,8 +50,6 @@ increasing epsilon will make the optimized hyperparameters are more spread out a
 
 \item{optkernel}{Kernel (aka correlation function) for the underlying Gaussian Process. This parameter should be a list
 that specifies the type of correlation function along with the smoothness parameter. Popular choices are square exponential (default) or matern 5/2}
-
-\item{c_range}{The range of C(Cost). Deafult is c(10 ^ (-2), 10 ^ 2)}
 }
 \value{
 The test accuracy and a list of Bayesian Optimization result is returned:
