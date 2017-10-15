@@ -2,15 +2,15 @@ library(MlBayesOpt)
 
 context("rf_opt")
 
-data(iris_train, package = "MlBayesOpt")
-data(iris_test, package = "MlBayesOpt")
+tr <- MlBayesOpt::tr
+ts <- MlBayesOpt::ts
 
 set.seed(71)
-res0 <- rf_opt(train_data = iris_train,
-               train_label = Species,
-               test_data = iris_test,
-               test_label = Species,
-               mtry_range = c(1L, ncol(iris_train)),
+res0 <- rf_opt(train_data = tr,
+               train_label = y,
+               test_data = ts,
+               test_label = y,
+               mtry_range = c(1L, ncol(tr)),
                num_tree_range = 10L,
                init_points = 20,
                n_iter = 1,
