@@ -49,14 +49,12 @@ devtools::install_github("ymattu/MlBayesOpt")
 `iris_train` and `iris_test` are included in this pacakge. `iris_train` is odd-numbered rows of `iris` data, and `iris_test`is even-numbered rows of `iris` data.
 
 ## Example
-```{r load, echo=FALSE}
+```{r load, echo=FALSE, message=FALSE}
 devtools::load_all()
 ```
 
 ```{r example}
 library(MlBayesOpt)
-data(iris_train, package = "MlBayesOpt")
-data(iris_test, package = "MlBayesOpt")
 
 set.seed(71)
 res0 <- svm_opt(train_data = iris_train,
@@ -73,5 +71,5 @@ res0 <- svm_opt(train_data = iris_train,
 See the [vignette](https://ymattu.github.io/MlBayesOpt/articles/MlBayesOpt.html) (Coming Soon!)
 
 ## ToDo
-- [×] Make functions to execute cross validation
+- [x] Make functions to execute cross validation
 - [ ] Fix minor bugs
