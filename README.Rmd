@@ -29,6 +29,7 @@ supported are: support vector machines, random forest, and xgboost.
 - e1071
 - ranger
 - xgboost
+- dplyr(>= 0.7.0)
 
 ## Installation
 
