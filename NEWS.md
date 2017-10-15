@@ -1,26 +1,52 @@
+# MlBayesOpt 0.3.0
+- Add functions for cross validation (SVM), `svm_cv_opt()`.
+- Add choices for SVM functions(`svm_opt()` and `svm_cv_opt()`). We can use `linear`, `polynomial`, `radial`(default), `sigmoid` kernels in `svm_kernel` option.
+- We don't have to write the object name for specifying label column.
+    - before:
+    
+    ```R
+    res <- svm_opt(train_data = iris_train,
+                   train_label = iris_train$Species,
+                   test_data = iris_test,
+                   test_label = iris_test$Species,
+                   acq = "ucb"
+                   )
+    ```
+
+    - after:
+    
+    ```R
+    res <- svm_opt(train_data = iris_train,
+                   train_label = Species,
+                   test_data = iris_test,
+                   test_label = Species,
+                   acq = "ucb"
+                   )
+    ```
+
 # MlBayesOpt 0.2.1
-fix minor bugs
+Fix minor bugs
 
 # MlBayesOpt 0.2.0
-support for cross validation(xgboost only)
+Support for cross validation, `xgb_cv_opt()`
 
 # MlBayesOpt 0.1.2
-fixed minor bugs
+Fixed minor bugs
 
 # MlBayesOpt 0.1.1
-xgb_opt() supports objective function "binary:logistic"
+`xgb_opt()` supports objective function "binary:logistic"
 
 # MlBayesOpt 0.1.0
-delete all warnings and notes
+Delete all warnings and notes
 
 # MlBayesOpt 0.0.9300
-add rf_opt()
+Add `rf_opt()`
 
 # MlBayesOpt 0.0.9200
-add parameter range to the arguments
+Add parameter range to the arguments
 
 # MlBayesOpt 0.0.9100
-add svm_opt()
+Add `svm_opt()`
 
 # MlBayesOpt 0.0.9000
-the first release. xgb_opt() only.
+The first release. `xgb_opt()` only.
