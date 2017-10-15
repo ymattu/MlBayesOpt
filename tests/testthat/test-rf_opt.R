@@ -2,8 +2,8 @@ library(MlBayesOpt)
 
 context("rf_opt")
 
-tr <- MlBayesOpt::tr
-ts <- MlBayesOpt::ts
+tr <- MlBayesOpt:::tr
+ts <- MlBayesOpt:::ts
 
 set.seed(71)
 res0 <- rf_opt(train_data = tr,

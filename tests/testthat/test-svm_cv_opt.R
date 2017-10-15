@@ -2,7 +2,7 @@ library(MlBayesOpt)
 
 context("svm_cv_opt")
 
-tr <- MlBayesOpt::tr
+tr <- MlBayesOpt:::tr
 
 set.seed(71)
 res0 <- svm_cv_opt(data = tr,

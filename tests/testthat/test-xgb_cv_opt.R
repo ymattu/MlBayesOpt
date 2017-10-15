@@ -2,7 +2,7 @@ library(MlBayesOpt)
 
 context("xgb_cv_opt")
 
-tr <- MlBayesOpt::tr
+tr <- MlBayesOpt:::tr
 
 set.seed(71)
 res0 <- xgb_cv_opt(data = tr,
