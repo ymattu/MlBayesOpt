@@ -1,5 +1,5 @@
 # MlBayesOpt 0.3.0
-- Add functions for cross validation (SVM), `svm_cv_opt()`.
+- Add a function for cross validation (SVM), `svm_cv_opt()`.
 - Add choices for SVM functions(`svm_opt()` and `svm_cv_opt()`). We can use `linear`, `polynomial`, `radial`(default), `sigmoid` kernels in `svm_kernel` option.
 - We don't have to write the object name for specifying label column.
     - before:
