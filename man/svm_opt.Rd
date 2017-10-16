@@ -6,7 +6,7 @@
 \usage{
 svm_opt(train_data, train_label, test_data, test_label,
   gamma_range = c(10^(-3), 10^1), c_range = c(10^(-2), 10^2),
-  svm_kernel = "radial", degree = 3, init_points = 10, n_iter = 20,
+  svm_kernel = "radial", degree = 3, init_points = 4, n_iter = 10,
   acq = "ei", kappa = 2.576, eps = 0, optkernel = list(type =
   "exponential", power = 2))
 }
