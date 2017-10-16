@@ -1,0 +1,79 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+# MlBayesOpt
+
+[![Build Status](https://travis-ci.org/ymattu/MlBayesOpt.svg?branch=master)](https://travis-ci.org/ymattu/MlBayesOpt)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ymattu/MlBayesOpt?branch=master&svg=true)](https://ci.appveyor.com/project/ymattu/MlBayesOpt)
+[![Coverage Status](https://img.shields.io/codecov/c/github/ymattu/MlBayesOpt/master.svg)](https://codecov.io/github/ymattu/MlBayesOpt?branch=master)
+
+## Overview
+This is an R package to tune hyperparameters for machine learning algorithms
+using Bayesian Optimization based on Gaussian Processes. Algorithms currently
+supported are: support vector machines, random forest, and xgboost. 
+
+## Dependencies
+- rBayesianOptimization
+- Matrix
+- e1071
+- ranger
+- xgboost
+- dplyr(>= 0.7.0)
+
+## Installation
+
+You can install MlBayesOpt from github with:
+
+```{r gh-installation, eval = FALSE}
+# install.packages("githubinstall")
+githubinstall::githubinstall("MlBayesOpt")
+
+# install.packages("devtools")
+devtools::install_github("ymattu/MlBayesOpt")
+```
+
+## Data
+### Small Fashion MNIST
+`fashion_train` and `fashion_test` are data reproduced from [Fashion-MNIST](https://github.com/zalandoresearch/fashion-mnist). Each data has 1,000 rows and 784 feature column, and 1 label column named `y`.
+
+`fashion` is a data made by the function `bind_rows(fashion_train, fashion_test)`.
+
+### iris
+`iris_train` and `iris_test` are included in this pacakge. `iris_train` is odd-numbered rows of `iris` data, and `iris_test`is even-numbered rows of `iris` data.
+
+## Example
+```{r load, echo=FALSE, message=FALSE}
+devtools::load_all()
+```
+
+```{r example}
+library(MlBayesOpt)
+
+set.seed(71)
+res0 <- svm_opt(train_data = iris_train,
+                train_label = Species,
+                test_data = iris_test,
+                test_label = Species,
+                svm_kernel = "sigmoid",
+                kappa = 10,
+                init_points = 20,
+                n_iter = 1)
+```
+
+## For Details
+See the [vignette](https://ymattu.github.io/MlBayesOpt/articles/MlBayesOpt.html) (Coming Soon!)
+
+## ToDo
+- [x] Make functions to execute cross validation
+- [ ] Fix minor bugs

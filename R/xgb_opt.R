@@ -11,7 +11,6 @@
 ##'     \item \code{reg:logistic} logistic regression.
 ##'     \item \code{binary:logistic} logistic regression for binary classification. Output probability.
 ##'     \item \code{binary:logitraw} logistic regression for binary classification, output score before logistic transformation.
-##'     \item \code{num_class} set the number of classes. To use only with multiclass objectives.
 ##'     \item \code{multi:softmax} set xgboost to do multiclass classification using the softmax objective. Class is represented by a number and should be from 0 to \code{num_class - 1}.
 ##'     \item \code{multi:softprob} same as softmax, but prediction outputs a vector of ndata * nclass elements, which can be further reshaped to ndata, nclass matrix. The result contains predicted probabilities of each data point belonging to each class.
 ##'     \item \code{rank:pairwise} set xgboost to do ranking task by minimizing the pairwise loss.
@@ -35,7 +34,7 @@
 ##'   increasing kappa will make the optimized hyperparameters pursuing exploration.
 ##' @param eps  tunable parameter epsilon of Expected Improvement and Probability of Improvement, to balance exploitation against exploration,
 ##'   increasing epsilon will make the optimized hyperparameters are more spread out across the whole range.
-##' @param kernel Kernel (aka correlation function) for the underlying Gaussian Process. This parameter should be a list
+##' @param optkernel Kernel (aka correlation function) for the underlying Gaussian Process. This parameter should be a list
 ##'   that specifies the type of correlation function along with the smoothness parameter. Popular choices are square exponential (default) or matern 5/2
 ##' @param classes set the number of classes. To use only with multiclass objectives.
 ##'
@@ -46,11 +45,26 @@
 ##'   \item \code{History} a \code{data.table} of the bayesian optimization history
 ##'   \item \code{Pred} a \code{data.table} with validation/cross-validation prediction for each round of bayesian optimization history
 ##' }
+##' @examples
+##' \dontrun{
+##' library(MlBayesOpt)
+##'
+##' # This takes a lot of time
+##' res0 <- xgb_opt(train_data = fashion_train,
+##'                 train_label = y,
+##'                 test_data = fashion_test,
+##'                 test_label = y,
+##'                 objectfun = "multi:softmax",
+##'                 evalmetric = "merror",
+##'                 classes = 10)
+##' }
 ##'
 ##' @import xgboost
 ##' @importFrom Matrix sparse.model.matrix
 ##' @import rBayesianOptimization
 ##' @importFrom stats predict
+##' @importFrom rlang enquo !!
+##' @importFrom dplyr select %>%
 ##' @export
 ##'
 xgb_opt <- function(train_data,
@@ -64,30 +78,35 @@ xgb_opt <- function(train_data,
                     nrounds_range = c(70, 160L),
                     subsample_range = c(0.1, 1L),
                     bytree_range = c(0.4, 1L),
-                    init_points = 20,
-                    n_iter = 1,
+                    init_points = 10,
+                    n_iter = 20,
                     acq = "ei",
                     kappa = 2.576,
                     eps = 0.0,
-                    kernel = list(type = "exponential", power = 2),
+                    optkernel = list(type = "exponential", power = 2),
                     classes = NULL
 )
 {
 
-  train_mx <- sparse.model.matrix(train_label ~ ., train_data)
-  test_mx <- sparse.model.matrix(test_label ~ ., test_data)
+  quo_train_label <- enquo(train_label)
+  data_train_label <- (train_data %>% select(!! quo_train_label))[[1]]
 
-  if (class(train_label) == "factor"){
-    dtrain <- xgb.DMatrix(train_mx, label = as.integer(train_label) - 1)
+  quo_test_label <- enquo(test_label)
+  data_test_label <- (test_data %>% select(!! quo_test_label))[[1]]
+
+  train_mx <- sparse.model.matrix(data_train_label ~ ., train_data)
+  test_mx <- sparse.model.matrix(data_test_label ~ ., test_data)
+
+  if (class(data_train_label) == "factor"){
+    dtrain <- xgb.DMatrix(train_mx, label = as.integer(data_train_label) - 1)
   } else{
-    dtrain <- xgb.DMatrix(train_mx, label = train_label)}
+    dtrain <- xgb.DMatrix(train_mx, label = data_train_label)}
 
 
-  if (class(test_label) == "factor"){
-    dtest <- xgb.DMatrix(test_mx, label = as.integer(test_label) - 1)
-
+  if (class(data_test_label) == "factor"){
+    dtest <- xgb.DMatrix(test_mx, label = as.integer(data_test_label) - 1)
   } else{
-    dtest <- xgb.DMatrix(test_mx, label = test_label)}
+    dtest <- xgb.DMatrix(test_mx, label = data_test_label)}
 
 
   #about classes
@@ -114,7 +133,7 @@ xgb_opt <- function(train_data,
                          data = dtrain,
                          nrounds = nrounds_opt)
       t_pred <- predict(model, newdata = dtest)
-      Pred <- sum(diag(table(test_label, t_pred)))/nrow(test_data)
+      Pred <- sum(diag(table(data_test_label, t_pred)))/nrow(test_data)
       list(Score = Pred, Pred = Pred)
     }
   } else{
@@ -143,7 +162,7 @@ xgb_opt <- function(train_data,
                          data = dtrain,
                          nrounds = nrounds_opt)
       t_pred <- predict(model, newdata = dtest)
-      Pred <- sum(diag(table(test_label, t_pred)))/nrow(test_data)
+      Pred <- sum(diag(table(data_test_label, t_pred)))/nrow(test_data)
       list(Score = Pred, Pred = Pred)
     }
   }
@@ -160,7 +179,7 @@ xgb_opt <- function(train_data,
                                   acq,
                                   kappa,
                                   eps,
-                                  kernel,
+                                  optkernel,
                                   verbose = TRUE)
 
   return(opt_res)

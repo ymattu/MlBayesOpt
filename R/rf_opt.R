@@ -23,7 +23,7 @@
 ##'   increasing kappa will make the optimized hyperparameters pursuing exploration.
 ##' @param eps tunable parameter epsilon of Expected Improvement and Probability of Improvement, to balance exploitation against exploration,
 ##'   increasing epsilon will make the optimized hyperparameters are more spread out across the whole range.
-##' @param kernel Kernel (aka correlation function) for the underlying Gaussian Process. This parameter should be a list
+##' @param optkernel Kernel (aka correlation function) for the underlying Gaussian Process. This parameter should be a list
 ##'   that specifies the type of correlation function along with the smoothness parameter. Popular choices are square exponential (default) or matern 5/2
 ##'
 ##' @return The test accuracy and a list of Bayesian Optimization result is returned:
@@ -33,10 +33,24 @@
 ##'   \item \code{History} a \code{data.table} of the bayesian optimization history
 ##'   \item \code{Pred} a \code{data.table} with validation/cross-validation prediction for each round of bayesian optimization history
 ##' }
+##' @examples
+##' \dontrun{
+##' library(MlBayesOpt)
+##'
+##' res0 <- rf_opt(train_data = fashion_train,
+##'                train_label = y,
+##'                test_data = fashion_test,
+##'                test_label = y,
+##'                mtry_range = c(1L, ncol(fashion_train)),
+##'                num_tree_range = 10L,
+##'                kappa = 10)
+##' }
 ##'
 ##' @import ranger
 ##' @import rBayesianOptimization
 ##' @importFrom stats predict
+##' @importFrom rlang enquo !!
+##' @importFrom dplyr select %>%
 ##' @export
 rf_opt <- function(train_data,
                    train_label,
@@ -45,26 +59,32 @@ rf_opt <- function(train_data,
                    num_tree_range = 500L,
                    mtry_range = c(1L, ncol(train_data)),
                    min_node_size_range = c(1L, as.integer(sqrt(nrow(train_data)))),
-                   init_points = 20,
-                   n_iter = 1,
+                   init_points = 10,
+                   n_iter = 20,
                    acq = "ei",
                    kappa = 2.576,
                    eps = 0.0,
-                   kernel = list(type = "exponential", power = 2)) {
+                   optkernel = list(type = "exponential", power = 2)) {
 
   dtrain <- train_data
   dtest <- test_data
 
-  if (class(train_label) != "factor") {
-    trainlabel <- as.factor(train_label)
+  quo_train_label <- enquo(train_label)
+  data_train_label <- (dtrain %>% select(!! quo_train_label))[[1]]
+
+  quo_test_label <- enquo(test_label)
+  data_test_label <- (dtest %>% select(!! quo_test_label))[[1]]
+
+  if (class(data_train_label) != "factor") {
+    trainlabel <- as.factor(data_train_label)
   } else {
-    trainlabel <- train_label
+    trainlabel <- data_train_label
   }
 
-  if (class(test_label) != "factor") {
-    testlabel <- as.factor(train_label)
+  if (class(data_test_label) != "factor") {
+    testlabel <- as.factor(data_train_label)
   } else {
-    testlabel <- test_label
+    testlabel <- data_test_label
   }
 
   # Ranger does not seem to support Y being a vector outside of the dataframe,
@@ -103,6 +123,7 @@ rf_opt <- function(train_data,
                                   acq,
                                   kappa,
                                   eps,
+                                  optkernel,
                                   verbose = TRUE)
 
   return(opt_res)

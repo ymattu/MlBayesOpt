@@ -6,3 +6,5 @@ data-raw/
 ^appveyor\.yml$
 ^\.travis\.yml$
 ^codecov\.yml$
+^README\.Rmd$
+^README-.*\.png$

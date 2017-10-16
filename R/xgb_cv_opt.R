@@ -1,4 +1,4 @@
-##' Bayesian Optimization for XGboost(Cross Varidation)
+##' Bayesian Optimization for XGboost (Cross Varidation)
 ##'
 ##' @title Bayesian Optimization for XGboost(Cross Varidation)
 ##' @param data data
@@ -9,7 +9,6 @@
 ##'     \item \code{reg:logistic} logistic regression.
 ##'     \item \code{binary:logistic} logistic regression for binary classification. Output probability.
 ##'     \item \code{binary:logitraw} logistic regression for binary classification, output score before logistic transformation.
-##'     \item \code{num_class} set the number of classes. To use only with multiclass objectives.
 ##'     \item \code{multi:softmax} set xgboost to do multiclass classification using the softmax objective. Class is represented by a number and should be from 0 to \code{num_class - 1}.
 ##'     \item \code{multi:softprob} same as softmax, but prediction outputs a vector of ndata * nclass elements, which can be further reshaped to ndata, nclass matrix. The result contains predicted probabilities of each data point belonging to each class.
 ##'     \item \code{rank:pairwise} set xgboost to do ranking task by minimizing the pairwise loss.
@@ -35,7 +34,7 @@
 ##'   increasing kappa will make the optimized hyperparameters pursuing exploration.
 ##' @param eps tunable parameter epsilon of Expected Improvement and Probability of Improvement, to balance exploitation against exploration,
 ##'   increasing epsilon will make the optimized hyperparameters are more spread out across the whole range.
-##' @param kernel Kernel (aka correlation function) for the underlying Gaussian Process. This parameter should be a list
+##' @param optkernel Kernel (aka correlation function) for the underlying Gaussian Process. This parameter should be a list
 ##'   that specifies the type of correlation function along with the smoothness parameter. Popular choices are square exponential (default) or matern 5/2
 ##' @param classes set the number of classes. To use only with multiclass objectives.
 ##' @param seed set seed.(default is 0)
@@ -47,11 +46,25 @@
 ##'   \item \code{History} a \code{data.table} of the bayesian optimization history
 ##'   \item \code{Pred} a \code{data.table} with validation/cross-validation prediction for each round of bayesian optimization history
 ##' }
+##' @examples
+##' \dontrun{
+##' library(MlBayesOpt)
+##'
+##' # This takes a lot of time
+##' res0 <- xgb_cv_opt(data = fashion,
+##'                    label = y,
+##'                    objectfun = "multi:softmax",
+##'                    evalmetric = "merror",
+##'                    n_folds = 15,
+##'                    classes = 10)
+##' }
 ##'
 ##' @import xgboost
 ##' @importFrom Matrix sparse.model.matrix
 ##' @import rBayesianOptimization
 ##' @importFrom stats predict
+##' @importFrom rlang enquo !!
+##' @importFrom dplyr select %>%
 ##' @export
 xgb_cv_opt <- function(data,
                        label,
@@ -68,30 +81,37 @@ xgb_cv_opt <- function(data,
                        acq = "ei",
                        kappa = 2.576,
                        eps = 0.0,
-                       kernel = list(type = "exponential", power = 2),
+                       optkernel = list(type = "exponential", power = 2),
                        classes = NULL,
                        seed = 0
 )
 {
-
   if(class(data)[1] == "dgCMatrix")
   {dtrain <- xgb.DMatrix(data,
                          label = label)
-  }
-  else
-  {
-    mx <- sparse.model.matrix(label ~ ., data)
-
-    if (class(label) == "factor"){
-      dtrain <- xgb.DMatrix(mx, label = as.integer(label) - 1)
-    } else{
-      dtrain <- xgb.DMatrix(mx, label = label)}
-  }
-
   xg_watchlist <- list(msr = dtrain)
 
   cv_folds <- KFold(label, nfolds = n_folds,
                     stratified = TRUE, seed = seed)
+  }
+  else
+  {
+    quolabel <- enquo(label)
+    datalabel <- (data %>% select(!! quolabel))[[1]]
+
+    mx <- sparse.model.matrix(datalabel ~ ., data)
+
+    if (class(datalabel) == "factor"){
+      dtrain <- xgb.DMatrix(mx, label = as.integer(datalabel) - 1)
+    } else{
+      dtrain <- xgb.DMatrix(mx, label = datalabel)
+      }
+
+    xg_watchlist <- list(msr = dtrain)
+
+    cv_folds <- KFold(datalabel, nfolds = n_folds,
+                      stratified = TRUE, seed = seed)
+  }
 
   #about classes
   if (objectfun == "binary:logistic"){
@@ -183,7 +203,7 @@ xgb_cv_opt <- function(data,
                                   acq,
                                   kappa,
                                   eps,
-                                  kernel,
+                                  optkernel,
                                   verbose = TRUE)
 
   return(opt_res)

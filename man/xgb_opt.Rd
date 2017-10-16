@@ -7,9 +7,9 @@
 xgb_opt(train_data, train_label, test_data, test_label, objectfun, evalmetric,
   eta_range = c(0.1, 1L), max_depth_range = c(4L, 6L),
   nrounds_range = c(70, 160L), subsample_range = c(0.1, 1L),
-  bytree_range = c(0.4, 1L), init_points = 20, n_iter = 1, acq = "ei",
-  kappa = 2.576, eps = 0, kernel = list(type = "exponential", power = 2),
-  classes = NULL)
+  bytree_range = c(0.4, 1L), init_points = 10, n_iter = 20, acq = "ei",
+  kappa = 2.576, eps = 0, optkernel = list(type = "exponential", power =
+  2), classes = NULL)
 }
 \arguments{
 \item{train_data}{A data frame for training of xgboost}
@@ -26,7 +26,6 @@ xgb_opt(train_data, train_label, test_data, test_label, objectfun, evalmetric,
     \item \code{reg:logistic} logistic regression.
     \item \code{binary:logistic} logistic regression for binary classification. Output probability.
     \item \code{binary:logitraw} logistic regression for binary classification, output score before logistic transformation.
-    \item \code{num_class} set the number of classes. To use only with multiclass objectives.
     \item \code{multi:softmax} set xgboost to do multiclass classification using the softmax objective. Class is represented by a number and should be from 0 to \code{num_class - 1}.
     \item \code{multi:softprob} same as softmax, but prediction outputs a vector of ndata * nclass elements, which can be further reshaped to ndata, nclass matrix. The result contains predicted probabilities of each data point belonging to each class.
     \item \code{rank:pairwise} set xgboost to do ranking task by minimizing the pairwise loss.
@@ -62,7 +61,7 @@ increasing kappa will make the optimized hyperparameters pursuing exploration.}
 \item{eps}{tunable parameter epsilon of Expected Improvement and Probability of Improvement, to balance exploitation against exploration,
 increasing epsilon will make the optimized hyperparameters are more spread out across the whole range.}
 
-\item{kernel}{Kernel (aka correlation function) for the underlying Gaussian Process. This parameter should be a list
+\item{optkernel}{Kernel (aka correlation function) for the underlying Gaussian Process. This parameter should be a list
 that specifies the type of correlation function along with the smoothness parameter. Popular choices are square exponential (default) or matern 5/2}
 
 \item{classes}{set the number of classes. To use only with multiclass objectives.}
@@ -78,4 +77,19 @@ The test accuracy and a list of Bayesian Optimization result is returned:
 }
 \description{
 This function estimates parameters for xgboost based on bayesian optimization.
+}
+\examples{
+\dontrun{
+library(MlBayesOpt)
+
+# This takes a lot of time
+res0 <- xgb_opt(train_data = fashion_train,
+                train_label = y,
+                test_data = fashion_test,
+                test_label = y,
+                objectfun = "multi:softmax",
+                evalmetric = "merror",
+                classes = 10)
+}
+
 }
