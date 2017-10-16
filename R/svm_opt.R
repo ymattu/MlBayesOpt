@@ -6,7 +6,7 @@
 ##' @param test_data A data frame for training of xgboos
 ##' @param test_label The column of class to classify in the test data
 ##' @param gamma_range The range of gamma. Default is c(10 ^ (-3), 10 ^ 1)
-##' @param c_range The range of C(Cost). Deafult is c(10 ^ (-2), 10 ^ 2)
+##' @param cost_range The range of C(Cost). Deafult is c(10 ^ (-2), 10 ^ 2)
 ##' @param svm_kernel Kernel used in SVM. You might consider changing some of the following parameters, depending on the kernel type.
 ##' \itemize{
 ##'   \item \strong{linear:} \eqn{u'v}
@@ -60,7 +60,7 @@ svm_opt <- function(train_data,
                     test_data,
                     test_label,
                     gamma_range = c(10 ^ (-3), 10 ^ 1),
-                    c_range = c(10 ^ (-2), 10 ^ 2),
+                    cost_range = c(10 ^ (-2), 10 ^ 2),
                     svm_kernel = "radial",
                     degree = 3,
                     init_points = 4,
@@ -97,7 +97,7 @@ svm_opt <- function(train_data,
   } else{
     testlabel <- data_test_label}
 
-
+  # カーネルごとのパラメーターの調整が必要
   svm_holdout <- function(gamma_opt, cost_opt){
     model <- svm(trainlabel ~., dtrain,
                  gamma = gamma_opt,
@@ -111,7 +111,7 @@ svm_opt <- function(train_data,
 
   opt_res <- BayesianOptimization(svm_holdout,
                                   bounds = list(gamma_opt = gamma_range,
-                                                cost_opt = c_range),
+                                                cost_opt = cost_range),
                                   init_points,
                                   init_grid_dt = NULL,
                                   n_iter,

@@ -4,7 +4,7 @@
 ##' @param data data
 ##' @param label label for classification
 ##' @param gamma_range The range of gamma. Default is c(10 ^ (-3), 10 ^ 1)
-##' @param c_range The range of C(Cost). Deafult is c(10 ^ (-2), 10 ^ 2)
+##' @param cost_range The range of C(Cost). Deafult is c(10 ^ (-2), 10 ^ 2)
 ##' @param svm_kernel Kernel used in SVM. You might consider changing some of the following parameters, depending on the kernel type.
 ##' \itemize{
 ##'   \item \strong{linear:} \eqn{u'v}
@@ -55,7 +55,7 @@
 svm_cv_opt <- function(data,
                        label,
                        gamma_range = c(10 ^ (-3), 10 ^ 1),
-                       c_range = c(10 ^ (-2), 10 ^ 2),
+                       cost_range = c(10 ^ (-2), 10 ^ 2),
                        svm_kernel = "radial",
                        degree = 3,
                        n_folds = 0,
@@ -99,7 +99,7 @@ svm_cv_opt <- function(data,
 
   opt_res <- BayesianOptimization(svm_cv,
                                   bounds = list(gamma_opt = gamma_range,
-                                                cost_opt = c_range),
+                                                cost_opt = cost_range),
                                   init_points,
                                   init_grid_dt = NULL,
                                   n_iter,

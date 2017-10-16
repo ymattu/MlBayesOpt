@@ -5,7 +5,7 @@
 \title{Bayesian Optimization for SVM}
 \usage{
 svm_opt(train_data, train_label, test_data, test_label,
-  gamma_range = c(10^(-3), 10^1), c_range = c(10^(-2), 10^2),
+  gamma_range = c(10^(-3), 10^1), cost_range = c(10^(-2), 10^2),
   svm_kernel = "radial", degree = 3, init_points = 4, n_iter = 10,
   acq = "ei", kappa = 2.576, eps = 0, optkernel = list(type =
   "exponential", power = 2))
@@ -21,7 +21,7 @@ svm_opt(train_data, train_label, test_data, test_label,
 
 \item{gamma_range}{The range of gamma. Default is c(10 ^ (-3), 10 ^ 1)}
 
-\item{c_range}{The range of C(Cost). Deafult is c(10 ^ (-2), 10 ^ 2)}
+\item{cost_range}{The range of C(Cost). Deafult is c(10 ^ (-2), 10 ^ 2)}
 
 \item{svm_kernel}{Kernel used in SVM. You might consider changing some of the following parameters, depending on the kernel type.
 \itemize{
