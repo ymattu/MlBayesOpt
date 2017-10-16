@@ -1,0 +1,73 @@
+---
+title: "MlBayesOpt"
+author: "Yuya Matsumura"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{R package to tune parameters for machine learning, using bayesian optimization with gaussian process}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      collapse = TRUE,
+                      comment = "#>",
+                      message = FALSE)
+```
+
+## Overview
+This is an R package to tune hyperparameters for machine learning algorithms using Bayesian Optimization based on Gaussian Processes. Algorithms currently supported are: Support vector machines, Random forest, and XGboost.
+
+This package has some features:
+
+- It's very easy to write Bayesian Optimaization function, but you also able to customise your model very easily.
+- Tidy.
+
+### Hyperprameter Tuning in Machine Learning
+In many methods of machinelearning, it is very important to tune hyperparameters. "Grid Search" was often used to search the appropriate hyperaprameters, but it takes too much time to compute.
+
+
+### Machine Learning and Bayesian Optimization in R
+We could execute bayesian optimization using `rBayesianOptimization` package in the past.
+
+1. Make the function to maximize
+2. Execute the Bayesian Optimization
+
+For example, if we wabt to tune hyperparameters of SVM (Support Vector Machine)
+
+
+## Installation
+You can install **MlBayesOpt** from CRAN:
+```{r cran-installation, eval = FALSE}
+install.packages("MlbayesOpt")
+```
+
+You can install MlBayesOpt (latest dev version) from github with:
+
+```{r gh-installation, eval = FALSE}
+# install.packages("githubinstall")
+githubinstall::githubinstall("MlBayesOpt")
+
+# install.packages("devtools")
+devtools::install_github("ymattu/MlBayesOpt")
+```
+
+The source code for **MlBayesOpt** package is available on GitHub at
+
+- https://github.com/ymattu/MlBayesOpt
+
+## Details
+### Support Vector Machine
+
+
+### Random Forest
+
+### XGboost
+
+## Related Works
+- [rBayesianOptimization](https://github.com/yanyachen/rBayesianOptimization)
+- [e1071](https://cran.r-project.org/web/packages/e1071/index.html)
+- [ranger](https://github.com/imbs-hl/ranger)
+- [xgboost](https://github.com/dmlc/xgboost)
+

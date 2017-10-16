@@ -1,10 +1,10 @@
 Package: MlBayesOpt
 Type: Package
-Title: Parameter Tuning for Machine Learning, Using Bayesian Optimization
+Title: Hyperparameter Tuning for Machine Learning, Using Bayesian Optimization
 Version: 0.3.0
 Author: Authors@R: c(person(given = "Yuya", family = "Matsumura", email = "mattu.yuya@gmail.com", role  = c("aut", "cre")))
 Maintainer: Yuya Matsumura <mattu.yuya@gmail.com>
-Description: This package provides the parameter tuning using bayesian
+Description: This package provides the hyperparameter tuning using bayesian
     optimization. In this package, we can tune parematers of Suppot Vector Machine,
     Random Forest, and XGboost.
 Depends:
@@ -24,7 +24,10 @@ Imports:
     dplyr(>= 0.7.0)
 Suggests:
     MASS,
-    testthat
+    testthat,
+    knitr,
+    rmarkdown
 RoxygenNote: 6.0.1
 URL: https://github.com/ymattu/MlBayesOpt
 BugReports: https://github.com/ymattu/MlBayesOpt/issues
+VignetteBuilder: knitr
