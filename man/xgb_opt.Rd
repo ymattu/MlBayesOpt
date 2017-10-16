@@ -26,7 +26,6 @@ xgb_opt(train_data, train_label, test_data, test_label, objectfun, evalmetric,
     \item \code{reg:logistic} logistic regression.
     \item \code{binary:logistic} logistic regression for binary classification. Output probability.
     \item \code{binary:logitraw} logistic regression for binary classification, output score before logistic transformation.
-    \item \code{num_class} set the number of classes. To use only with multiclass objectives.
     \item \code{multi:softmax} set xgboost to do multiclass classification using the softmax objective. Class is represented by a number and should be from 0 to \code{num_class - 1}.
     \item \code{multi:softprob} same as softmax, but prediction outputs a vector of ndata * nclass elements, which can be further reshaped to ndata, nclass matrix. The result contains predicted probabilities of each data point belonging to each class.
     \item \code{rank:pairwise} set xgboost to do ranking task by minimizing the pairwise loss.
