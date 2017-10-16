@@ -1,7 +1,7 @@
 Package: MlBayesOpt
 Type: Package
 Title: Hyperparameter Tuning for Machine Learning, Using Bayesian Optimization
-Version: 0.3.0
+Version: 0.3.1
 Author: Authors@R: c(person(given = "Yuya", family = "Matsumura", email = "mattu.yuya@gmail.com", role  = c("aut", "cre")))
 Maintainer: Yuya Matsumura <mattu.yuya@gmail.com>
 Description: This package provides the hyperparameter tuning using bayesian
