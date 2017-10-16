@@ -42,7 +42,8 @@
 ##' library(MlBayesOpt)
 ##' # This takes a lot of time
 ##' res0 <- svm_cv_opt(data = fashion,
-##'                    label = y)
+##'                    label = y,
+##'                    n_folds = 10)
 ##' }
 ##'
 ##' @importFrom e1071 svm

@@ -68,7 +68,8 @@ This function estimates parameters for SVM(Gaussian Kernel) based on bayesian op
 library(MlBayesOpt)
 # This takes a lot of time
 res0 <- svm_cv_opt(data = fashion,
-                   label = y)
+                   label = y,
+                   n_folds = 10)
 }
 
 }
