@@ -10,7 +10,6 @@ res0 <- svm_opt(train_data = tr,
                 train_label = y,
                 test_data = ts,
                 test_label = y,
-                svm_kernel = "sigmoid",
                 kappa = 10,
                 init_points = 20,
                 n_iter = 1)
