@@ -2,7 +2,7 @@
 % Please edit documentation in R/xgb_opt.R
 \name{xgb_opt}
 \alias{xgb_opt}
-\title{Bayesian optimization for xgboost}
+\title{Bayesian Optimization for XGboost}
 \usage{
 xgb_opt(train_data, train_label, test_data, test_label, objectfun, evalmetric,
   eta_range = c(0.1, 1L), max_depth_range = c(4L, 6L),
