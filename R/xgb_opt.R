@@ -1,4 +1,4 @@
-##' Bayesian optimization for xgboost
+##' Bayesian Optimization for XGboost
 ##'
 ##' This function estimates parameters for xgboost based on bayesian optimization.
 ##' @param train_data A data frame for training of xgboost
