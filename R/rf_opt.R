@@ -33,6 +33,18 @@
 ##'   \item \code{History} a \code{data.table} of the bayesian optimization history
 ##'   \item \code{Pred} a \code{data.table} with validation/cross-validation prediction for each round of bayesian optimization history
 ##' }
+##' @examples
+##' \dontrun{
+##' library(MlBayesOpt)
+##'
+##' res0 <- rf_opt(train_data = fashion_train,
+##'                train_label = y,
+##'                test_data = fashion_test,
+##'                test_label = y,
+##'                mtry_range = c(1L, ncol(fashion_train)),
+##'                num_tree_range = 10L,
+##'                kappa = 10)
+##' }
 ##'
 ##' @import ranger
 ##' @import rBayesianOptimization

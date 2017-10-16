@@ -1,4 +1,4 @@
-##' Bayesian Optimization for SVM (Gaussian Kernel)
+##' Bayesian Optimization for SVM (Cross Validiation)
 ##'
 ##' This function estimates parameters for SVM(Gaussian Kernel) based on bayesian optimization
 ##' @param data data
@@ -7,10 +7,10 @@
 ##' @param c_range The range of C(Cost). Deafult is c(10 ^ (-2), 10 ^ 2)
 ##' @param svm_kernel Kernel used in SVM. You might consider changing some of the following parameters, depending on the kernel type.
 ##' \itemize{
-##'   \item **linear:** \eqn{u'v}
-##'   \item **polynomial:** \eqn{(\gamma u'v +coef0)^{degree}}
-##'   \item **radial basis:** \eqn{\exp(-\gamma|u-v|^2)}
-##'   \item **sigmoid:** \eqn{tanh(\gamma u'v + coef0)}
+##'   \item \strong{linear:} \eqn{u'v}
+##'   \item \strong{polynomial:} \eqn{(\gamma u'v +coef0)^{degree}}
+##'   \item \strong{radial basis:} \eqn{\exp(-\gamma|u-v|^2)}
+##'   \item \strong{sigmoid:} \eqn{tanh(\gamma u'v + coef0)}
 ##' }
 ##' @param degree Parameter needed for kernel of type polynomial (default: 3)
 ##' @param n_folds if a integer value k>0 is specified, a k-fold cross validation on the training data is performed to assess the quality of the model: the accuracy rate for classification and the Mean Squared Error for regression
@@ -36,6 +36,13 @@
 ##'   \item \code{Best_Value} the value of metrics achieved by the best hyperparameter set
 ##'   \item \code{History} a \code{data.table} of the bayesian optimization history
 ##'   \item \code{Pred} a \code{data.table} with validation/cross-validation prediction for each round of bayesian optimization history
+##' }
+##' @examples
+##' \dontrun{
+##' library(MlBayesOpt)
+##' # This takes a lot of time
+##' res0 <- svm_cv_opt(data = fashion,
+##'                    label = y)
 ##' }
 ##'
 ##' @importFrom e1071 svm

@@ -2,7 +2,7 @@
 % Please edit documentation in R/svm_cv_opt.R
 \name{svm_cv_opt}
 \alias{svm_cv_opt}
-\title{Bayesian Optimization for SVM (Gaussian Kernel)}
+\title{Bayesian Optimization for SVM (Cross Validiation)}
 \usage{
 svm_cv_opt(data, label, gamma_range = c(10^(-3), 10^1), c_range = c(10^(-2),
   10^2), svm_kernel = "radial", degree = 3, n_folds = 0,
@@ -20,10 +20,10 @@ svm_cv_opt(data, label, gamma_range = c(10^(-3), 10^1), c_range = c(10^(-2),
 
 \item{svm_kernel}{Kernel used in SVM. You might consider changing some of the following parameters, depending on the kernel type.
 \itemize{
-  \item **linear:** \eqn{u'v}
-  \item **polynomial:** \eqn{(\gamma u'v +coef0)^{degree}}
-  \item **radial basis:** \eqn{\exp(-\gamma|u-v|^2)}
-  \item **sigmoid:** \eqn{tanh(\gamma u'v + coef0)}
+  \item \strong{linear:} \eqn{u'v}
+  \item \strong{polynomial:} \eqn{(\gamma u'v +coef0)^{degree}}
+  \item \strong{radial basis:} \eqn{\exp(-\gamma|u-v|^2)}
+  \item \strong{sigmoid:} \eqn{tanh(\gamma u'v + coef0)}
 }}
 
 \item{degree}{Parameter needed for kernel of type polynomial (default: 3)}
@@ -62,4 +62,13 @@ The test accuracy and a list of Bayesian Optimization result is returned:
 }
 \description{
 This function estimates parameters for SVM(Gaussian Kernel) based on bayesian optimization
+}
+\examples{
+\dontrun{
+library(MlBayesOpt)
+# This takes a lot of time
+res0 <- svm_cv_opt(data = fashion,
+                   label = y)
+}
+
 }

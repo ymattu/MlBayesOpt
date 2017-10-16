@@ -1,4 +1,4 @@
-##' Bayesian Optimization for SVM (Gaussian Kernel)
+##' Bayesian Optimization for SVM
 ##'
 ##' This function estimates parameters for SVM(Gaussian Kernel) based on bayesian optimization
 ##' @param train_data A data frame for training of xgboost
@@ -9,10 +9,10 @@
 ##' @param c_range The range of C(Cost). Deafult is c(10 ^ (-2), 10 ^ 2)
 ##' @param svm_kernel Kernel used in SVM. You might consider changing some of the following parameters, depending on the kernel type.
 ##' \itemize{
-##'   \item **linear:** \eqn{u'v}
-##'   \item **polynomial:** \eqn{(\gamma u'v +coef0)^{degree}}
-##'   \item **radial basis:** \eqn{\exp(-\gamma|u-v|^2)}
-##'   \item **sigmoid:** \eqn{tanh(\gamma u'v + coef0)}
+##'   \item \strong{linear:} \eqn{u'v}
+##'   \item \strong{polynomial:} \eqn{(\gamma u'v +coef0)^{degree}}
+##'   \item \strong{radial basis:} \eqn{\exp(-\gamma|u-v|^2)}
+##'   \item \strong{sigmoid:} \eqn{tanh(\gamma u'v + coef0)}
 ##' }
 ##' @param degree Parameter needed for kernel of type polynomial (default: 3)
 ##' @param init_points Number of randomly chosen points to sample the
@@ -37,6 +37,16 @@
 ##'   \item \code{Best_Value} the value of metrics achieved by the best hyperparameter set
 ##'   \item \code{History} a \code{data.table} of the bayesian optimization history
 ##'   \item \code{Pred} a \code{data.table} with validation/cross-validation prediction for each round of bayesian optimization history
+##' }
+##' @examples
+##' \dontrun{
+##' library(MlBayesOpt)
+##'
+##' # This takes a lot of time
+##' res0 <- svm_opt(train_data = fashion_train,
+##'                 train_label = y,
+##'                 test_data = fashion_test,
+##'                 test_label = y)
 ##' }
 ##'
 ##' @importFrom e1071 svm

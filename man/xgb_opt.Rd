@@ -79,3 +79,18 @@ The test accuracy and a list of Bayesian Optimization result is returned:
 \description{
 This function estimates parameters for xgboost based on bayesian optimization.
 }
+\examples{
+\dontrun{
+library(MlBayesOpt)
+
+# This takes a lot of time
+res0 <- xgb_opt(train_data = fashion_train,
+                train_label = y,
+                test_data = fashion_test,
+                test_label = y,
+                objectfun = "multi:softmax",
+                evalmetric = "merror",
+                classes = 10)
+}
+
+}

@@ -1,4 +1,4 @@
-##' Bayesian Optimization for XGboost(Cross Varidation)
+##' Bayesian Optimization for XGboost (Cross Varidation)
 ##'
 ##' @title Bayesian Optimization for XGboost(Cross Varidation)
 ##' @param data data
@@ -46,6 +46,18 @@
 ##'   \item \code{Best_Value} the value of metrics achieved by the best hyperparameter set
 ##'   \item \code{History} a \code{data.table} of the bayesian optimization history
 ##'   \item \code{Pred} a \code{data.table} with validation/cross-validation prediction for each round of bayesian optimization history
+##' }
+##' @examples
+##' \dontrun{
+##' library(MlBayesOpt)
+##'
+##' # This takes a lot of time
+##' res0 <- xgb_cv_opt(data = fashion,
+##'                    label = y,
+##'                    objectfun = "multi:softmax",
+##'                    evalmetric = "merror",
+##'                    n_folds = 15,
+##'                    classes = 10)
 ##' }
 ##'
 ##' @import xgboost

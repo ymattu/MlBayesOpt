@@ -46,6 +46,19 @@
 ##'   \item \code{History} a \code{data.table} of the bayesian optimization history
 ##'   \item \code{Pred} a \code{data.table} with validation/cross-validation prediction for each round of bayesian optimization history
 ##' }
+##' @examples
+##' \dontrun{
+##' library(MlBayesOpt)
+##'
+##' # This takes a lot of time
+##' res0 <- xgb_opt(train_data = fashion_train,
+##'                 train_label = y,
+##'                 test_data = fashion_test,
+##'                 test_label = y,
+##'                 objectfun = "multi:softmax",
+##'                 evalmetric = "merror",
+##'                 classes = 10)
+##' }
 ##'
 ##' @import xgboost
 ##' @importFrom Matrix sparse.model.matrix
@@ -93,7 +106,6 @@ xgb_opt <- function(train_data,
 
   if (class(data_test_label) == "factor"){
     dtest <- xgb.DMatrix(test_mx, label = as.integer(data_test_label) - 1)
-
   } else{
     dtest <- xgb.DMatrix(test_mx, label = data_test_label)}
 

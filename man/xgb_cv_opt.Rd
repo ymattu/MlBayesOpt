@@ -78,5 +78,19 @@ The score you specified in the evalmetric option and a list of Bayesian Optimiza
 }
 }
 \description{
-Bayesian Optimization for XGboost(Cross Varidation)
+Bayesian Optimization for XGboost (Cross Varidation)
+}
+\examples{
+\dontrun{
+library(MlBayesOpt)
+
+# This takes a lot of time
+res0 <- xgb_cv_opt(data = fashion,
+                   label = y,
+                   objectfun = "multi:softmax",
+                   evalmetric = "merror",
+                   n_folds = 15,
+                   classes = 10)
+}
+
 }
