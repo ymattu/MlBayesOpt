@@ -3,12 +3,12 @@
 \docType{data}
 \name{iris_test}
 \alias{iris_test}
-\title{even-numbered rows of iris data}
+\title{Even-numbered rows of iris data}
 \format{An object of class \code{data.frame} with 75 rows and 5 columns.}
 \usage{
 iris_test
 }
 \description{
-even-numbered rows of iris data
+Even-numbered rows of iris data
 }
 \keyword{datasets}

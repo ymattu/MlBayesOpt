@@ -3,12 +3,12 @@
 \docType{data}
 \name{iris_train}
 \alias{iris_train}
-\title{odd-numbered rows of iris data}
+\title{Odd-numbered rows of iris data}
 \format{An object of class \code{data.frame} with 75 rows and 5 columns.}
 \usage{
 iris_train
 }
 \description{
-odd-numbered rows of iris data
+Odd-numbered rows of iris data
 }
 \keyword{datasets}

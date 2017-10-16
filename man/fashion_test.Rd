@@ -3,7 +3,7 @@
 \docType{data}
 \name{fashion_test}
 \alias{fashion_test}
-\title{produced from fashion-mnist data}
+\title{Reproduced from fashion-mnist data}
 \format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 1000 rows and 785 columns.}
 \source{
 \url{https://github.com/ymattu/fashion-mnist-csv}
@@ -12,6 +12,6 @@
 fashion_test
 }
 \description{
-produced from fashion-mnist data
+Reproduced from fashion-mnist data
 }
 \keyword{datasets}

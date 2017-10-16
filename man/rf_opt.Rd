@@ -2,7 +2,7 @@
 % Please edit documentation in R/rf_opt.R
 \name{rf_opt}
 \alias{rf_opt}
-\title{Bayesian optimization for RandomForest}
+\title{Bayesian Optimization for Random Forest}
 \usage{
 rf_opt(train_data, train_label, test_data, test_label, num_tree_range = 500L,
   mtry_range = c(1L, ncol(train_data)), min_node_size_range = c(1L,
