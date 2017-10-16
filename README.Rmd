@@ -36,6 +36,9 @@ supported are: support vector machines, random forest, and xgboost.
 You can install MlBayesOpt from github with:
 
 ```{r gh-installation, eval = FALSE}
+# install.packages("githubinstall")
+githubinstall::githubinstall("MlBayesOpt")
+
 # install.packages("devtools")
 devtools::install_github("ymattu/MlBayesOpt")
 ```
