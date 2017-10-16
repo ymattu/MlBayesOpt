@@ -2,19 +2,15 @@
 % Please edit documentation in R/svm_cv_opt.R
 \name{svm_cv_opt}
 \alias{svm_cv_opt}
-\title{Bayesian Optimization for SVM (Cross Validiation)}
+\title{Bayesian Optimization for SVM}
 \usage{
 svm_cv_opt(data, label, gamma_range = c(10^(-3), 10^1),
-  cost_range = c(10^(-2), 10^2), svm_kernel = "radial", degree = 3,
-  n_folds = 0, init_points = 4, n_iter = 10, acq = "ei",
-  kappa = 2.576, eps = 0, optkernel = list(type = "exponential", power =
-  2))
+  cost_range = c(10^(-2), 10^2), svm_kernel = "radial",
+  degree_range = c(3L, 10L), coef0_range = c(10^(-1), 10^1), n_folds,
+  init_points = 4, n_iter = 10, acq = "ei", kappa = 2.576, eps = 0,
+  optkernel = list(type = "exponential", power = 2))
 }
 \arguments{
-\item{data}{data}
-
-\item{label}{label for classification}
-
 \item{gamma_range}{The range of gamma. Default is c(10 ^ (-3), 10 ^ 1)}
 
 \item{cost_range}{The range of C(Cost). Deafult is c(10 ^ (-2), 10 ^ 2)}
@@ -23,11 +19,13 @@ svm_cv_opt(data, label, gamma_range = c(10^(-3), 10^1),
 \itemize{
   \item \strong{linear:} \eqn{u'v}
   \item \strong{polynomial:} \eqn{(\gamma u'v +coef0)^{degree}}
-  \item \strong{radial basis:} \eqn{\exp(-\gamma|u-v|^2)}
+  \item \strong{radial basis:} \eqn{exp(-\gamma|u-v|^2)}
   \item \strong{sigmoid:} \eqn{tanh(\gamma u'v + coef0)}
 }}
 
-\item{degree}{Parameter needed for kernel of type polynomial (default: 3)}
+\item{degree_range}{Parameter needed for kernel of type polynomial}
+
+\item{coef0_range}{Parameter needed for kernels of type \code{polynomial} and \code{sigmoid}}
 
 \item{n_folds}{if a integer value k>0 is specified, a k-fold cross validation on the training data is performed to assess the quality of the model: the accuracy rate for classification and the Mean Squared Error for regression}
 
@@ -51,6 +49,14 @@ increasing epsilon will make the optimized hyperparameters are more spread out a
 
 \item{optkernel}{Kernel (aka correlation function) for the underlying Gaussian Process. This parameter should be a list
 that specifies the type of correlation function along with the smoothness parameter. Popular choices are square exponential (default) or matern 5/2}
+
+\item{train_data}{A data frame for training of xgboost}
+
+\item{train_label}{The column of class to classify in the training data}
+
+\item{test_data}{A data frame for training of xgboos}
+
+\item{test_label}{The column of class to classify in the test data}
 }
 \value{
 The test accuracy and a list of Bayesian Optimization result is returned:
@@ -67,6 +73,7 @@ This function estimates parameters for SVM(Gaussian Kernel) based on bayesian op
 \examples{
 \dontrun{
 library(MlBayesOpt)
+
 # This takes a lot of time
 res0 <- svm_cv_opt(data = fashion,
                    label = y,

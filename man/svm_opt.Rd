@@ -6,7 +6,8 @@
 \usage{
 svm_opt(train_data, train_label, test_data, test_label,
   gamma_range = c(10^(-3), 10^1), cost_range = c(10^(-2), 10^2),
-  svm_kernel = "radial", degree = 3, init_points = 4, n_iter = 10,
+  svm_kernel = "radial", degree_range = c(3L, 10L),
+  coef0_range = c(10^(-1), 10^1), init_points = 4, n_iter = 10,
   acq = "ei", kappa = 2.576, eps = 0, optkernel = list(type =
   "exponential", power = 2))
 }
@@ -27,11 +28,13 @@ svm_opt(train_data, train_label, test_data, test_label,
 \itemize{
   \item \strong{linear:} \eqn{u'v}
   \item \strong{polynomial:} \eqn{(\gamma u'v +coef0)^{degree}}
-  \item \strong{radial basis:} \eqn{\exp(-\gamma|u-v|^2)}
+  \item \strong{radial basis:} \eqn{exp(-\gamma|u-v|^2)}
   \item \strong{sigmoid:} \eqn{tanh(\gamma u'v + coef0)}
 }}
 
-\item{degree}{Parameter needed for kernel of type polynomial (default: 3)}
+\item{degree_range}{Parameter needed for kernel of type polynomial}
+
+\item{coef0_range}{parameter needed for kernels of type \code{polynomial} and \code{sigmoid}}
 
 \item{init_points}{Number of randomly chosen points to sample the
 target function before Bayesian Optimization fitting the Gaussian Process.}
