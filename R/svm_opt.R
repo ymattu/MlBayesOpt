@@ -194,7 +194,7 @@ svm_opt <- function(train_data,
 
     crange <- eval_tidy(qcost)
     opt_res <- BayesianOptimization(svm_holdout4,
-                                    bounds = list(cost_opt = drange),
+                                    bounds = list(cost_opt = crange),
                                     init_points,
                                     init_grid_dt = NULL,
                                     n_iter,

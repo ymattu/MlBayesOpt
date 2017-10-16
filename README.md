@@ -58,33 +58,23 @@ res0 <- svm_opt(train_data = iris_train,
                 test_data = iris_test,
                 test_label = Species,
                 svm_kernel = "sigmoid",
-                kappa = 10,
-                init_points = 20,
-                n_iter = 1)
-#> elapsed = 0.05   Round = 1   cost_opt = 33.2995  coef0_opt = 6.1907  gamma_opt = 3.7650  Value = 0.6800 
-#> elapsed = 0.11   Round = 2   cost_opt = 55.5148  coef0_opt = 2.9461  gamma_opt = 6.1946  Value = 0.8000 
-#> elapsed = 0.00   Round = 3   cost_opt = 32.7437  coef0_opt = 7.1117  gamma_opt = 0.3714  Value = 0.3733 
-#> elapsed = 0.00   Round = 4   cost_opt = 21.1746  coef0_opt = 2.2747  gamma_opt = 6.5964  Value = 0.7600 
-#> elapsed = 0.00   Round = 5   cost_opt = 31.6190  coef0_opt = 2.0113  gamma_opt = 4.0519  Value = 0.8000 
-#> elapsed = 0.00   Round = 6   cost_opt = 94.7272  coef0_opt = 4.6869  gamma_opt = 6.3842  Value = 0.8133 
-#> elapsed = 0.00   Round = 7   cost_opt = 66.1748  coef0_opt = 4.2256  gamma_opt = 5.4706  Value = 0.7867 
-#> elapsed = 0.01   Round = 8   cost_opt = 88.9432  coef0_opt = 3.3751  gamma_opt = 1.2263  Value = 0.8000 
-#> elapsed = 0.00   Round = 9   cost_opt = 33.8076  coef0_opt = 3.0605  gamma_opt = 0.3956  Value = 1.0000 
-#> elapsed = 0.00   Round = 10  cost_opt = 43.4807  coef0_opt = 8.8818  gamma_opt = 8.2328  Value = 0.6800 
-#> elapsed = 0.00   Round = 11  cost_opt = 11.7670  coef0_opt = 0.6194  gamma_opt = 0.2384  Value = 1.0000 
-#> elapsed = 0.00   Round = 12  cost_opt = 76.1740  coef0_opt = 6.0815  gamma_opt = 1.2542  Value = 0.6667 
-#> elapsed = 0.00   Round = 13  cost_opt = 14.1882  coef0_opt = 7.9847  gamma_opt = 6.0368  Value = 0.6533 
-#> elapsed = 0.00   Round = 14  cost_opt = 76.6932  coef0_opt = 0.7139  gamma_opt = 5.0405  Value = 0.8400 
-#> elapsed = 0.01   Round = 15  cost_opt = 84.2154  coef0_opt = 7.8487  gamma_opt = 9.5295  Value = 0.6933 
-#> elapsed = 0.00   Round = 16  cost_opt = 77.6772  coef0_opt = 8.3927  gamma_opt = 9.9104  Value = 0.6533 
-#> elapsed = 0.00   Round = 17  cost_opt = 13.3914  coef0_opt = 4.6207  gamma_opt = 4.7610  Value = 0.6533 
-#> elapsed = 0.00   Round = 18  cost_opt = 80.5955  coef0_opt = 2.2961  gamma_opt = 6.2712  Value = 0.7867 
-#> elapsed = 0.00   Round = 19  cost_opt = 89.6793  coef0_opt = 4.7502  gamma_opt = 6.5775  Value = 0.7467 
-#> elapsed = 0.00   Round = 20  cost_opt = 92.6987  coef0_opt = 0.4899  gamma_opt = 1.8751  Value = 0.8533 
-#> elapsed = 0.01   Round = 21  cost_opt = 3.0690   coef0_opt = 1.9483  gamma_opt = 0.2771  Value = 1.0000 
+                init_points = 10,
+                n_iter = 1,
+                kappa = 10)
+#> elapsed = 0.06   Round = 1   cost_opt = 33.2995  coef0_opt = 1.2641  gamma_opt = 6.1526  Value = 0.8000 
+#> elapsed = 0.11   Round = 2   cost_opt = 55.5148  coef0_opt = 7.6410  gamma_opt = 2.8756  Value = 0.6667 
+#> elapsed = 0.00   Round = 3   cost_opt = 32.7437  coef0_opt = 1.5038  gamma_opt = 7.0828  Value = 0.8000 
+#> elapsed = 0.01   Round = 4   cost_opt = 21.1746  coef0_opt = 7.6924  gamma_opt = 2.1974  Value = 0.6667 
+#> elapsed = 0.00   Round = 5   cost_opt = 31.6190  coef0_opt = 8.4372  gamma_opt = 1.9315  Value = 0.5867 
+#> elapsed = 0.00   Round = 6   cost_opt = 94.7272  coef0_opt = 7.7898  gamma_opt = 4.6338  Value = 0.6667 
+#> elapsed = 0.00   Round = 7   cost_opt = 66.1748  coef0_opt = 1.4249  gamma_opt = 4.1679  Value = 0.8133 
+#> elapsed = 0.00   Round = 8   cost_opt = 88.9432  coef0_opt = 8.0788  gamma_opt = 3.3089  Value = 0.6667 
+#> elapsed = 0.01   Round = 9   cost_opt = 33.8076  coef0_opt = 8.9781  gamma_opt = 2.9911  Value = 0.6400 
+#> elapsed = 0.00   Round = 10  cost_opt = 43.4807  coef0_opt = 9.2771  gamma_opt = 8.8706  Value = 0.6933 
+#> elapsed = 0.00   Round = 11  cost_opt = 13.0177  coef0_opt = 1.3844  gamma_opt = 8.6246  Value = 0.8133 
 #> 
 #>  Best Parameters Found: 
-#> Round = 9    cost_opt = 33.8076  coef0_opt = 3.0605  gamma_opt = 0.3956  Value = 1.0000
+#> Round = 7    cost_opt = 66.1748  coef0_opt = 1.4249  gamma_opt = 4.1679  Value = 0.8133
 ```
 
 For Details
