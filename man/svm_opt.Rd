@@ -32,9 +32,9 @@ svm_opt(train_data, train_label, test_data, test_label,
   \item \strong{sigmoid:} \eqn{tanh(\gamma u'v + coef0)}
 }}
 
-\item{degree_range}{Parameter needed for kernel of type polynomial}
+\item{degree_range}{Parameter needed for kernel of type polynomial. Default is c(3L, 10L)}
 
-\item{coef0_range}{parameter needed for kernels of type \code{polynomial} and \code{sigmoid}}
+\item{coef0_range}{parameter needed for kernels of type \code{polynomial} and \code{sigmoid}. Default is c(10 ^ (-1), 10 ^ 1)}
 
 \item{init_points}{Number of randomly chosen points to sample the
 target function before Bayesian Optimization fitting the Gaussian Process.}

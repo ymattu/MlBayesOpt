@@ -11,6 +11,10 @@ svm_cv_opt(data, label, gamma_range = c(10^(-3), 10^1),
   optkernel = list(type = "exponential", power = 2))
 }
 \arguments{
+\item{data}{data}
+
+\item{label}{label for classification}
+
 \item{gamma_range}{The range of gamma. Default is c(10 ^ (-3), 10 ^ 1)}
 
 \item{cost_range}{The range of C(Cost). Deafult is c(10 ^ (-2), 10 ^ 2)}
@@ -23,9 +27,9 @@ svm_cv_opt(data, label, gamma_range = c(10^(-3), 10^1),
   \item \strong{sigmoid:} \eqn{tanh(\gamma u'v + coef0)}
 }}
 
-\item{degree_range}{Parameter needed for kernel of type polynomial}
+\item{degree_range}{Parameter needed for kernel of type polynomial. Default is c(3L, 10L)}
 
-\item{coef0_range}{Parameter needed for kernels of type \code{polynomial} and \code{sigmoid}}
+\item{coef0_range}{Parameter needed for kernels of type \code{polynomial} and \code{sigmoid}. Default is c(10 ^ (-1), 10 ^ 1)}
 
 \item{n_folds}{if a integer value k>0 is specified, a k-fold cross validation on the training data is performed to assess the quality of the model: the accuracy rate for classification and the Mean Squared Error for regression}
 
@@ -49,14 +53,6 @@ increasing epsilon will make the optimized hyperparameters are more spread out a
 
 \item{optkernel}{Kernel (aka correlation function) for the underlying Gaussian Process. This parameter should be a list
 that specifies the type of correlation function along with the smoothness parameter. Popular choices are square exponential (default) or matern 5/2}
-
-\item{train_data}{A data frame for training of xgboost}
-
-\item{train_label}{The column of class to classify in the training data}
-
-\item{test_data}{A data frame for training of xgboos}
-
-\item{test_label}{The column of class to classify in the test data}
 }
 \value{
 The test accuracy and a list of Bayesian Optimization result is returned:

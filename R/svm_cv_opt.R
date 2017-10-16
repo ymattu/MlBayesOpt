@@ -1,10 +1,8 @@
 ##' Bayesian Optimization for SVM
 ##'
 ##' This function estimates parameters for SVM(Gaussian Kernel) based on bayesian optimization
-##' @param train_data A data frame for training of xgboost
-##' @param train_label The column of class to classify in the training data
-##' @param test_data A data frame for training of xgboos
-##' @param test_label The column of class to classify in the test data
+##' @param data data
+##' @param label label for classification
 ##' @param gamma_range The range of gamma. Default is c(10 ^ (-3), 10 ^ 1)
 ##' @param cost_range The range of C(Cost). Deafult is c(10 ^ (-2), 10 ^ 2)
 ##' @param svm_kernel Kernel used in SVM. You might consider changing some of the following parameters, depending on the kernel type.
@@ -14,8 +12,8 @@
 ##'   \item \strong{radial basis:} \eqn{exp(-\gamma|u-v|^2)}
 ##'   \item \strong{sigmoid:} \eqn{tanh(\gamma u'v + coef0)}
 ##' }
-##' @param degree_range Parameter needed for kernel of type polynomial
-##' @param coef0_range Parameter needed for kernels of type \code{polynomial} and \code{sigmoid}
+##' @param degree_range Parameter needed for kernel of type polynomial. Default is c(3L, 10L)
+##' @param coef0_range Parameter needed for kernels of type \code{polynomial} and \code{sigmoid}. Default is c(10 ^ (-1), 10 ^ 1)
 ##' @param n_folds if a integer value k>0 is specified, a k-fold cross validation on the training data is performed to assess the quality of the model: the accuracy rate for classification and the Mean Squared Error for regression
 ##' @param init_points Number of randomly chosen points to sample the
 ##'   target function before Bayesian Optimization fitting the Gaussian Process.
@@ -98,7 +96,7 @@ svm_cv_opt <- function(data,
 
   # svm_kernel
   if (svm_kernel == "radial") {
-    svm_cv <- function(gamma_opt, cost_opt){
+    svm_cv1 <- function(gamma_opt, cost_opt){
       model <- svm(dlabel ~., ddata,
                    gamma = gamma_opt,
                    cost = cost_opt,
@@ -111,7 +109,7 @@ svm_cv_opt <- function(data,
 
     grange <- eval_tidy(qgamma)
     crange <- eval_tidy(qcost)
-    opt_res <- BayesianOptimization(svm_cv,
+    opt_res <- BayesianOptimization(svm_cv1,
                                     bounds = list(gamma_opt = grange,
                                                   cost_opt = crange),
                                     init_points,
@@ -123,12 +121,11 @@ svm_cv_opt <- function(data,
                                     optkernel,
                                     verbose = TRUE)
   } else if (svm_kernel == "polynomial") {
-    svm_cv <- function(degree_opt, coef0_opt){
+    svm_cv2 <- function(degree_opt, coef0_opt){
       model <- svm(dlabel ~., ddata,
                    degree = degree_opt,
                    coef0 = coef0_opt,
                    kernel = svm_kernel,
-                   degree = degree,
                    cross = n_folds)
       s <- model$tot.accuracy / 100
       p <- model$fitted
@@ -137,7 +134,7 @@ svm_cv_opt <- function(data,
 
     drange <- eval_tidy(qdegree)
     c0range <- eval_tidy(qcoef0)
-    opt_res <- BayesianOptimization(svm_cv,
+    opt_res <- BayesianOptimization(svm_cv2,
                                     bounds = list(degree_opt = drange,
                                                   coef0_opt = c0range),
                                     init_points,
@@ -149,7 +146,7 @@ svm_cv_opt <- function(data,
                                     optkernel,
                                     verbose = TRUE)
   } else if (svm_kernel == "sigmoid") {
-    svm_cv <- function(gamma_opt, cost_opt, coef0_opt){
+    svm_cv3 <- function(gamma_opt, cost_opt, coef0_opt){
       model <- svm(dlabel ~., ddata,
                    gamma = gamma_opt,
                    cost = cost_opt,
@@ -164,7 +161,7 @@ svm_cv_opt <- function(data,
     crange <- eval_tidy(qcost)
     c0range <- eval_tidy(qcoef0)
     grange <- eval_tidy(qgamma)
-    opt_res <- BayesianOptimization(svm_cv,
+    opt_res <- BayesianOptimization(svm_cv3,
                                     bounds = list(cost_opt = crange,
                                                   coef0_opt = c0range,
                                                   gamma_opt = grange),
@@ -177,7 +174,7 @@ svm_cv_opt <- function(data,
                                     optkernel,
                                     verbose = TRUE)
   } else if (svm_kernel == "linear") {
-    svm_cv <- function(cost_opt){
+    svm_cv4 <- function(cost_opt){
       model <- svm(dlabel ~., ddata,
                    cost = cost_opt,
                    kernel = svm_kernel,
@@ -188,7 +185,7 @@ svm_cv_opt <- function(data,
     }
 
     crange <- eval_tidy(qcost)
-    opt_res <- BayesianOptimization(svm_cv,
+    opt_res <- BayesianOptimization(svm_cv4,
                                     bounds = list(cost_opt = drange),
                                     init_points,
                                     init_grid_dt = NULL,

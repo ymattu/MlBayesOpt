@@ -14,8 +14,8 @@
 ##'   \item \strong{radial basis:} \eqn{exp(-\gamma|u-v|^2)}
 ##'   \item \strong{sigmoid:} \eqn{tanh(\gamma u'v + coef0)}
 ##' }
-##' @param degree_range Parameter needed for kernel of type polynomial
-##' @param coef0_range parameter needed for kernels of type \code{polynomial} and \code{sigmoid}
+##' @param degree_range Parameter needed for kernel of type polynomial. Default is c(3L, 10L)
+##' @param coef0_range parameter needed for kernels of type \code{polynomial} and \code{sigmoid}. Default is c(10 ^ (-1), 10 ^ 1)
 ##' @param init_points Number of randomly chosen points to sample the
 ##'   target function before Bayesian Optimization fitting the Gaussian Process.
 ##' @param n_iter Total number of times the Bayesian Optimization is to repeated.
@@ -108,7 +108,7 @@ svm_opt <- function(train_data,
 
   # svm_kernel
   if (svm_kernel == "radial") {
-    svm_holdout <- function(gamma_opt, cost_opt){
+    svm_holdout1 <- function(gamma_opt, cost_opt){
       model <- svm(trainlabel ~., dtrain,
                    gamma = gamma_opt,
                    cost = cost_opt,
@@ -120,7 +120,7 @@ svm_opt <- function(train_data,
 
     grange <- eval_tidy(qgamma)
     crange <- eval_tidy(qcost)
-    opt_res <- BayesianOptimization(svm_holdout,
+    opt_res <- BayesianOptimization(svm_holdout1,
                                     bounds = list(gamma_opt = grange,
                                                   cost_opt = crange),
                                     init_points,
@@ -132,12 +132,11 @@ svm_opt <- function(train_data,
                                     optkernel,
                                     verbose = TRUE)
   } else if (svm_kernel == "polynomial") {
-      svm_holdout <- function(degree_opt, coef0_opt){
+      svm_holdout2 <- function(degree_opt, coef0_opt){
         model <- svm(trainlabel ~., dtrain,
                      degree = degree_opt,
                      coef0 = coef0_opt,
-                     kernel = svm_kernel,
-                     degree = degree)
+                     kernel = svm_kernel)
         t.pred <- predict(model, newdata = dtest)
         Pred <- sum(diag(table(testlabel, t.pred)))/nrow(dtest)
         list(Score = Pred, Pred = Pred)
@@ -145,7 +144,7 @@ svm_opt <- function(train_data,
 
       drange <- eval_tidy(qdegree)
       c0range <- eval_tidy(qcoef0)
-      opt_res <- BayesianOptimization(svm_holdout,
+      opt_res <- BayesianOptimization(svm_holdout2,
                                       bounds = list(degree_opt = drange,
                                                     coef0_opt = c0range),
                                       init_points,
@@ -157,7 +156,7 @@ svm_opt <- function(train_data,
                                       optkernel,
                                       verbose = TRUE)
   } else if (svm_kernel == "sigmoid") {
-    svm_holdout <- function(gamma_opt, cost_opt, coef0_opt){
+    svm_holdout3 <- function(gamma_opt, cost_opt, coef0_opt){
       model <- svm(trainlabel ~., dtrain,
                    gamma = gamma_opt,
                    cost = cost_opt,
@@ -171,7 +170,7 @@ svm_opt <- function(train_data,
     crange <- eval_tidy(qcost)
     c0range <- eval_tidy(qcoef0)
     grange <- eval_tidy(qgamma)
-    opt_res <- BayesianOptimization(svm_holdout,
+    opt_res <- BayesianOptimization(svm_holdout3,
                                     bounds = list(cost_opt = crange,
                                                   coef0_opt = c0range,
                                                   gamma_opt = grange),
@@ -184,7 +183,7 @@ svm_opt <- function(train_data,
                                     optkernel,
                                     verbose = TRUE)
   } else if (svm_kernel == "linear") {
-    svm_holdout <- function(cost_opt){
+    svm_holdout4 <- function(cost_opt){
       model <- svm(trainlabel ~., dtrain,
                    cost = cost_opt,
                    kernel = svm_kernel)
@@ -194,7 +193,7 @@ svm_opt <- function(train_data,
     }
 
     crange <- eval_tidy(qcost)
-    opt_res <- BayesianOptimization(svm_holdout,
+    opt_res <- BayesianOptimization(svm_holdout4,
                                     bounds = list(cost_opt = drange),
                                     init_points,
                                     init_grid_dt = NULL,
