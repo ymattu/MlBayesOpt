@@ -1,4 +1,4 @@
-##' Bayesian optimization for RandomForest
+##' Bayesian Optimization for Random Forest
 ##'
 ##' This function estimates parameters for xgboost based on bayesian optimization.
 ##' @param train_data A data frame for training of xgboost
