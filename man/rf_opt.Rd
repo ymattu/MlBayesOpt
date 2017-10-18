@@ -4,7 +4,7 @@
 \alias{rf_opt}
 \title{Bayesian Optimization for Random Forest}
 \usage{
-rf_opt(train_data, train_label, test_data, test_label, num_tree_range = 500L,
+rf_opt(train_data, train_label, test_data, test_label, num_tree = 500L,
   mtry_range = c(1L, ncol(train_data)), min_node_size_range = c(1L,
   as.integer(sqrt(nrow(train_data)))), init_points = 4, n_iter = 10,
   acq = "ei", kappa = 2.576, eps = 0, optkernel = list(type =
@@ -19,7 +19,7 @@ rf_opt(train_data, train_label, test_data, test_label, num_tree_range = 500L,
 
 \item{test_label}{The column of class to classify in the test data}
 
-\item{num_tree_range}{The range of the number of trees for forest. Defaults
+\item{num_tree}{The range of the number of trees for forest. Defaults
 to 500 (no optimization).}
 
 \item{mtry_range}{Value of mtry used. Defaults from 1 to number of columns.}
@@ -69,7 +69,7 @@ res0 <- rf_opt(train_data = fashion_train,
                test_data = fashion_test,
                test_label = y,
                mtry_range = c(1L, ncol(fashion_train)),
-               num_tree_range = 10L,
+               num_tree = 10L,
                kappa = 10)
 }
 
