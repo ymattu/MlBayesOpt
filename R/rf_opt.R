@@ -7,7 +7,7 @@
 ##' @param test_label The column of class to classify in the test data
 ##' @param num_tree The range of the number of trees for forest. Defaults
 ##'   to 500 (no optimization).
-##' @param mtry_range Value of mtry used. Defaults from 1 to number of columns.
+##' @param mtry_range Value of mtry used. Defaults from 1 to number of features.
 ##' @param min_node_size_range The range of minimum node sizes to best tested.
 ##'   Default min is 1 and max is sqrt(nrow(train_data)).
 ##' @param init_points Number of randomly chosen points to sample the
@@ -57,7 +57,7 @@ rf_opt <- function(train_data,
                    test_data,
                    test_label,
                    num_tree = 500L,
-                   mtry_range = c(1L, ncol(train_data)),
+                   mtry_range = c(1L, ncol(train_data) - 1),
                    min_node_size_range = c(1L, as.integer(sqrt(nrow(train_data)))),
                    init_points = 4,
                    n_iter = 10,
@@ -89,7 +89,7 @@ rf_opt <- function(train_data,
 
   # Ranger does not seem to support Y being a vector outside of the dataframe,
   # so we explicitly add to dataframe with a unique name to avoid conflicts.
-  dtrain <- cbind(`_Y` = trainlabel, dtrain)
+  dtrain <- cbind(`_Y` = trainlabel, dtrain %>% select(- !! quo_train_label))
 
   rf_holdout <- function(mtry_opt, min_node_size, num_trees = NULL) {
     if (is.null(num_trees)) {
