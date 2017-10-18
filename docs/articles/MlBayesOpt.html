@@ -160,6 +160,8 @@ githubinstall<span class="op">::</span><span class="kw"><a href="http://www.rdoc
 
 <span class="co"># install.packages("devtools")</span>
 devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"ymattu/MlBayesOpt"</span>)</code></pre></div>
+<p>To use this package, please load it by <code>library()</code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(MlBayesOpt)</code></pre></div>
 <p>The source code for <strong>MlBayesOpt</strong> package is available on GitHub at</p>
 <ul>
 <li><a href="https://github.com/ymattu/MlBayesOpt" class="uri">https://github.com/ymattu/MlBayesOpt</a></li>
@@ -168,25 +170,106 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <div id="details" class="section level2">
 <h2 class="hasAnchor">
 <a href="#details" class="anchor"></a>Details</h2>
+<p>First of all, <code>*_opt()</code> functions mean “Hold-Out”, and <code>*_cv_opt()</code> ones mean “Cross Validation”. In “Hold Out” functions, you at least need to specify both the nameof data and the name of label column in training and test data. In “Cross Validation” functions, you have only to write column name to specify the label and how many times you validate in <code>n_folds</code> option.</p>
+<p>Second, you can specify the options of Bayesian Optimization parameters, such as <code>init_points</code> or <code>n_iter</code>. For details of these options, see the help of <code><a href="http://www.rdocumentation.org/packages/rBayesianOptimization/topics/BayesianOptimization">rBayesianOptimization::BayesianOptimization()</a></code> function.</p>
+<p>Except for <code><a href="../reference/xgb_cv_opt.html">xgb_cv_opt()</a></code> function, the returned value means test accuracy. In <code><a href="../reference/xgb_cv_opt.html">xgb_cv_opt()</a></code> function, he returned value means the value you specified in <code>evalmetric</code> option.</p>
 <div id="support-vector-machine" class="section level3">
 <h3 class="hasAnchor">
 <a href="#support-vector-machine" class="anchor"></a>Support Vector Machine</h3>
 <p>About SVM, this package supports hold-out tuning (<code><a href="../reference/svm_opt.html">svm_opt()</a></code>) and cross-validation tuning(<code><a href="../reference/svm_cv_opt.html">svm_cv_opt()</a></code>).</p>
+<p>In SVM functions, you can specify the kind of kernel to compute (default is “radial”) from following options.</p>
+<ul>
+<li>
+<strong>linear:</strong> <span class="math inline">\(u'v\)</span>
+</li>
+<li>
+<strong>polynomial:</strong> <span class="math inline">\((\gamma u'v +coef0)^{degree}\)</span>
+</li>
+<li>
+<strong>radial basis:</strong> <span class="math inline">\(\exp(-\gamma|u-v|^2)\)</span>
+</li>
+<li>
+<strong>sigmoid:</strong> <span class="math inline">\(tanh(\gamma u'v + coef0)\)</span>
+</li>
+</ul>
+<p>Also, when you want to adjust the range of parameters, you can.</p>
+<p>For details of these SVM options, see the help of <code><a href="http://www.rdocumentation.org/packages/e1071/topics/svm">e1071::svm()</a></code> function.</p>
+<div id="example" class="section level4">
+<h4 class="hasAnchor">
+<a href="#example" class="anchor"></a>Example</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res0 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/svm_cv_opt.html">svm_cv_opt</a></span>(<span class="dt">data =</span> fashion_train,
+                   <span class="dt">label =</span> y,
+                   <span class="dt">svm_kernel =</span> <span class="st">"polynomial"</span>,
+                   <span class="dt">degree_range =</span> <span class="kw">c</span>(2L, 4L),
+                   <span class="dt">n_folds =</span> <span class="dv">3</span>,
+                   <span class="dt">kappa =</span> <span class="dv">5</span>,
+                   <span class="dt">init_points =</span> <span class="dv">4</span>,
+                   <span class="dt">n_iter =</span> <span class="dv">1</span>)
+<span class="co">#&gt; elapsed = 3.89   Round = 1   degree_opt = 3.0000 coef0_opt = 3.2296  Value = 0.7560 </span>
+<span class="co">#&gt; elapsed = 3.42   Round = 2   degree_opt = 3.0000 coef0_opt = 9.4779  Value = 0.7430 </span>
+<span class="co">#&gt; elapsed = 3.74   Round = 3   degree_opt = 3.0000 coef0_opt = 6.6510  Value = 0.7360 </span>
+<span class="co">#&gt; elapsed = 4.11   Round = 4   degree_opt = 2.0000 coef0_opt = 8.9053  Value = 0.7660 </span>
+<span class="co">#&gt; elapsed = 3.75   Round = 5   degree_opt = 2.0000 coef0_opt = 7.7057  Value = 0.7920 </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  Best Parameters Found: </span>
+<span class="co">#&gt; Round = 5    degree_opt = 2.0000 coef0_opt = 7.7057  Value = 0.7920</span></code></pre></div>
+</div>
 </div>
 <div id="random-forest" class="section level3">
 <h3 class="hasAnchor">
 <a href="#random-forest" class="anchor"></a>Random Forest</h3>
 <p>This package supports only hold-out tuning so far about Random Forest(<code><a href="../reference/rf_opt.html">rf_opt()</a></code>).</p>
+<p>In <code><a href="../reference/rf_opt.html">rf_opt()</a></code>, you can specify the range of the number of the trees (<code>num_trees</code>), the value of mtry used (<code>mtry_range</code>), and the range of minimum node sizes to best tested (<code>min_node_size_range</code>).</p>
+<p>For details of these Random Forest options, see the help of <code><a href="http://www.rdocumentation.org/packages/ranger/topics/ranger">ranger::ranger()</a></code> function.</p>
+<div id="example-1" class="section level4">
+<h4 class="hasAnchor">
+<a href="#example-1" class="anchor"></a>Example</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res0 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/rf_opt.html">rf_opt</a></span>(<span class="dt">train_data =</span> fashion_train,
+               <span class="dt">train_label =</span> y,
+               <span class="dt">test_data =</span> fashion_test,
+               <span class="dt">test_label =</span> y,
+               <span class="dt">mtry_range =</span> <span class="kw">c</span>(1L, <span class="kw">ncol</span>(fashion_train)),
+               <span class="dt">num_tree =</span> 10L,
+               <span class="dt">init_points =</span> <span class="dv">4</span>,
+               <span class="dt">n_iter =</span> <span class="dv">1</span>)
+<span class="co">#&gt; elapsed = 0.24   Round = 1   mtry_opt = 159.0000 min_node_size = 15.0000 Value = 0.0880 </span>
+<span class="co">#&gt; elapsed = 0.28   Round = 2   mtry_opt = 434.0000 min_node_size = 5.0000  Value = 0.0860 </span>
+<span class="co">#&gt; elapsed = 0.22   Round = 3   mtry_opt = 143.0000 min_node_size = 30.0000 Value = 0.0900 </span>
+<span class="co">#&gt; elapsed = 0.29   Round = 4   mtry_opt = 430.0000 min_node_size = 15.0000 Value = 0.0860 </span>
+<span class="co">#&gt; elapsed = 0.22   Round = 5   mtry_opt = 132.0000 min_node_size = 17.0000 Value = 0.0880 </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  Best Parameters Found: </span>
+<span class="co">#&gt; Round = 3    mtry_opt = 143.0000 min_node_size = 30.0000 Value = 0.0900</span></code></pre></div>
+</div>
 </div>
 <div id="xgboost" class="section level3">
 <h3 class="hasAnchor">
 <a href="#xgboost" class="anchor"></a>XGboost</h3>
 <p>For XGboost, this package supports hold-out tuning (<code><a href="../reference/xgb_opt.html">xgb_opt()</a></code>) and cross-validation tuning(<code><a href="../reference/xgb_cv_opt.html">xgb_cv_opt()</a></code>).</p>
+<p>In XGboost functions, you must specify object function like <code>objectfun = "multi:softmax"</code> and how to evaluate (e.g. <code>evalmetric = "merror"</code>). Also, you can specify the range of xgboost options like eta (<code>eta_range</code>) and subsample (<code>subsample_range</code>).</p>
+<p>In only <code><a href="../reference/xgb_cv_opt.html">xgb_cv_opt()</a></code> function, the returned value means the value you specified in <code>evalmetric</code> option, so when you specify the evaluation metric “merror”, the value is minus.</p>
+<p>For details of these Random Forest options, see the help of <code><a href="http://www.rdocumentation.org/packages/xgboost/topics/xgb.train">xgboost::xgb.train()</a></code> or <code><a href="http://www.rdocumentation.org/packages/xgboost/topics/xgb.cv">xgboost::xgb.cv()</a></code> function.</p>
+<div id="example-2" class="section level4">
+<h4 class="hasAnchor">
+<a href="#example-2" class="anchor"></a>Example</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res0 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/xgb_cv_opt.html">xgb_cv_opt</a></span>(<span class="dt">data =</span> fashion_train,
+                   <span class="dt">label =</span> y,
+                   <span class="dt">objectfun =</span> <span class="st">"multi:softmax"</span>,
+                   <span class="dt">evalmetric =</span> <span class="st">"merror"</span>,
+                   <span class="dt">n_folds =</span> <span class="dv">3</span>,
+                   <span class="dt">classes =</span> <span class="dv">10</span>,
+                   <span class="dt">init_points =</span> <span class="dv">4</span>,
+                   <span class="dt">n_iter =</span> <span class="dv">1</span>)
+<span class="co">#&gt; elapsed = 3.14   Round = 1   eta_opt = 0.8010    max_depth_opt = 6.0000  nrounds_opt = 94.3234   subsample_opt = 0.2164  bytree_opt = 0.9857 Value = -0.3851 </span>
+<span class="co">#&gt; elapsed = 4.84   Round = 2   eta_opt = 0.8176    max_depth_opt = 5.0000  nrounds_opt = 159.3416  subsample_opt = 0.5303  bytree_opt = 0.8391 Value = -0.3057 </span>
+<span class="co">#&gt; elapsed = 4.44   Round = 3   eta_opt = 0.5097    max_depth_opt = 5.0000  nrounds_opt = 127.0144  subsample_opt = 0.9317  bytree_opt = 0.6140 Value = -0.2883 </span>
+<span class="co">#&gt; elapsed = 4.66   Round = 4   eta_opt = 0.4691    max_depth_opt = 5.0000  nrounds_opt = 89.1887   subsample_opt = 0.6389  bytree_opt = 0.6589 Value = -0.2897 </span>
+<span class="co">#&gt; elapsed = 2.23   Round = 5   eta_opt = 0.9054    max_depth_opt = 4.0000  nrounds_opt = 137.4804  subsample_opt = 0.5249  bytree_opt = 0.4048 Value = -0.3777 </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  Best Parameters Found: </span>
+<span class="co">#&gt; Round = 3    eta_opt = 0.5097    max_depth_opt = 5.0000  nrounds_opt = 127.0144  subsample_opt = 0.9317  bytree_opt = 0.6140 Value = -0.2883</span></code></pre></div>
 </div>
 </div>
-<div id="options-for-bayesian-optimization" class="section level2">
-<h2 class="hasAnchor">
-<a href="#options-for-bayesian-optimization" class="anchor"></a>Options for Bayesian Optimization</h2>
 </div>
 <div id="related-works" class="section level2">
 <h2 class="hasAnchor">
@@ -209,7 +292,6 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <li><a href="#overview">Overview</a></li>
       <li><a href="#installation">Installation</a></li>
       <li><a href="#details">Details</a></li>
-      <li><a href="#options-for-bayesian-optimization">Options for Bayesian Optimization</a></li>
       <li><a href="#related-works">Related Works</a></li>
       </ul>
 </div>

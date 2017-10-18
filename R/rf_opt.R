@@ -5,7 +5,7 @@
 ##' @param train_label The column of class to classify in the training data
 ##' @param test_data A data frame for training of xgboost
 ##' @param test_label The column of class to classify in the test data
-##' @param num_tree_range The range of the number of trees for forest. Defaults
+##' @param num_tree The range of the number of trees for forest. Defaults
 ##'   to 500 (no optimization).
 ##' @param mtry_range Value of mtry used. Defaults from 1 to number of columns.
 ##' @param min_node_size_range The range of minimum node sizes to best tested.
@@ -42,7 +42,7 @@
 ##'                test_data = fashion_test,
 ##'                test_label = y,
 ##'                mtry_range = c(1L, ncol(fashion_train)),
-##'                num_tree_range = 10L,
+##'                num_tree = 10L,
 ##'                kappa = 10)
 ##' }
 ##'
@@ -56,7 +56,7 @@ rf_opt <- function(train_data,
                    train_label,
                    test_data,
                    test_label,
-                   num_tree_range = 500L,
+                   num_tree = 500L,
                    mtry_range = c(1L, ncol(train_data)),
                    min_node_size_range = c(1L, as.integer(sqrt(nrow(train_data)))),
                    init_points = 4,
@@ -94,8 +94,8 @@ rf_opt <- function(train_data,
   rf_holdout <- function(mtry_opt, min_node_size, num_trees = NULL) {
     if (is.null(num_trees)) {
       # Get num_trees default from the calling function.
-      #num_trees = get("num_tree_range", envir = parent.frame())
-      num_trees = num_tree_range
+      #num_trees = get("num_tree", envir = parent.frame())
+      num_trees = num_tree
     }
     model <- ranger(`_Y` ~., dtrain,
                     num.trees = num_trees,
@@ -111,8 +111,8 @@ rf_opt <- function(train_data,
 
   # Only add to bounds if we are optimizing over num_trees. If it's a single
   # value just pass into ranger() and don't optimize it.
-  if (length(num_tree_range) != 1L) {
-    bounds[["num_trees"]] <- num_tree_range
+  if (length(num_tree) != 1L) {
+    bounds[["num_trees"]] <- num_tree
   }
 
   opt_res <- BayesianOptimization(rf_holdout,
