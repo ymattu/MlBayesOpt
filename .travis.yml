@@ -1,6 +1,6 @@
 language: R
 cache: packages
-sudo: true
+sudo: false
 dist: trusty
 
 r_packages:
