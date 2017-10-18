@@ -107,7 +107,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <h3 class="hasAnchor">
 <a href="#small-fashion-mnist" class="anchor"></a>Small Fashion MNIST</h3>
 <p><code>fashion_train</code> and <code>fashion_test</code> are data reproduced from <a href="https://github.com/zalandoresearch/fashion-mnist">Fashion-MNIST</a>. Each data has 1,000 rows and 784 feature column, and 1 label column named <code>y</code>.</p>
-<p><code>fashion</code> is a data made by the function <code>bind_rows(fashion_train, fashion_test)</code>.</p>
+<p><code>fashion</code> is a data made by the function <code><a href="http://dplyr.tidyverse.org/reference/bind.html">dplyr::bind_rows(fashion_train, fashion_test)</a></code>.</p>
 </div>
 <div id="iris" class="section level3">
 <h3 class="hasAnchor">
@@ -133,13 +133,13 @@ res0 &lt;-<span class="st"> </span><span class="kw"><a href="reference/svm_opt.h
 <span class="co">#&gt; elapsed = 0.00   Round = 2   cost_opt = 55.5148  coef0_opt = 7.6410  gamma_opt = 2.8756  Value = 0.6667 </span>
 <span class="co">#&gt; elapsed = 0.01   Round = 3   cost_opt = 32.7437  coef0_opt = 1.5038  gamma_opt = 7.0828  Value = 0.8000 </span>
 <span class="co">#&gt; elapsed = 0.00   Round = 4   cost_opt = 21.1746  coef0_opt = 7.6924  gamma_opt = 2.1974  Value = 0.6667 </span>
-<span class="co">#&gt; elapsed = 0.00   Round = 5   cost_opt = 31.6190  coef0_opt = 8.4372  gamma_opt = 1.9315  Value = 0.5867 </span>
-<span class="co">#&gt; elapsed = 0.00   Round = 6   cost_opt = 94.7272  coef0_opt = 7.7898  gamma_opt = 4.6338  Value = 0.6667 </span>
+<span class="co">#&gt; elapsed = 0.01   Round = 5   cost_opt = 31.6190  coef0_opt = 8.4372  gamma_opt = 1.9315  Value = 0.5867 </span>
+<span class="co">#&gt; elapsed = 0.01   Round = 6   cost_opt = 94.7272  coef0_opt = 7.7898  gamma_opt = 4.6338  Value = 0.6667 </span>
 <span class="co">#&gt; elapsed = 0.00   Round = 7   cost_opt = 66.1748  coef0_opt = 1.4249  gamma_opt = 4.1679  Value = 0.8133 </span>
-<span class="co">#&gt; elapsed = 0.00   Round = 8   cost_opt = 88.9432  coef0_opt = 8.0788  gamma_opt = 3.3089  Value = 0.6667 </span>
+<span class="co">#&gt; elapsed = 0.01   Round = 8   cost_opt = 88.9432  coef0_opt = 8.0788  gamma_opt = 3.3089  Value = 0.6667 </span>
 <span class="co">#&gt; elapsed = 0.01   Round = 9   cost_opt = 33.8076  coef0_opt = 8.9781  gamma_opt = 2.9911  Value = 0.6400 </span>
-<span class="co">#&gt; elapsed = 0.00   Round = 10  cost_opt = 43.4807  coef0_opt = 9.2771  gamma_opt = 8.8706  Value = 0.6933 </span>
-<span class="co">#&gt; elapsed = 0.01   Round = 11  cost_opt = 13.0177  coef0_opt = 1.3844  gamma_opt = 8.6246  Value = 0.8133 </span>
+<span class="co">#&gt; elapsed = 0.01   Round = 10  cost_opt = 43.4807  coef0_opt = 9.2771  gamma_opt = 8.8706  Value = 0.6933 </span>
+<span class="co">#&gt; elapsed = 0.00   Round = 11  cost_opt = 13.0177  coef0_opt = 1.3844  gamma_opt = 8.6246  Value = 0.8133 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;  Best Parameters Found: </span>
 <span class="co">#&gt; Round = 7    cost_opt = 66.1748  coef0_opt = 1.4249  gamma_opt = 4.1679  Value = 0.8133</span></code></pre></div>

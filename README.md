@@ -40,7 +40,7 @@ Data
 
 `fashion_train` and `fashion_test` are data reproduced from [Fashion-MNIST](https://github.com/zalandoresearch/fashion-mnist). Each data has 1,000 rows and 784 feature column, and 1 label column named `y`.
 
-`fashion` is a data made by the function `bind_rows(fashion_train, fashion_test)`.
+`fashion` is a data made by the function `dplyr::bind_rows(fashion_train, fashion_test)`.
 
 ### iris
 
@@ -67,10 +67,10 @@ res0 <- svm_opt(train_data = iris_train,
 #> elapsed = 0.01   Round = 4   cost_opt = 21.1746  coef0_opt = 7.6924  gamma_opt = 2.1974  Value = 0.6667 
 #> elapsed = 0.01   Round = 5   cost_opt = 31.6190  coef0_opt = 8.4372  gamma_opt = 1.9315  Value = 0.5867 
 #> elapsed = 0.01   Round = 6   cost_opt = 94.7272  coef0_opt = 7.7898  gamma_opt = 4.6338  Value = 0.6667 
-#> elapsed = 0.01   Round = 7   cost_opt = 66.1748  coef0_opt = 1.4249  gamma_opt = 4.1679  Value = 0.8133 
-#> elapsed = 0.00   Round = 8   cost_opt = 88.9432  coef0_opt = 8.0788  gamma_opt = 3.3089  Value = 0.6667 
+#> elapsed = 0.00   Round = 7   cost_opt = 66.1748  coef0_opt = 1.4249  gamma_opt = 4.1679  Value = 0.8133 
+#> elapsed = 0.01   Round = 8   cost_opt = 88.9432  coef0_opt = 8.0788  gamma_opt = 3.3089  Value = 0.6667 
 #> elapsed = 0.01   Round = 9   cost_opt = 33.8076  coef0_opt = 8.9781  gamma_opt = 2.9911  Value = 0.6400 
-#> elapsed = 0.01   Round = 10  cost_opt = 43.4807  coef0_opt = 9.2771  gamma_opt = 8.8706  Value = 0.6933 
+#> elapsed = 0.00   Round = 10  cost_opt = 43.4807  coef0_opt = 9.2771  gamma_opt = 8.8706  Value = 0.6933 
 #> elapsed = 0.00   Round = 11  cost_opt = 13.0177  coef0_opt = 1.3844  gamma_opt = 8.6246  Value = 0.8133 
 #> 
 #>  Best Parameters Found: 
