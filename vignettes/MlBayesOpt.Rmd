@@ -1,0 +1,140 @@
+---
+title: "MlBayesOpt"
+author: "Yuya Matsumura"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{R package to tune parameters for machine learning, using bayesian optimization with gaussian process}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      collapse = TRUE,
+                      comment = "#>",
+                      message = FALSE)
+```
+
+## Overview
+This is an R package to tune hyperparameters for machine learning algorithms using Bayesian Optimization based on Gaussian Processes. Algorithms currently supported are: Support vector machines, Random forest, and XGboost.
+
+This package has some features:
+
+- It's very easy to write Bayesian Optimaization function, but you also able to customise your model very easily.
+- Tidy.
+
+### Hyperprameter Tuning in Machine Learning
+In many methods of machinelearning, it is very important to tune hyperparameters. "Grid Search" was often used to search the appropriate hyperaprameters, but it takes too much time to compute.
+
+To solve this problem, Bayesian Optimization is often used to tune hyperparameters fast. This is a sequential design strategy for global optimization of black-box functions.
+
+While Grid Search is simply an exhaustive searching through a manually specified subset of the hyperparameter space, Bayesian Optimization constructs a posterior distribution of functions (gaussian process) that describes the function you want to optimize best, and search the point whose score may be better.
+
+
+### Machine Learning and Bayesian Optimization in R
+We could execute bayesian optimization using `rBayesianOptimization` package in the past.
+
+0. Make data
+1. Make the function to maximize
+2. Execute the Bayesian Optimization
+
+For example, if you want to tune hyperparameters of XGboost with 5-fold cross validation, you have to write as following:
+
+```{r eval=FALSE}
+library(xgboost)
+library(Matrix)
+
+data(agaricus.train, package = "xgboost")
+dtrain <- xgb.DMatrix(agaricus.train$data,
+                      label = agaricus.train$label)
+cv_folds <- KFold(agaricus.train$label, nfolds = 5,
+                  stratified = TRUE, seed = 0)
+xgb_cv_bayes <- function(max_depth, min_child_weight, subsample) {
+  cv <- xgb.cv(params = list(booster = "gbtree", eta = 0.01,
+                             max_depth = max_depth,
+                             min_child_weight = min_child_weight,
+                             subsample = subsample, colsample_bytree = 0.3,
+                             lambda = 1, alpha = 0,
+                             objective = "binary:logistic",
+                             eval_metric = "auc"),
+               data = dtrain, nround = 100,
+               folds = cv_folds, prediction = TRUE, showsd = TRUE,
+               early_stopping_rounds = 5, maximize = TRUE, verbose = 0)
+  list(Score = cv$evaluation_log$test_auc_mean[cv$best_iteration],
+       Pred = cv$pred)
+}
+OPT_Res <- BayesianOptimization(xgb_cv_bayes,
+                                bounds = list(max.depth = c(2L, 6L),
+                                              min_child_weight = c(1L, 10L),
+                                              subsample = c(0.5, 0.8)),
+                                init_grid_dt = NULL, init_points = 10, n_iter = 20,
+                                acq = "ucb", kappa = 2.576, eps = 0.0,
+                                verbose = TRUE)
+```
+
+On the other hand, we can write this very easily with `MlBayesOpt` package.
+
+```{r eval=FALSE}
+library(MlBayesOpt)
+
+res0 <- xgb_cv_opt(data = agaricus.train$data,
+                   label = agaricus.train$label,
+                   objectfun = "binary:logistic",
+                   evalmetric = "auc",
+                   n_folds = 5,
+                   acq = "ucb",
+                   init_points = 10,
+                   n_iter = 20)
+```
+
+When the data has `data.frame` class, you have only to write column name to specify the label.
+
+```{r eval=FALSE}
+# This takes a lot of time
+# fashion data is included in this package
+res0 <- xgb_cv_opt(data = fashion,
+                   label = y,
+                   objectfun = "multi:softmax",
+                   evalmetric = "merror",
+                   n_folds = 15,
+                   classes = 10)
+```
+
+## Installation
+You can install **MlBayesOpt** from CRAN:
+```{r cran-installation, eval = FALSE}
+install.packages("MlbayesOpt")
+```
+
+You can install MlBayesOpt (latest dev version) from github with:
+
+```{r gh-installation, eval = FALSE}
+# install.packages("githubinstall")
+githubinstall::githubinstall("MlBayesOpt")
+
+# install.packages("devtools")
+devtools::install_github("ymattu/MlBayesOpt")
+```
+
+The source code for **MlBayesOpt** package is available on GitHub at
+
+- https://github.com/ymattu/MlBayesOpt
+
+## Details
+### Support Vector Machine
+About SVM, this package supports hold-out tuning (`svm_opt()`) and cross-validation tuning(`svm_cv_opt()`).
+
+
+### Random Forest
+This package supports only hold-out tuning so far about Random Forest(`rf_opt()`).
+
+### XGboost
+For XGboost, this package supports hold-out tuning (`xgb_opt()`) and cross-validation tuning(`xgb_cv_opt()`).
+
+## Related Works
+- [rBayesianOptimization](https://github.com/yanyachen/rBayesianOptimization)
+- [e1071](https://cran.r-project.org/web/packages/e1071/index.html)
+- [ranger](https://github.com/imbs-hl/ranger)
+- [xgboost](https://github.com/dmlc/xgboost)
+
