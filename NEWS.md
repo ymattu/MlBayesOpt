@@ -1,6 +1,7 @@
 # MlBayesOpt 0.3.2
 - Add a vignette
 - Changed a option `num_tree_range` in `rf_opt()` to `num_tree`
+- Fix Bugs for SVM functions
 
 # MlBayesOpt 0.3.1
 Fixed bugs
