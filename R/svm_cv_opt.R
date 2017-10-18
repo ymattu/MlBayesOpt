@@ -97,7 +97,7 @@ svm_cv_opt <- function(data,
   # svm_kernel
   if (svm_kernel == "radial") {
     svm_cv1 <- function(gamma_opt, cost_opt){
-      model <- svm(dlabel ~., ddata,
+      model <- svm(dlabel ~., ddata %>% select(- !! quo_label),
                    gamma = gamma_opt,
                    cost = cost_opt,
                    kernel = svm_kernel,
@@ -122,7 +122,7 @@ svm_cv_opt <- function(data,
                                     verbose = TRUE)
   } else if (svm_kernel == "polynomial") {
     svm_cv2 <- function(degree_opt, coef0_opt){
-      model <- svm(dlabel ~., ddata,
+      model <- svm(dlabel ~., ddata %>% select(- !! quo_label),
                    degree = degree_opt,
                    coef0 = coef0_opt,
                    kernel = svm_kernel,
@@ -147,7 +147,7 @@ svm_cv_opt <- function(data,
                                     verbose = TRUE)
   } else if (svm_kernel == "sigmoid") {
     svm_cv3 <- function(gamma_opt, cost_opt, coef0_opt){
-      model <- svm(dlabel ~., ddata,
+      model <- svm(dlabel ~., ddata %>% select(- !! quo_label),
                    gamma = gamma_opt,
                    cost = cost_opt,
                    coef0 = coef0_opt,
@@ -175,7 +175,7 @@ svm_cv_opt <- function(data,
                                     verbose = TRUE)
   } else if (svm_kernel == "linear") {
     svm_cv4 <- function(cost_opt){
-      model <- svm(dlabel ~., ddata,
+      model <- svm(dlabel ~., ddata %>% select(- !! quo_label),
                    cost = cost_opt,
                    kernel = svm_kernel,
                    cross = n_folds)

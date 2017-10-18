@@ -1,7 +1,6 @@
 language: R
 cache: packages
-sudo: true
-dist: trusty
+sudo: false
 
 r_packages:
   - covr

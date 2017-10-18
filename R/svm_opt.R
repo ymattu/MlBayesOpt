@@ -109,7 +109,7 @@ svm_opt <- function(train_data,
   # svm_kernel
   if (svm_kernel == "radial") {
     svm_holdout1 <- function(gamma_opt, cost_opt){
-      model <- svm(trainlabel ~., dtrain,
+      model <- svm(trainlabel ~., dtrain %>% select(- !! quo_train_label),
                    gamma = gamma_opt,
                    cost = cost_opt,
                    kernel = svm_kernel)
@@ -133,7 +133,7 @@ svm_opt <- function(train_data,
                                     verbose = TRUE)
   } else if (svm_kernel == "polynomial") {
       svm_holdout2 <- function(degree_opt, coef0_opt){
-        model <- svm(trainlabel ~., dtrain,
+        model <- svm(trainlabel ~., dtrain %>% select(- !! quo_train_label),
                      degree = degree_opt,
                      coef0 = coef0_opt,
                      kernel = svm_kernel)
@@ -157,7 +157,7 @@ svm_opt <- function(train_data,
                                       verbose = TRUE)
   } else if (svm_kernel == "sigmoid") {
     svm_holdout3 <- function(gamma_opt, cost_opt, coef0_opt){
-      model <- svm(trainlabel ~., dtrain,
+      model <- svm(trainlabel ~., dtrain %>% select(- !! quo_train_label),
                    gamma = gamma_opt,
                    cost = cost_opt,
                    coef0 = coef0_opt,
@@ -184,7 +184,7 @@ svm_opt <- function(train_data,
                                     verbose = TRUE)
   } else if (svm_kernel == "linear") {
     svm_holdout4 <- function(cost_opt){
-      model <- svm(trainlabel ~., dtrain,
+      model <- svm(trainlabel ~., dtrain %>% select(- !! quo_train_label),
                    cost = cost_opt,
                    kernel = svm_kernel)
       t.pred <- predict(model, newdata = dtest)
