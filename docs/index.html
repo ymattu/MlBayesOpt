@@ -121,28 +121,25 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(MlBayesOpt)
 
 <span class="kw">set.seed</span>(<span class="dv">71</span>)
-res0 &lt;-<span class="st"> </span><span class="kw"><a href="reference/svm_opt.html">svm_opt</a></span>(<span class="dt">train_data =</span> iris_train,
-                <span class="dt">train_label =</span> Species,
-                <span class="dt">test_data =</span> iris_test,
-                <span class="dt">test_label =</span> Species,
-                <span class="dt">svm_kernel =</span> <span class="st">"sigmoid"</span>,
-                <span class="dt">init_points =</span> <span class="dv">10</span>,
-                <span class="dt">n_iter =</span> <span class="dv">1</span>,
-                <span class="dt">kappa =</span> <span class="dv">10</span>)
-<span class="co">#&gt; elapsed = 0.06   Round = 1   cost_opt = 33.2995  coef0_opt = 1.2641  gamma_opt = 6.1526  Value = 0.8000 </span>
-<span class="co">#&gt; elapsed = 0.11   Round = 2   cost_opt = 55.5148  coef0_opt = 7.6410  gamma_opt = 2.8756  Value = 0.6667 </span>
-<span class="co">#&gt; elapsed = 0.00   Round = 3   cost_opt = 32.7437  coef0_opt = 1.5038  gamma_opt = 7.0828  Value = 0.8000 </span>
-<span class="co">#&gt; elapsed = 0.00   Round = 4   cost_opt = 21.1746  coef0_opt = 7.6924  gamma_opt = 2.1974  Value = 0.6667 </span>
-<span class="co">#&gt; elapsed = 0.01   Round = 5   cost_opt = 31.6190  coef0_opt = 8.4372  gamma_opt = 1.9315  Value = 0.5867 </span>
-<span class="co">#&gt; elapsed = 0.00   Round = 6   cost_opt = 94.7272  coef0_opt = 7.7898  gamma_opt = 4.6338  Value = 0.6667 </span>
-<span class="co">#&gt; elapsed = 0.00   Round = 7   cost_opt = 66.1748  coef0_opt = 1.4249  gamma_opt = 4.1679  Value = 0.8133 </span>
-<span class="co">#&gt; elapsed = 0.00   Round = 8   cost_opt = 88.9432  coef0_opt = 8.0788  gamma_opt = 3.3089  Value = 0.6667 </span>
-<span class="co">#&gt; elapsed = 0.00   Round = 9   cost_opt = 33.8076  coef0_opt = 8.9781  gamma_opt = 2.9911  Value = 0.6400 </span>
-<span class="co">#&gt; elapsed = 0.01   Round = 10  cost_opt = 43.4807  coef0_opt = 9.2771  gamma_opt = 8.8706  Value = 0.6933 </span>
-<span class="co">#&gt; elapsed = 0.00   Round = 11  cost_opt = 13.0177  coef0_opt = 1.3844  gamma_opt = 8.6246  Value = 0.8133 </span>
+res0 &lt;-<span class="st"> </span><span class="kw"><a href="reference/svm_cv_opt.html">svm_cv_opt</a></span>(<span class="dt">data =</span> iris,
+                   <span class="dt">label =</span> Species,
+                   <span class="dt">n_folds =</span> <span class="dv">3</span>,
+                   <span class="dt">init_points =</span> <span class="dv">10</span>,
+                   <span class="dt">n_iter =</span> <span class="dv">1</span>)
+<span class="co">#&gt; elapsed = 0.03   Round = 1   gamma_opt = 3.3299  cost_opt = 11.7670  Value = 0.9333 </span>
+<span class="co">#&gt; elapsed = 0.17   Round = 2   gamma_opt = 5.5515  cost_opt = 76.1740  Value = 0.9067 </span>
+<span class="co">#&gt; elapsed = 0.02   Round = 3   gamma_opt = 3.2744  cost_opt = 14.1882  Value = 0.9400 </span>
+<span class="co">#&gt; elapsed = 0.01   Round = 4   gamma_opt = 2.1175  cost_opt = 76.6932  Value = 0.9200 </span>
+<span class="co">#&gt; elapsed = 0.01   Round = 5   gamma_opt = 3.1619  cost_opt = 84.2154  Value = 0.9600 </span>
+<span class="co">#&gt; elapsed = 0.02   Round = 6   gamma_opt = 9.4727  cost_opt = 77.6772  Value = 0.8933 </span>
+<span class="co">#&gt; elapsed = 0.01   Round = 7   gamma_opt = 6.6175  cost_opt = 13.3914  Value = 0.9267 </span>
+<span class="co">#&gt; elapsed = 0.02   Round = 8   gamma_opt = 8.8943  cost_opt = 80.5955  Value = 0.8733 </span>
+<span class="co">#&gt; elapsed = 0.01   Round = 9   gamma_opt = 3.3808  cost_opt = 89.6793  Value = 0.9333 </span>
+<span class="co">#&gt; elapsed = 0.01   Round = 10  gamma_opt = 4.3481  cost_opt = 92.6987  Value = 0.9000 </span>
+<span class="co">#&gt; elapsed = 0.01   Round = 11  gamma_opt = 2.9508  cost_opt = 84.8600  Value = 0.9467 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;  Best Parameters Found: </span>
-<span class="co">#&gt; Round = 7    cost_opt = 66.1748  coef0_opt = 1.4249  gamma_opt = 4.1679  Value = 0.8133</span></code></pre></div>
+<span class="co">#&gt; Round = 5    gamma_opt = 3.1619  cost_opt = 84.2154  Value = 0.9600</span></code></pre></div>
 </div>
 <div id="for-details" class="section level2">
 <h2 class="hasAnchor">

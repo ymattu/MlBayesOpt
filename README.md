@@ -53,28 +53,25 @@ Example
 library(MlBayesOpt)
 
 set.seed(71)
-res0 <- svm_opt(train_data = iris_train,
-                train_label = Species,
-                test_data = iris_test,
-                test_label = Species,
-                svm_kernel = "sigmoid",
-                init_points = 10,
-                n_iter = 1,
-                kappa = 10)
-#> elapsed = 0.06   Round = 1   cost_opt = 33.2995  coef0_opt = 1.2641  gamma_opt = 6.1526  Value = 0.8000 
-#> elapsed = 0.12   Round = 2   cost_opt = 55.5148  coef0_opt = 7.6410  gamma_opt = 2.8756  Value = 0.6667 
-#> elapsed = 0.00   Round = 3   cost_opt = 32.7437  coef0_opt = 1.5038  gamma_opt = 7.0828  Value = 0.8000 
-#> elapsed = 0.00   Round = 4   cost_opt = 21.1746  coef0_opt = 7.6924  gamma_opt = 2.1974  Value = 0.6667 
-#> elapsed = 0.00   Round = 5   cost_opt = 31.6190  coef0_opt = 8.4372  gamma_opt = 1.9315  Value = 0.5867 
-#> elapsed = 0.00   Round = 6   cost_opt = 94.7272  coef0_opt = 7.7898  gamma_opt = 4.6338  Value = 0.6667 
-#> elapsed = 0.00   Round = 7   cost_opt = 66.1748  coef0_opt = 1.4249  gamma_opt = 4.1679  Value = 0.8133 
-#> elapsed = 0.00   Round = 8   cost_opt = 88.9432  coef0_opt = 8.0788  gamma_opt = 3.3089  Value = 0.6667 
-#> elapsed = 0.01   Round = 9   cost_opt = 33.8076  coef0_opt = 8.9781  gamma_opt = 2.9911  Value = 0.6400 
-#> elapsed = 0.00   Round = 10  cost_opt = 43.4807  coef0_opt = 9.2771  gamma_opt = 8.8706  Value = 0.6933 
-#> elapsed = 0.00   Round = 11  cost_opt = 13.0177  coef0_opt = 1.3844  gamma_opt = 8.6246  Value = 0.8133 
+res0 <- svm_cv_opt(data = iris,
+                   label = Species,
+                   n_folds = 3,
+                   init_points = 10,
+                   n_iter = 1)
+#> elapsed = 0.03   Round = 1   gamma_opt = 3.3299  cost_opt = 11.7670  Value = 0.9333 
+#> elapsed = 0.16   Round = 2   gamma_opt = 5.5515  cost_opt = 76.1740  Value = 0.9067 
+#> elapsed = 0.01   Round = 3   gamma_opt = 3.2744  cost_opt = 14.1882  Value = 0.9400 
+#> elapsed = 0.01   Round = 4   gamma_opt = 2.1175  cost_opt = 76.6932  Value = 0.9200 
+#> elapsed = 0.01   Round = 5   gamma_opt = 3.1619  cost_opt = 84.2154  Value = 0.9600 
+#> elapsed = 0.01   Round = 6   gamma_opt = 9.4727  cost_opt = 77.6772  Value = 0.8933 
+#> elapsed = 0.01   Round = 7   gamma_opt = 6.6175  cost_opt = 13.3914  Value = 0.9267 
+#> elapsed = 0.01   Round = 8   gamma_opt = 8.8943  cost_opt = 80.5955  Value = 0.8733 
+#> elapsed = 0.01   Round = 9   gamma_opt = 3.3808  cost_opt = 89.6793  Value = 0.9333 
+#> elapsed = 0.02   Round = 10  gamma_opt = 4.3481  cost_opt = 92.6987  Value = 0.9000 
+#> elapsed = 0.01   Round = 11  gamma_opt = 2.9508  cost_opt = 84.8600  Value = 0.9467 
 #> 
 #>  Best Parameters Found: 
-#> Round = 7    cost_opt = 66.1748  coef0_opt = 1.4249  gamma_opt = 4.1679  Value = 0.8133
+#> Round = 5    gamma_opt = 3.1619  cost_opt = 84.2154  Value = 0.9600
 ```
 
 For Details
