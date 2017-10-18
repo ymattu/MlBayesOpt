@@ -132,6 +132,8 @@ This package supports only hold-out tuning so far about Random Forest(`rf_opt()`
 ### XGboost
 For XGboost, this package supports hold-out tuning (`xgb_opt()`) and cross-validation tuning(`xgb_cv_opt()`).
 
+## Options for Bayesian Optimization
+
 ## Related Works
 - [rBayesianOptimization](https://github.com/yanyachen/rBayesianOptimization)
 - [e1071](https://cran.r-project.org/web/packages/e1071/index.html)
