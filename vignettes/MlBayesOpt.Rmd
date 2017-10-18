@@ -13,8 +13,7 @@ vignette: >
 knitr::opts_chunk$set(echo = TRUE,
                       collapse = TRUE,
                       comment = "#>",
-                      message = FALSE,
-                      warning = FALSE)
+                      message = FALSE)
 ```
 
 ## Overview
@@ -120,7 +119,7 @@ devtools::install_github("ymattu/MlBayesOpt")
 
 To use this package, please load it by `library()` function.
 
-```{r}
+```{r eval=FALSE}
 library(MlBayesOpt)
 ```
 
@@ -135,11 +134,6 @@ First of all, `*_opt()` functions mean "Hold-Out", and `*_cv_opt()` ones mean "C
 Second, you can specify the options of Bayesian Optimization parameters, such as `init_points` or `n_iter`. For details of these options, see the help of `rBayesianOptimization::BayesianOptimization()` function.
 
 Except for `xgb_cv_opt()` function, the returned value means test accuracy. In `xgb_cv_opt()` function, he returned value means the value you specified in `evalmetric` option.
-
-```{r echo=FALSE}
-set.seed(71)
-```
-
 
 ### Support Vector Machine
 About SVM, this package supports hold-out tuning (`svm_opt()`) and cross-validation tuning(`svm_cv_opt()`).
@@ -156,7 +150,7 @@ Also, when you want to adjust the range of parameters, you can.
 For details of these SVM options, see the help of `e1071::svm()` function.
 
 #### Example
-```{r}
+```{r eval=FALSE}
 res0 <- svm_cv_opt(data = fashion_train,
                    label = y,
                    svm_kernel = "polynomial",
@@ -164,7 +158,7 @@ res0 <- svm_cv_opt(data = fashion_train,
                    n_folds = 3,
                    kappa = 5,
                    init_points = 4,
-                   n_iter = 1)
+                   n_iter = 5)
 ```
 
 
@@ -176,7 +170,7 @@ In `rf_opt()`, you can specify the range of the number of the trees (`num_trees`
 For details of these Random Forest options, see the help of `ranger::ranger()` function.
 
 #### Example
-```{r}
+```{r eval=FALSE}
 res0 <- rf_opt(train_data = fashion_train,
                train_label = y,
                test_data = fashion_test,
@@ -184,7 +178,7 @@ res0 <- rf_opt(train_data = fashion_train,
                mtry_range = c(1L, ncol(fashion_train)),
                num_tree = 10L,
                init_points = 4,
-               n_iter = 1)
+               n_iter = 5)
 ```
 
 ### XGboost
@@ -197,7 +191,7 @@ In only `xgb_cv_opt()` function, the returned value means the value you specifie
 For details of these Random Forest options, see the help of `xgboost::xgb.train()` or `xgboost::xgb.cv()` function.
 
 #### Example
-```{r}
+```{r eval=FALSE}
 res0 <- xgb_cv_opt(data = fashion_train,
                    label = y,
                    objectfun = "multi:softmax",
@@ -205,7 +199,7 @@ res0 <- xgb_cv_opt(data = fashion_train,
                    n_folds = 3,
                    classes = 10,
                    init_points = 4,
-                   n_iter = 1)
+                   n_iter = 5)
 ```
 
 
