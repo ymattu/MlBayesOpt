@@ -95,6 +95,7 @@ res0 <- xgb_opt(train_data = iris_train,
                 test_label = Species,
                 objectfun = "multi:softmax",
                 evalmetric = "auc",
+                eta_range = c(0.1, 0.3),
                 classes = 3,
                 init_points = 2,
                 n_iter = 1)
