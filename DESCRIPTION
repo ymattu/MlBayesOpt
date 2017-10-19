@@ -4,12 +4,12 @@ Title: Hyper Parameter Tuning for Machine Learning, Using Bayesian Optimization
 Version: 0.3.3
 Authors@R: person("Yuya", "Matsumura", role = c("aut", "cre"), email = "mattu.yuya@gmail.com")
 Maintainer: Yuya Matsumura <mattu.yuya@gmail.com>
-Description: This package provides the hyper parameter tuning using Bayesian
-    Optimization. In this package, we can tune parameters of Support Vector Machine,
+Description: Hyper parameter tuning using Bayesian
+    Optimization for Support Vector Machine,
     Random Forest, and Extreme Gradient Boosting.
 Depends:
     R (>= 3.1.0)
-License: GPL-2
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports:
