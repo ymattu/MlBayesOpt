@@ -55,7 +55,7 @@
 ##' @examples
 ##' library(MlBayesOpt)
 ##'
-##' set.seed(123)
+##' set.seed(12345)
 ##' res0 <- xgb_opt(train_data = iris_train,
 ##'                 train_label = Species,
 ##'                 test_data = iris_test,
