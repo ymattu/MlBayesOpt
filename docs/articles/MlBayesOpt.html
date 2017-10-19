@@ -220,7 +220,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
                <span class="dt">train_label =</span> y,
                <span class="dt">test_data =</span> fashion_test,
                <span class="dt">test_label =</span> y,
-               <span class="dt">mtry_range =</span> <span class="kw">c</span>(1L, <span class="kw">ncol</span>(fashion_train)),
+               <span class="dt">mtry_range =</span> <span class="kw">c</span>(1L, <span class="kw">ncol</span>(fashion_train)<span class="op">-</span><span class="dv">1</span>),
                <span class="dt">num_tree =</span> 10L,
                <span class="dt">init_points =</span> <span class="dv">4</span>,
                <span class="dt">n_iter =</span> <span class="dv">5</span>)</code></pre></div>
@@ -231,7 +231,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <a href="#xgboost" class="anchor"></a>XGboost</h3>
 <p>For XGboost, this package supports hold-out tuning (<code><a href="../reference/xgb_opt.html">xgb_opt()</a></code>) and cross-validation tuning(<code><a href="../reference/xgb_cv_opt.html">xgb_cv_opt()</a></code>).</p>
 <p>In XGboost functions, you must specify object function like <code>objectfun = "multi:softmax"</code> and how to evaluate (e.g. <code>evalmetric = "merror"</code>). Also, you can specify the range of xgboost options like eta (<code>eta_range</code>) and subsample (<code>subsample_range</code>).</p>
-<p>In only <code><a href="../reference/xgb_cv_opt.html">xgb_cv_opt()</a></code> function, the returned value means the value you specified in <code>evalmetric</code> option, so when you specify the evaluation metric “merror”, the value is minus.</p>
+<p>In only <code><a href="../reference/xgb_cv_opt.html">xgb_cv_opt()</a></code> function, the returned value means the value you specified in <code>evalmetric</code> option, so when you specify the evaluation metric “merror” or “(m)logloss”, the value is minus.</p>
 <p>For details of these Random Forest options, see the help of <code><a href="http://www.rdocumentation.org/packages/xgboost/topics/xgb.train">xgboost::xgb.train()</a></code> or <code><a href="http://www.rdocumentation.org/packages/xgboost/topics/xgb.cv">xgboost::xgb.cv()</a></code> function.</p>
 <div id="example-2" class="section level4">
 <h4 class="hasAnchor">
