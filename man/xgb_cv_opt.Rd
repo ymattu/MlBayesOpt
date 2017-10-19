@@ -27,9 +27,14 @@ xgb_cv_opt(data, label, objectfun, evalmetric, n_folds, eta_range = c(0.1,
     \item \code{rank:pairwise} set xgboost to do ranking task by minimizing the pairwise loss.
   }}
 
-\item{evalmetric}{evaluation metrics for validation data. Users can pass a self-defined function to it.
-Default: metric will be assigned according to objective(rmse for regression, and error for classification, mean average precision for ranking).
-List is provided in detail section.}
+\item{evalmetric}{evaluation metrics for validation data. Users can pass a self-defined function to it. Default: metric will be assigned according to objective(rmse for regression, and error for classification, mean average precision for ranking).
+\itemize{
+  \item \code{error} binary classification error rate
+  \item \code{rmse} Rooted mean square error
+  \item \code{logloss} negative log-likelihood function
+  \item \code{auc} Area under curve
+  \item \code{merror} Exact matching error, used to evaluate multi-class classification
+}}
 
 \item{n_folds}{K for cross Validation}
 

@@ -31,7 +31,14 @@ xgb_opt(train_data, train_label, test_data, test_label, objectfun, evalmetric,
     \item \code{rank:pairwise} set xgboost to do ranking task by minimizing the pairwise loss.
   }}
 
-\item{evalmetric}{evaluation metrics for validation data. Users can pass a self-defined function to it. Default: metric will be assigned according to objective(rmse for regression, and error for classification, mean average precision for ranking). List is provided in detail section.}
+\item{evalmetric}{evaluation metrics for validation data. Users can pass a self-defined function to it. Default: metric will be assigned according to objective(rmse for regression, and error for classification, mean average precision for ranking).
+\itemize{
+  \item \code{error} binary classification error rate
+  \item \code{rmse} Rooted mean square error
+  \item \code{logloss} negative log-likelihood function
+  \item \code{auc} Area under curve
+  \item \code{merror} Exact matching error, used to evaluate multi-class classification
+}}
 
 \item{eta_range}{The range of eta}
 
