@@ -10,3 +10,4 @@ data-raw/
 ^README-.*\.png$
 ^logo\.png$
 ^docs$
+^cran-comments\.md$

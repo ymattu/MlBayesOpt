@@ -1,3 +1,6 @@
+# MlBayesOpt 0.3.3
+- Fix Buggs for `xgb_cv_opt()`
+
 # MlBayesOpt 0.3.2
 - Add a vignette
 - Changed a option `num_tree_range` in `rf_opt()` to `num_tree`
