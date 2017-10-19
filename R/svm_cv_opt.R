@@ -4,7 +4,7 @@
 ##' @param data data
 ##' @param label label for classification
 ##' @param gamma_range The range of gamma. Default is c(10 ^ (-3), 10 ^ 1)
-##' @param cost_range The range of C(Cost). Deafult is c(10 ^ (-2), 10 ^ 2)
+##' @param cost_range The range of C(Cost). Default is c(10 ^ (-2), 10 ^ 2)
 ##' @param svm_kernel Kernel used in SVM. You might consider changing some of the following parameters, depending on the kernel type.
 ##' \itemize{
 ##'   \item \strong{linear:} \eqn{u'v}

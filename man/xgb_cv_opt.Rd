@@ -2,7 +2,7 @@
 % Please edit documentation in R/xgb_cv_opt.R
 \name{xgb_cv_opt}
 \alias{xgb_cv_opt}
-\title{Bayesian Optimization for XGboost(Cross Varidation)}
+\title{Bayesian Optimization for XGboost(Cross Validation)}
 \usage{
 xgb_cv_opt(data, label, objectfun, evalmetric, n_folds, eta_range = c(0.1,
   1L), max_depth_range = c(4L, 6L), nrounds_range = c(70, 160L),
@@ -82,7 +82,7 @@ The score you specified in the evalmetric option and a list of Bayesian Optimiza
 }
 }
 \description{
-Bayesian Optimization for XGboost (Cross Varidation)
+Bayesian Optimization for XGboost (Cross Validation)
 }
 \examples{
 \dontrun{

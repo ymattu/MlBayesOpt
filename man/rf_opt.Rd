@@ -11,7 +11,7 @@ rf_opt(train_data, train_label, test_data, test_label, num_tree = 500L,
   "exponential", power = 2))
 }
 \arguments{
-\item{train_data}{A data frame for training of xgboost}
+\item{train_data}{A data frame for training of Random Forest}
 
 \item{train_label}{The column of class to classify in the training data}
 
@@ -58,7 +58,7 @@ The test accuracy and a list of Bayesian Optimization result is returned:
 }
 }
 \description{
-This function estimates parameters for xgboost based on bayesian optimization.
+This function estimates parameters for Random Forest based on bayesian optimization.
 }
 \examples{
 \dontrun{

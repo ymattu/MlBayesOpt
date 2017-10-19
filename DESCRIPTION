@@ -5,7 +5,7 @@ Version: 0.3.3
 Authors@R: person("Yuya", "Matsumura", role = c("aut", "cre"), email = "mattu.yuya@gmail.com")
 Maintainer: Yuya Matsumura <mattu.yuya@gmail.com>
 Description: This package provides the hyperparameter tuning using bayesian
-    optimization. In this package, we can tune parematers of Suppot Vector Machine,
+    optimization. In this package, we can tune paramaters of Support Vector Machine,
     Random Forest, and XGboost.
 Depends:
     R (>= 3.1.0)
