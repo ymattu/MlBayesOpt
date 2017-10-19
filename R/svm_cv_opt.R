@@ -39,14 +39,14 @@
 ##'   \item \code{Pred} a \code{data.table} with validation/cross-validation prediction for each round of bayesian optimization history
 ##' }
 ##' @examples
-##' \dontrun{
 ##' library(MlBayesOpt)
 ##'
-##' # This takes a lot of time
-##' res0 <- svm_cv_opt(data = fashion,
-##'                    label = y,
-##'                    n_folds = 10)
-##' }
+##' set.seed(71)
+##' res0 <- svm_cv_opt(data = iris,
+##'                    label = Species,
+##'                    n_folds = 3,
+##'                    init_points = 10,
+##'                    n_iter = 1)
 ##'
 ##' @importFrom e1071 svm
 ##' @import rBayesianOptimization

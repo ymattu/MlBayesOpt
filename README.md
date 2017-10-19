@@ -61,7 +61,7 @@ res0 <- svm_cv_opt(data = iris,
                    init_points = 10,
                    n_iter = 1)
 #> elapsed = 0.03   Round = 1   gamma_opt = 3.3299  cost_opt = 11.7670  Value = 0.9333 
-#> elapsed = 0.16   Round = 2   gamma_opt = 5.5515  cost_opt = 76.1740  Value = 0.9067 
+#> elapsed = 0.15   Round = 2   gamma_opt = 5.5515  cost_opt = 76.1740  Value = 0.9067 
 #> elapsed = 0.01   Round = 3   gamma_opt = 3.2744  cost_opt = 14.1882  Value = 0.9400 
 #> elapsed = 0.01   Round = 4   gamma_opt = 2.1175  cost_opt = 76.6932  Value = 0.9200 
 #> elapsed = 0.01   Round = 5   gamma_opt = 3.1619  cost_opt = 84.2154  Value = 0.9600 

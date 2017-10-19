@@ -190,15 +190,29 @@ that specifies the type of correlation function along with the smoothness parame
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'>library</span>(<span class='no'>MlBayesOpt</span>)
+    <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>MlBayesOpt</span>)
 
-<span class='co'># This takes a lot of time</span>
-<span class='no'>res0</span> <span class='kw'>&lt;-</span> <span class='fu'>svm_opt</span>(<span class='kw'>train_data</span> <span class='kw'>=</span> <span class='no'>fashion_train</span>,
-                <span class='kw'>train_label</span> <span class='kw'>=</span> <span class='no'>y</span>,
-                <span class='kw'>test_data</span> <span class='kw'>=</span> <span class='no'>fashion_test</span>,
-                <span class='kw'>test_label</span> <span class='kw'>=</span> <span class='no'>y</span>)
-<span class='co'># }</span><div class='input'>
+<span class='fu'>set.seed</span>(<span class='fl'>71</span>)
+<span class='no'>res0</span> <span class='kw'>&lt;-</span> <span class='fu'>svm_opt</span>(<span class='kw'>train_data</span> <span class='kw'>=</span> <span class='no'>iris_train</span>,
+                <span class='kw'>train_label</span> <span class='kw'>=</span> <span class='no'>Species</span>,
+                <span class='kw'>test_data</span> <span class='kw'>=</span> <span class='no'>iris_test</span>,
+                <span class='kw'>test_label</span> <span class='kw'>=</span> <span class='no'>Species</span>,
+                <span class='kw'>svm_kernel</span> <span class='kw'>=</span> <span class='st'>"polynomial"</span>,
+                <span class='kw'>init_points</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+                <span class='kw'>n_iter</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; elapsed = 0.03	Round = 1	degree_opt = 5.0000	coef0_opt = 1.2641	Value = 0.9333 
+#&gt; elapsed = 0.01	Round = 2	degree_opt = 7.0000	coef0_opt = 7.6410	Value = 0.9333 
+#&gt; elapsed = 0.01	Round = 3	degree_opt = 5.0000	coef0_opt = 1.5038	Value = 0.9600 
+#&gt; elapsed = 0.01	Round = 4	degree_opt = 4.0000	coef0_opt = 7.6924	Value = 0.9333 
+#&gt; elapsed = 0.01	Round = 5	degree_opt = 5.0000	coef0_opt = 8.4372	Value = 0.9333 
+#&gt; elapsed = 0.01	Round = 6	degree_opt = 10.0000	coef0_opt = 7.7898	Value = 0.9333 
+#&gt; elapsed = 0.01	Round = 7	degree_opt = 8.0000	coef0_opt = 1.4249	Value = 0.9200 
+#&gt; elapsed = 0.01	Round = 8	degree_opt = 9.0000	coef0_opt = 8.0788	Value = 0.9333 
+#&gt; elapsed = 0.01	Round = 9	degree_opt = 5.0000	coef0_opt = 8.9781	Value = 0.9333 
+#&gt; elapsed = 0.01	Round = 10	degree_opt = 6.0000	coef0_opt = 9.2771	Value = 0.9333 
+#&gt; elapsed = 0.01	Round = 11	degree_opt = 10.0000	coef0_opt = 4.4448	Value = 0.9333 
+#&gt; 
+#&gt;  Best Parameters Found: 
+#&gt; Round = 3	degree_opt = 5.0000	coef0_opt = 1.5038	Value = 0.9600 </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

@@ -53,18 +53,18 @@
 ##'   \item \code{Pred} a \code{data.table} with validation/cross-validation prediction for each round of bayesian optimization history
 ##' }
 ##' @examples
-##' \dontrun{
 ##' library(MlBayesOpt)
 ##'
-##' # This takes a lot of time
-##' res0 <- xgb_opt(train_data = fashion_train,
-##'                 train_label = y,
-##'                 test_data = fashion_test,
-##'                 test_label = y,
+##' set.seed(123)
+##' res0 <- xgb_opt(train_data = iris_train,
+##'                 train_label = Species,
+##'                 test_data = iris_test,
+##'                 test_label = Species,
 ##'                 objectfun = "multi:softmax",
 ##'                 evalmetric = "merror",
-##'                 classes = 10)
-##' }
+##'                 classes = 3,
+##'                 init_points = 2,
+##'                 n_iter = 1)
 ##'
 ##' @import xgboost
 ##' @importFrom Matrix sparse.model.matrix
