@@ -13,9 +13,14 @@
 ##'     \item \code{multi:softprob} same as softmax, but prediction outputs a vector of ndata * nclass elements, which can be further reshaped to ndata, nclass matrix. The result contains predicted probabilities of each data point belonging to each class.
 ##'     \item \code{rank:pairwise} set xgboost to do ranking task by minimizing the pairwise loss.
 ##'   }
-##' @param evalmetric evaluation metrics for validation data. Users can pass a self-defined function to it.
-##' Default: metric will be assigned according to objective(rmse for regression, and error for classification, mean average precision for ranking).
-##' List is provided in detail section.
+##' @param evalmetric evaluation metrics for validation data. Users can pass a self-defined function to it. Default: metric will be assigned according to objective(rmse for regression, and error for classification, mean average precision for ranking).
+##' \itemize{
+##'   \item \code{error} binary classification error rate
+##'   \item \code{rmse} Rooted mean square error
+##'   \item \code{logloss} negative log-likelihood function
+##'   \item \code{auc} Area under curve
+##'   \item \code{merror} Exact matching error, used to evaluate multi-class classification
+##' }
 ##' @param n_folds K for cross Validation
 ##' @param eta_range The range of eta(default is c(0.1, 1L))
 ##' @param max_depth_range The range of max_depth(default is c(4L, 6L))
@@ -114,7 +119,7 @@ xgb_cv_opt <- function(data,
   }
 
   #about classes
-  if (objectfun == "binary:logistic"){
+  if (grepl("logi", objectfun) == TRUE){
     xgb_cv <- function(object_fun,
                        eval_met,
                        num_classes,
@@ -142,7 +147,7 @@ xgb_cv_opt <- function(data,
                    early_stopping_rounds = 5, maximize = TRUE, verbose = 0,
                    nrounds = nrounds_opt)
 
-      if (eval_met %in% c("auc", "logloss", "mlogloss")) {
+      if (eval_met %in% c("auc", "ndcg", "map")) {
         s <- max(cv$evaluation_log[, 4])
       } else {
         s <- max(-(cv$evaluation_log[, 4]))
@@ -181,7 +186,7 @@ xgb_cv_opt <- function(data,
                    early_stopping_rounds = 5, maximize = TRUE, verbose = 0,
                    nrounds = nrounds_opt)
 
-      if (eval_met %in% c("auc", "logloss", "mlogloss")) {
+      if (eval_met %in% c("auc", "ndcg", "map")) {
         s <- max(cv$evaluation_log[, 4])
       } else {
         s <- max(-(cv$evaluation_log[, 4]))

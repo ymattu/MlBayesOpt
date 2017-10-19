@@ -133,7 +133,13 @@
     </tr>
     <tr>
       <th>evalmetric</th>
-      <td><p>evaluation metrics for validation data. Users can pass a self-defined function to it. Default: metric will be assigned according to objective(rmse for regression, and error for classification, mean average precision for ranking). List is provided in detail section.</p></td>
+      <td><p>evaluation metrics for validation data. Users can pass a self-defined function to it. Default: metric will be assigned according to objective(rmse for regression, and error for classification, mean average precision for ranking).</p><ul>
+<li><p><code>error</code> binary classification error rate</p></li>
+<li><p><code>rmse</code> Rooted mean square error</p></li>
+<li><p><code>logloss</code> negative log-likelihood function</p></li>
+<li><p><code>auc</code> Area under curve</p></li>
+<li><p><code>merror</code> Exact matching error, used to evaluate multi-class classification</p></li>
+</ul></td>
     </tr>
     <tr>
       <th>eta_range</th>

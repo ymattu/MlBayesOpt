@@ -15,7 +15,14 @@
 ##'     \item \code{multi:softprob} same as softmax, but prediction outputs a vector of ndata * nclass elements, which can be further reshaped to ndata, nclass matrix. The result contains predicted probabilities of each data point belonging to each class.
 ##'     \item \code{rank:pairwise} set xgboost to do ranking task by minimizing the pairwise loss.
 ##'   }
-##' @param evalmetric evaluation metrics for validation data. Users can pass a self-defined function to it. Default: metric will be assigned according to objective(rmse for regression, and error for classification, mean average precision for ranking). List is provided in detail section.
+##' @param evalmetric evaluation metrics for validation data. Users can pass a self-defined function to it. Default: metric will be assigned according to objective(rmse for regression, and error for classification, mean average precision for ranking).
+##' \itemize{
+##'   \item \code{error} binary classification error rate
+##'   \item \code{rmse} Rooted mean square error
+##'   \item \code{logloss} negative log-likelihood function
+##'   \item \code{auc} Area under curve
+##'   \item \code{merror} Exact matching error, used to evaluate multi-class classification
+##' }
 ##' @param eta_range The range of eta
 ##' @param max_depth_range The range of max_depth
 ##' @param nrounds_range The range of nrounds
@@ -110,7 +117,7 @@ xgb_opt <- function(train_data,
 
 
   #about classes
-  if (objectfun == "binary:logistic"){
+  if (grepl("logi", objectfun) == TRUE){
     xgb_holdout <- function(object_fun,
                             eval_met,
                             num_classes,
