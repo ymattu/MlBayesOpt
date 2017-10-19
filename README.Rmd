@@ -20,8 +20,7 @@ knitr::opts_chunk$set(
 
 ## Overview
 This is an R package to tune hyperparameters for machine learning algorithms
-using Bayesian Optimization based on Gaussian Processes. Algorithms currently
-supported are: support vector machines, random forest, and xgboost. 
+using Bayesian Optimization based on Gaussian Processes. Algorithms currently supported are: Support Vector Machines, Random Forest, and XGboost. 
 
 ## Dependencies
 - rBayesianOptimization

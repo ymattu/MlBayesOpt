@@ -1,6 +1,6 @@
-##' Bayesian Optimization for XGboost (Cross Varidation)
+##' Bayesian Optimization for XGboost (Cross Validation)
 ##'
-##' @title Bayesian Optimization for XGboost(Cross Varidation)
+##' @title Bayesian Optimization for XGboost(Cross Validation)
 ##' @param data data
 ##' @param label label for classification
 ##' @param objectfun Specify the learning task and the corresponding learning objective

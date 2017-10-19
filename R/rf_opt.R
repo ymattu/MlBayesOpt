@@ -1,7 +1,7 @@
 ##' Bayesian Optimization for Random Forest
 ##'
-##' This function estimates parameters for xgboost based on bayesian optimization.
-##' @param train_data A data frame for training of xgboost
+##' This function estimates parameters for Random Forest based on bayesian optimization.
+##' @param train_data A data frame for training of Random Forest
 ##' @param train_label The column of class to classify in the training data
 ##' @param test_data A data frame for training of xgboost
 ##' @param test_label The column of class to classify in the test data

@@ -12,17 +12,17 @@ svm_opt(train_data, train_label, test_data, test_label,
   "exponential", power = 2))
 }
 \arguments{
-\item{train_data}{A data frame for training of xgboost}
+\item{train_data}{A data frame for training of SVM}
 
 \item{train_label}{The column of class to classify in the training data}
 
-\item{test_data}{A data frame for training of xgboos}
+\item{test_data}{A data frame for training of SVM}
 
 \item{test_label}{The column of class to classify in the test data}
 
 \item{gamma_range}{The range of gamma. Default is c(10 ^ (-3), 10 ^ 1)}
 
-\item{cost_range}{The range of C(Cost). Deafult is c(10 ^ (-2), 10 ^ 2)}
+\item{cost_range}{The range of C(Cost). Default is c(10 ^ (-2), 10 ^ 2)}
 
 \item{svm_kernel}{Kernel used in SVM. You might consider changing some of the following parameters, depending on the kernel type.
 \itemize{
