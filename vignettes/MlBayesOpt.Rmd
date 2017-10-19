@@ -205,7 +205,7 @@ res0 <- xgb_cv_opt(data = fashion_train,
 
 ## Related Works
 - [rBayesianOptimization](https://github.com/yanyachen/rBayesianOptimization)
-- [e1071](https://cran.r-project.org/web/packages/e1071/index.html)
+- [e1071](https://cran.r-project.org/package=e1071)
 - [ranger](https://github.com/imbs-hl/ranger)
 - [xgboost](https://github.com/dmlc/xgboost)
 
