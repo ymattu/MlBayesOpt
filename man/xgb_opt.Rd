@@ -104,7 +104,7 @@ res0 <- xgb_opt(train_data = a,
                 objectfun = "multi:softmax",
                 evalmetric = "merror",
                 classes = 10,
-                init_points = 2,
+                init_points = 3,
                 n_iter = 1)
 
 }

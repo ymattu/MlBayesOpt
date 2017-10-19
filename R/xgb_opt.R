@@ -71,7 +71,7 @@
 ##'                 objectfun = "multi:softmax",
 ##'                 evalmetric = "merror",
 ##'                 classes = 10,
-##'                 init_points = 2,
+##'                 init_points = 3,
 ##'                 n_iter = 1)
 ##'
 ##' @import xgboost
