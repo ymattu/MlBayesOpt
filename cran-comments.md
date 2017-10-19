@@ -1,5 +1,9 @@
-## Release summary
-This is a minor bugfix release in response to errors with win-builder on CRAN. 
+## Resubmission
+This is a resubmission. In this version I have:
+
+* Fixed typo in DESCRIPTION file.
+
+* Fixed an invalid URL in the vignette.
 
 ## Test environments
 * local macOS install, R 3.4.2
