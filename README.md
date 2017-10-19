@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-MlBayesOpt <img src="logo.png" align="right" />
-===============================================
+MlBayesOpt <img src="man/figures/logo.png" align="right" />
+===========================================================
 
 [![Build Status](https://travis-ci.org/ymattu/MlBayesOpt.svg?branch=master)](https://travis-ci.org/ymattu/MlBayesOpt) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ymattu/MlBayesOpt?branch=master&svg=true)](https://ci.appveyor.com/project/ymattu/MlBayesOpt) [![Coverage Status](https://img.shields.io/codecov/c/github/ymattu/MlBayesOpt/master.svg)](https://codecov.io/github/ymattu/MlBayesOpt?branch=master)
 
@@ -60,17 +60,17 @@ res0 <- svm_cv_opt(data = iris,
                    n_folds = 3,
                    init_points = 10,
                    n_iter = 1)
-#> elapsed = 0.03   Round = 1   gamma_opt = 3.3299  cost_opt = 11.7670  Value = 0.9333 
-#> elapsed = 0.16   Round = 2   gamma_opt = 5.5515  cost_opt = 76.1740  Value = 0.9067 
+#> elapsed = 0.04   Round = 1   gamma_opt = 3.3299  cost_opt = 11.7670  Value = 0.9333 
+#> elapsed = 0.19   Round = 2   gamma_opt = 5.5515  cost_opt = 76.1740  Value = 0.9067 
 #> elapsed = 0.01   Round = 3   gamma_opt = 3.2744  cost_opt = 14.1882  Value = 0.9400 
 #> elapsed = 0.01   Round = 4   gamma_opt = 2.1175  cost_opt = 76.6932  Value = 0.9200 
 #> elapsed = 0.01   Round = 5   gamma_opt = 3.1619  cost_opt = 84.2154  Value = 0.9600 
-#> elapsed = 0.01   Round = 6   gamma_opt = 9.4727  cost_opt = 77.6772  Value = 0.8933 
+#> elapsed = 0.02   Round = 6   gamma_opt = 9.4727  cost_opt = 77.6772  Value = 0.8933 
 #> elapsed = 0.01   Round = 7   gamma_opt = 6.6175  cost_opt = 13.3914  Value = 0.9267 
-#> elapsed = 0.01   Round = 8   gamma_opt = 8.8943  cost_opt = 80.5955  Value = 0.8733 
+#> elapsed = 0.02   Round = 8   gamma_opt = 8.8943  cost_opt = 80.5955  Value = 0.8733 
 #> elapsed = 0.01   Round = 9   gamma_opt = 3.3808  cost_opt = 89.6793  Value = 0.9333 
 #> elapsed = 0.01   Round = 10  gamma_opt = 4.3481  cost_opt = 92.6987  Value = 0.9000 
-#> elapsed = 0.02   Round = 11  gamma_opt = 2.9508  cost_opt = 84.8600  Value = 0.9467 
+#> elapsed = 0.01   Round = 11  gamma_opt = 2.9508  cost_opt = 84.8600  Value = 0.9467 
 #> 
 #>  Best Parameters Found: 
 #> Round = 5    gamma_opt = 3.1619  cost_opt = 84.2154  Value = 0.9600

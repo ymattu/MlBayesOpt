@@ -8,6 +8,5 @@ data-raw/
 ^codecov\.yml$
 ^README\.Rmd$
 ^README-.*\.png$
-^logo\.png$
 ^docs$
 ^cran-comments\.md$

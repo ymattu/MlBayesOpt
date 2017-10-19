@@ -6,7 +6,7 @@ Authors@R: person("Yuya", "Matsumura", role = c("aut", "cre"), email = "mattu.yu
 Maintainer: Yuya Matsumura <mattu.yuya@gmail.com>
 Description: This package provides the hyper parameter tuning using Bayesian
     Optimization. In this package, we can tune parameters of Support Vector Machine,
-    Random Forest, and XGBoost.
+    Random Forest, and eXtreme Gradient Boosting.
 Depends:
     R (>= 3.1.0)
 License: GPL-2
