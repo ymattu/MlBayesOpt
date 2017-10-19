@@ -4,9 +4,9 @@ Title: Hyper Parameter Tuning for Machine Learning, Using Bayesian Optimization
 Version: 0.3.3
 Authors@R: person("Yuya", "Matsumura", role = c("aut", "cre"), email = "mattu.yuya@gmail.com")
 Maintainer: Yuya Matsumura <mattu.yuya@gmail.com>
-Description: This package provides the hyperp parameter tuning using Bayesian
+Description: This package provides the hyper parameter tuning using Bayesian
     Optimization. In this package, we can tune parameters of Support Vector Machine,
-    Random Forest, and Xgboost.
+    Random Forest, and XGBoost.
 Depends:
     R (>= 3.1.0)
 License: GPL-2
