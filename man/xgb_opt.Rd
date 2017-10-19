@@ -88,15 +88,22 @@ This function estimates parameters for xgboost based on bayesian optimization.
 \examples{
 library(MlBayesOpt)
 
-set.seed(12345)
-res0 <- xgb_opt(train_data = iris_train,
-                train_label = Species,
-                test_data = iris_test,
-                test_label = Species,
+# tr and ts are training and test data
+# They are sampled from MlBayesOpt::fashion_train and MlBayesOpt::fashion_test.
+# each data has 100 rows and 9 features.
+# y is the label name.
+# so the test acuracy becomes very low.
+a <- MlBayesOpt:::tr
+b <- MlBayesOpt:::ts
+
+set.seed(71)
+res0 <- xgb_opt(train_data = a,
+                train_label = y,
+                test_data = b,
+                test_label = y,
                 objectfun = "multi:softmax",
-                evalmetric = "auc",
-                eta_range = c(0.1, 0.3),
-                classes = 3,
+                evalmetric = "merror",
+                classes = 10,
                 init_points = 2,
                 n_iter = 1)
 
