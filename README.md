@@ -15,7 +15,7 @@ Why MlBayesOpt ?
 
 ### Easy to write
 
-It's very easy to write Bayesian Optimaization function, but you also able to customise your model very easily. You have only to specify the data anda the column name of the label to classify.
+It's very easy to write Bayesian Optimaization function, but you also able to customise your model very easily. You have only to specify the data and the column name of the label to classify.
 
 On XgBosst functions, your data frame is automatically transformed into `xgb.DMatrix` class.
 
@@ -63,17 +63,17 @@ res0 <- svm_cv_opt(data = iris,
                    n_folds = 3,
                    init_points = 10,
                    n_iter = 1)
-#> elapsed = 0.05   Round = 1   gamma_opt = 3.3299  cost_opt = 11.7670  Value = 0.9333 
-#> elapsed = 0.27   Round = 2   gamma_opt = 5.5515  cost_opt = 76.1740  Value = 0.9067 
+#> elapsed = 0.04   Round = 1   gamma_opt = 3.3299  cost_opt = 11.7670  Value = 0.9333 
+#> elapsed = 0.17   Round = 2   gamma_opt = 5.5515  cost_opt = 76.1740  Value = 0.9067 
 #> elapsed = 0.01   Round = 3   gamma_opt = 3.2744  cost_opt = 14.1882  Value = 0.9400 
-#> elapsed = 0.02   Round = 4   gamma_opt = 2.1175  cost_opt = 76.6932  Value = 0.9200 
-#> elapsed = 0.02   Round = 5   gamma_opt = 3.1619  cost_opt = 84.2154  Value = 0.9600 
-#> elapsed = 0.02   Round = 6   gamma_opt = 9.4727  cost_opt = 77.6772  Value = 0.8933 
-#> elapsed = 0.02   Round = 7   gamma_opt = 6.6175  cost_opt = 13.3914  Value = 0.9267 
-#> elapsed = 0.02   Round = 8   gamma_opt = 8.8943  cost_opt = 80.5955  Value = 0.8733 
-#> elapsed = 0.02   Round = 9   gamma_opt = 3.3808  cost_opt = 89.6793  Value = 0.9333 
-#> elapsed = 0.02   Round = 10  gamma_opt = 4.3481  cost_opt = 92.6987  Value = 0.9000 
-#> elapsed = 0.02   Round = 11  gamma_opt = 2.9508  cost_opt = 84.8600  Value = 0.9467 
+#> elapsed = 0.01   Round = 4   gamma_opt = 2.1175  cost_opt = 76.6932  Value = 0.9200 
+#> elapsed = 0.01   Round = 5   gamma_opt = 3.1619  cost_opt = 84.2154  Value = 0.9600 
+#> elapsed = 0.01   Round = 6   gamma_opt = 9.4727  cost_opt = 77.6772  Value = 0.8933 
+#> elapsed = 0.01   Round = 7   gamma_opt = 6.6175  cost_opt = 13.3914  Value = 0.9267 
+#> elapsed = 0.01   Round = 8   gamma_opt = 8.8943  cost_opt = 80.5955  Value = 0.8733 
+#> elapsed = 0.01   Round = 9   gamma_opt = 3.3808  cost_opt = 89.6793  Value = 0.9333 
+#> elapsed = 0.01   Round = 10  gamma_opt = 4.3481  cost_opt = 92.6987  Value = 0.9000 
+#> elapsed = 0.01   Round = 11  gamma_opt = 2.9508  cost_opt = 84.8600  Value = 0.9467 
 #> 
 #>  Best Parameters Found: 
 #> Round = 5    gamma_opt = 3.1619  cost_opt = 84.2154  Value = 0.9600
@@ -90,13 +90,13 @@ res0 <- xgb_cv_opt(data = iris,
                    classes = 3,
                    init_points = 10,
                    n_iter = 1)
-#> elapsed = 0.10   Round = 1   eta_opt = 0.7235    max_depth_opt = 5.0000  nrounds_opt = 148.7789  subsample_opt = 0.9646  bytree_opt = 0.4860 Value = -0.6348 
-#> elapsed = 0.21   Round = 2   eta_opt = 0.5299    max_depth_opt = 6.0000  nrounds_opt = 100.5166  subsample_opt = 0.4912  bytree_opt = 0.5438 Value = -0.5967 
-#> elapsed = 0.02   Round = 3   eta_opt = 0.8751    max_depth_opt = 5.0000  nrounds_opt = 145.5496  subsample_opt = 0.7413  bytree_opt = 0.4354 Value = -0.6512 
+#> elapsed = 0.07   Round = 1   eta_opt = 0.7235    max_depth_opt = 5.0000  nrounds_opt = 148.7789  subsample_opt = 0.9646  bytree_opt = 0.4860 Value = -0.6348 
+#> elapsed = 0.15   Round = 2   eta_opt = 0.5299    max_depth_opt = 6.0000  nrounds_opt = 100.5166  subsample_opt = 0.4912  bytree_opt = 0.5438 Value = -0.5967 
+#> elapsed = 0.01   Round = 3   eta_opt = 0.8751    max_depth_opt = 5.0000  nrounds_opt = 145.5496  subsample_opt = 0.7413  bytree_opt = 0.4354 Value = -0.6512 
 #> elapsed = 0.01   Round = 4   eta_opt = 0.4943    max_depth_opt = 5.0000  nrounds_opt = 101.2015  subsample_opt = 0.4600  bytree_opt = 0.7854 Value = -0.2085 
 #> elapsed = 0.01   Round = 5   eta_opt = 0.3203    max_depth_opt = 5.0000  nrounds_opt = 100.0397  subsample_opt = 0.3928  bytree_opt = 0.9258 Value = -0.1856 
 #> elapsed = 0.01   Round = 6   eta_opt = 0.1636    max_depth_opt = 5.0000  nrounds_opt = 112.8716  subsample_opt = 0.7814  bytree_opt = 0.8673 Value = -0.3862 
-#> elapsed = 0.02   Round = 7   eta_opt = 0.1895    max_depth_opt = 5.0000  nrounds_opt = 150.2979  subsample_opt = 0.2824  bytree_opt = 0.8784 Value = -0.3758 
+#> elapsed = 0.01   Round = 7   eta_opt = 0.1895    max_depth_opt = 5.0000  nrounds_opt = 150.2979  subsample_opt = 0.2824  bytree_opt = 0.8784 Value = -0.3758 
 #> elapsed = 0.01   Round = 8   eta_opt = 0.3846    max_depth_opt = 5.0000  nrounds_opt = 147.7906  subsample_opt = 0.7400  bytree_opt = 0.6732 Value = -0.2351 
 #> elapsed = 0.01   Round = 9   eta_opt = 0.5668    max_depth_opt = 6.0000  nrounds_opt = 105.0991  subsample_opt = 0.2095  bytree_opt = 0.6461 Value = -0.2348 
 #> elapsed = 0.01   Round = 10  eta_opt = 0.6958    max_depth_opt = 4.0000  nrounds_opt = 139.9589  subsample_opt = 0.3209  bytree_opt = 0.8865 Value = -0.0585 

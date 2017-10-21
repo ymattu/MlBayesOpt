@@ -24,7 +24,7 @@ using Bayesian Optimization based on Gaussian Processes. Algorithms currently su
 
 ## Why MlBayesOpt ?
 ### Easy to write
-It's very easy to write Bayesian Optimaization function, but you also able to customise your model very easily. You have only to specify the data anda the column name of the label to classify.
+It's very easy to write Bayesian Optimaization function, but you also able to customise your model very easily. You have only to specify the data and the column name of the label to classify.
 
 On XgBosst functions, your data frame is automatically transformed into `xgb.DMatrix` class.
 

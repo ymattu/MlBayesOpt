@@ -84,7 +84,7 @@
 <div id="easy-to-write" class="section level3">
 <h3 class="hasAnchor">
 <a href="#easy-to-write" class="anchor"></a>Easy to write</h3>
-<p>It’s very easy to write Bayesian Optimaization function, but you also able to customise your model very easily. You have only to specify the data anda the column name of the label to classify.</p>
+<p>It’s very easy to write Bayesian Optimaization function, but you also able to customise your model very easily. You have only to specify the data and the column name of the label to classify.</p>
 <p>On XgBosst functions, your data frame is automatically transformed into <code>xgb.DMatrix</code> class.</p>
 </div>
 <div id="any-label-class-is-ok" class="section level3">
@@ -132,16 +132,16 @@ res0 &lt;-<span class="st"> </span><span class="kw"><a href="reference/svm_cv_op
                    <span class="dt">n_folds =</span> <span class="dv">3</span>,
                    <span class="dt">init_points =</span> <span class="dv">10</span>,
                    <span class="dt">n_iter =</span> <span class="dv">1</span>)
-<span class="co">#&gt; elapsed = 0.05   Round = 1   gamma_opt = 3.3299  cost_opt = 11.7670  Value = 0.9333 </span>
-<span class="co">#&gt; elapsed = 0.35   Round = 2   gamma_opt = 5.5515  cost_opt = 76.1740  Value = 0.9067 </span>
-<span class="co">#&gt; elapsed = 0.02   Round = 3   gamma_opt = 3.2744  cost_opt = 14.1882  Value = 0.9400 </span>
-<span class="co">#&gt; elapsed = 0.02   Round = 4   gamma_opt = 2.1175  cost_opt = 76.6932  Value = 0.9200 </span>
-<span class="co">#&gt; elapsed = 0.02   Round = 5   gamma_opt = 3.1619  cost_opt = 84.2154  Value = 0.9600 </span>
+<span class="co">#&gt; elapsed = 0.02   Round = 1   gamma_opt = 3.3299  cost_opt = 11.7670  Value = 0.9333 </span>
+<span class="co">#&gt; elapsed = 0.16   Round = 2   gamma_opt = 5.5515  cost_opt = 76.1740  Value = 0.9067 </span>
+<span class="co">#&gt; elapsed = 0.01   Round = 3   gamma_opt = 3.2744  cost_opt = 14.1882  Value = 0.9400 </span>
+<span class="co">#&gt; elapsed = 0.01   Round = 4   gamma_opt = 2.1175  cost_opt = 76.6932  Value = 0.9200 </span>
+<span class="co">#&gt; elapsed = 0.01   Round = 5   gamma_opt = 3.1619  cost_opt = 84.2154  Value = 0.9600 </span>
 <span class="co">#&gt; elapsed = 0.01   Round = 6   gamma_opt = 9.4727  cost_opt = 77.6772  Value = 0.8933 </span>
 <span class="co">#&gt; elapsed = 0.01   Round = 7   gamma_opt = 6.6175  cost_opt = 13.3914  Value = 0.9267 </span>
-<span class="co">#&gt; elapsed = 0.02   Round = 8   gamma_opt = 8.8943  cost_opt = 80.5955  Value = 0.8733 </span>
-<span class="co">#&gt; elapsed = 0.02   Round = 9   gamma_opt = 3.3808  cost_opt = 89.6793  Value = 0.9333 </span>
-<span class="co">#&gt; elapsed = 0.02   Round = 10  gamma_opt = 4.3481  cost_opt = 92.6987  Value = 0.9000 </span>
+<span class="co">#&gt; elapsed = 0.01   Round = 8   gamma_opt = 8.8943  cost_opt = 80.5955  Value = 0.8733 </span>
+<span class="co">#&gt; elapsed = 0.01   Round = 9   gamma_opt = 3.3808  cost_opt = 89.6793  Value = 0.9333 </span>
+<span class="co">#&gt; elapsed = 0.01   Round = 10  gamma_opt = 4.3481  cost_opt = 92.6987  Value = 0.9000 </span>
 <span class="co">#&gt; elapsed = 0.01   Round = 11  gamma_opt = 2.9508  cost_opt = 84.8600  Value = 0.9467 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;  Best Parameters Found: </span>
@@ -158,8 +158,8 @@ res0 &lt;-<span class="st"> </span><span class="kw"><a href="reference/svm_cv_op
                    <span class="dt">classes =</span> <span class="dv">3</span>,
                    <span class="dt">init_points =</span> <span class="dv">10</span>,
                    <span class="dt">n_iter =</span> <span class="dv">1</span>)
-<span class="co">#&gt; elapsed = 0.09   Round = 1   eta_opt = 0.7235    max_depth_opt = 5.0000  nrounds_opt = 148.7789  subsample_opt = 0.9646  bytree_opt = 0.4860 Value = -0.6348 </span>
-<span class="co">#&gt; elapsed = 0.21   Round = 2   eta_opt = 0.5299    max_depth_opt = 6.0000  nrounds_opt = 100.5166  subsample_opt = 0.4912  bytree_opt = 0.5438 Value = -0.5967 </span>
+<span class="co">#&gt; elapsed = 0.06   Round = 1   eta_opt = 0.7235    max_depth_opt = 5.0000  nrounds_opt = 148.7789  subsample_opt = 0.9646  bytree_opt = 0.4860 Value = -0.6348 </span>
+<span class="co">#&gt; elapsed = 0.13   Round = 2   eta_opt = 0.5299    max_depth_opt = 6.0000  nrounds_opt = 100.5166  subsample_opt = 0.4912  bytree_opt = 0.5438 Value = -0.5967 </span>
 <span class="co">#&gt; elapsed = 0.01   Round = 3   eta_opt = 0.8751    max_depth_opt = 5.0000  nrounds_opt = 145.5496  subsample_opt = 0.7413  bytree_opt = 0.4354 Value = -0.6512 </span>
 <span class="co">#&gt; elapsed = 0.01   Round = 4   eta_opt = 0.4943    max_depth_opt = 5.0000  nrounds_opt = 101.2015  subsample_opt = 0.4600  bytree_opt = 0.7854 Value = -0.2085 </span>
 <span class="co">#&gt; elapsed = 0.01   Round = 5   eta_opt = 0.3203    max_depth_opt = 5.0000  nrounds_opt = 100.0397  subsample_opt = 0.3928  bytree_opt = 0.9258 Value = -0.1856 </span>
