@@ -1,6 +1,5 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-LICENSE.md
 data-raw/
 ^NEWS$
 ^appveyor\.yml$

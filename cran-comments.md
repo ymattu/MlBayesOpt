@@ -3,8 +3,6 @@ This is a resubmission. In this version I have:
 
 * Fixed capitalization bayesian -> Bayesian and Forest -> forest in my description
 
-* Added full license (as md)
-
 ## Test environments
 * local macOS install, R 3.4.2
 * ubuntu 14.04 (on travis-ci), R 3.4.2
