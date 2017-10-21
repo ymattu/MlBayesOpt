@@ -78,17 +78,20 @@
 <a href="#overview" class="anchor"></a>Overview</h2>
 <p>This is an R package to tune hyperparameters for machine learning algorithms using Bayesian Optimization based on Gaussian Processes. Algorithms currently supported are: Support Vector Machines, Random Forest, and XGboost.</p>
 </div>
-<div id="dependencies" class="section level2">
+<div id="why-mlbayesopt" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dependencies" class="anchor"></a>Dependencies</h2>
-<ul>
-<li>rBayesianOptimization</li>
-<li>Matrix</li>
-<li>e1071</li>
-<li>ranger</li>
-<li>xgboost</li>
-<li>dplyr(&gt;= 0.7.0)</li>
-</ul>
+<a href="#why-mlbayesopt" class="anchor"></a>Why MlBayesOpt ?</h2>
+<div id="easy-to-write" class="section level3">
+<h3 class="hasAnchor">
+<a href="#easy-to-write" class="anchor"></a>Easy to write</h3>
+<p>It’s very easy to write Bayesian Optimaization function, but you also able to customise your model very easily. You have only to specify the data anda the column name of the label to classify.</p>
+<p>On XgBosst functions, your data frame is automatically transformed into <code>xgb.DMatrix</code> class.</p>
+</div>
+<div id="any-label-class-is-ok" class="section level3">
+<h3 class="hasAnchor">
+<a href="#any-label-class-is-ok" class="anchor"></a>Any label class is OK</h3>
+<p>Any class (character, integer, factor) of label column is OK. The class of the label column is automatically transformed.</p>
+</div>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
@@ -118,7 +121,9 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
-<p>3-fold cross validation for <code>iris</code> data, using SVM.</p>
+<div id="fold-cross-validation-for-iris-data-using-svm-" class="section level3">
+<h3 class="hasAnchor">
+<a href="#fold-cross-validation-for-iris-data-using-svm-" class="anchor"></a>3-fold cross validation for <code>iris</code> data, using SVM.</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(MlBayesOpt)
 
 <span class="kw">set.seed</span>(<span class="dv">71</span>)
@@ -127,20 +132,47 @@ res0 &lt;-<span class="st"> </span><span class="kw"><a href="reference/svm_cv_op
                    <span class="dt">n_folds =</span> <span class="dv">3</span>,
                    <span class="dt">init_points =</span> <span class="dv">10</span>,
                    <span class="dt">n_iter =</span> <span class="dv">1</span>)
-<span class="co">#&gt; elapsed = 0.03   Round = 1   gamma_opt = 3.3299  cost_opt = 11.7670  Value = 0.9333 </span>
-<span class="co">#&gt; elapsed = 0.17   Round = 2   gamma_opt = 5.5515  cost_opt = 76.1740  Value = 0.9067 </span>
+<span class="co">#&gt; elapsed = 0.05   Round = 1   gamma_opt = 3.3299  cost_opt = 11.7670  Value = 0.9333 </span>
+<span class="co">#&gt; elapsed = 0.35   Round = 2   gamma_opt = 5.5515  cost_opt = 76.1740  Value = 0.9067 </span>
 <span class="co">#&gt; elapsed = 0.02   Round = 3   gamma_opt = 3.2744  cost_opt = 14.1882  Value = 0.9400 </span>
-<span class="co">#&gt; elapsed = 0.01   Round = 4   gamma_opt = 2.1175  cost_opt = 76.6932  Value = 0.9200 </span>
-<span class="co">#&gt; elapsed = 0.01   Round = 5   gamma_opt = 3.1619  cost_opt = 84.2154  Value = 0.9600 </span>
+<span class="co">#&gt; elapsed = 0.02   Round = 4   gamma_opt = 2.1175  cost_opt = 76.6932  Value = 0.9200 </span>
+<span class="co">#&gt; elapsed = 0.02   Round = 5   gamma_opt = 3.1619  cost_opt = 84.2154  Value = 0.9600 </span>
 <span class="co">#&gt; elapsed = 0.01   Round = 6   gamma_opt = 9.4727  cost_opt = 77.6772  Value = 0.8933 </span>
 <span class="co">#&gt; elapsed = 0.01   Round = 7   gamma_opt = 6.6175  cost_opt = 13.3914  Value = 0.9267 </span>
-<span class="co">#&gt; elapsed = 0.01   Round = 8   gamma_opt = 8.8943  cost_opt = 80.5955  Value = 0.8733 </span>
-<span class="co">#&gt; elapsed = 0.01   Round = 9   gamma_opt = 3.3808  cost_opt = 89.6793  Value = 0.9333 </span>
-<span class="co">#&gt; elapsed = 0.01   Round = 10  gamma_opt = 4.3481  cost_opt = 92.6987  Value = 0.9000 </span>
+<span class="co">#&gt; elapsed = 0.02   Round = 8   gamma_opt = 8.8943  cost_opt = 80.5955  Value = 0.8733 </span>
+<span class="co">#&gt; elapsed = 0.02   Round = 9   gamma_opt = 3.3808  cost_opt = 89.6793  Value = 0.9333 </span>
+<span class="co">#&gt; elapsed = 0.02   Round = 10  gamma_opt = 4.3481  cost_opt = 92.6987  Value = 0.9000 </span>
 <span class="co">#&gt; elapsed = 0.01   Round = 11  gamma_opt = 2.9508  cost_opt = 84.8600  Value = 0.9467 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;  Best Parameters Found: </span>
 <span class="co">#&gt; Round = 5    gamma_opt = 3.1619  cost_opt = 84.2154  Value = 0.9600</span></code></pre></div>
+</div>
+<div id="fold-cross-validation-for-iris-data-using-xgboost-" class="section level3">
+<h3 class="hasAnchor">
+<a href="#fold-cross-validation-for-iris-data-using-xgboost-" class="anchor"></a>3-fold cross validation for <code>iris</code> data, using Xgboost.</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res0 &lt;-<span class="st"> </span><span class="kw"><a href="reference/xgb_cv_opt.html">xgb_cv_opt</a></span>(<span class="dt">data =</span> iris,
+                   <span class="dt">label =</span> Species,
+                   <span class="dt">objectfun =</span> <span class="st">"multi:softmax"</span>,
+                   <span class="dt">evalmetric =</span> <span class="st">"mlogloss"</span>,
+                   <span class="dt">n_folds =</span> <span class="dv">3</span>,
+                   <span class="dt">classes =</span> <span class="dv">3</span>,
+                   <span class="dt">init_points =</span> <span class="dv">10</span>,
+                   <span class="dt">n_iter =</span> <span class="dv">1</span>)
+<span class="co">#&gt; elapsed = 0.09   Round = 1   eta_opt = 0.7235    max_depth_opt = 5.0000  nrounds_opt = 148.7789  subsample_opt = 0.9646  bytree_opt = 0.4860 Value = -0.6348 </span>
+<span class="co">#&gt; elapsed = 0.21   Round = 2   eta_opt = 0.5299    max_depth_opt = 6.0000  nrounds_opt = 100.5166  subsample_opt = 0.4912  bytree_opt = 0.5438 Value = -0.5967 </span>
+<span class="co">#&gt; elapsed = 0.01   Round = 3   eta_opt = 0.8751    max_depth_opt = 5.0000  nrounds_opt = 145.5496  subsample_opt = 0.7413  bytree_opt = 0.4354 Value = -0.6512 </span>
+<span class="co">#&gt; elapsed = 0.01   Round = 4   eta_opt = 0.4943    max_depth_opt = 5.0000  nrounds_opt = 101.2015  subsample_opt = 0.4600  bytree_opt = 0.7854 Value = -0.2085 </span>
+<span class="co">#&gt; elapsed = 0.01   Round = 5   eta_opt = 0.3203    max_depth_opt = 5.0000  nrounds_opt = 100.0397  subsample_opt = 0.3928  bytree_opt = 0.9258 Value = -0.1856 </span>
+<span class="co">#&gt; elapsed = 0.01   Round = 6   eta_opt = 0.1636    max_depth_opt = 5.0000  nrounds_opt = 112.8716  subsample_opt = 0.7814  bytree_opt = 0.8673 Value = -0.3862 </span>
+<span class="co">#&gt; elapsed = 0.01   Round = 7   eta_opt = 0.1895    max_depth_opt = 5.0000  nrounds_opt = 150.2979  subsample_opt = 0.2824  bytree_opt = 0.8784 Value = -0.3758 </span>
+<span class="co">#&gt; elapsed = 0.01   Round = 8   eta_opt = 0.3846    max_depth_opt = 5.0000  nrounds_opt = 147.7906  subsample_opt = 0.7400  bytree_opt = 0.6732 Value = -0.2351 </span>
+<span class="co">#&gt; elapsed = 0.01   Round = 9   eta_opt = 0.5668    max_depth_opt = 6.0000  nrounds_opt = 105.0991  subsample_opt = 0.2095  bytree_opt = 0.6461 Value = -0.2348 </span>
+<span class="co">#&gt; elapsed = 0.01   Round = 10  eta_opt = 0.6958    max_depth_opt = 4.0000  nrounds_opt = 139.9589  subsample_opt = 0.3209  bytree_opt = 0.8865 Value = -0.0585 </span>
+<span class="co">#&gt; elapsed = 0.01   Round = 11  eta_opt = 0.9098    max_depth_opt = 5.0000  nrounds_opt = 70.0000   subsample_opt = 0.8436  bytree_opt = 0.9599 Value = -0.0500 </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  Best Parameters Found: </span>
+<span class="co">#&gt; Round = 11   eta_opt = 0.9098    max_depth_opt = 5.0000  nrounds_opt = 70.0000   subsample_opt = 0.8436  bytree_opt = 0.9599 Value = -0.0500</span></code></pre></div>
+</div>
 </div>
 <div id="for-details" class="section level2">
 <h2 class="hasAnchor">

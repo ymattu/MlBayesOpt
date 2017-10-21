@@ -86,25 +86,19 @@ The test accuracy and a list of Bayesian Optimization result is returned:
 This function estimates parameters for xgboost based on bayesian optimization.
 }
 \examples{
+\dontrun{
 library(MlBayesOpt)
 
-# tr and ts are training and test data
-# They are sampled from MlBayesOpt::fashion_train and MlBayesOpt::fashion_test.
-# each data has 100 rows and 9 features.
-# y is the label name.
-# so the test acuracy becomes very low.
-a <- MlBayesOpt:::tr
-b <- MlBayesOpt:::ts
-
 set.seed(71)
-res0 <- xgb_opt(train_data = a,
+res0 <- xgb_opt(train_data = fashion_train,
                 train_label = y,
-                test_data = b,
+                test_data = fashion_test,
                 test_label = y,
                 objectfun = "multi:softmax",
                 evalmetric = "merror",
                 classes = 10,
                 init_points = 3,
                 n_iter = 1)
+}
 
 }
