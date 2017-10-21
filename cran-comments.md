@@ -1,11 +1,9 @@
 ## Resubmission
 This is a resubmission. In this version I have:
 
-* Write in README why this package should be used other than already existing packages (e.g. 'mlr', 'rBayesianOptimization',...)
+* Fixed capitalization bayesian -> Bayesian and Forest -> forest in my description
 
-* Uncapitalize 'Optimization', 'Support Vector Machine', 'Random Forest', 'Extreme Gradient Boosting' in my description. 
-
-* Unwrap the examples if that is feasible and if they can be executed in < 5 sec for each Rd file
+* Added full license (as md)
 
 ## Test environments
 * local macOS install, R 3.4.2

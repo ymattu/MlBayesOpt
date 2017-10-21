@@ -4,9 +4,9 @@ Title: Hyper Parameter Tuning for Machine Learning, Using Bayesian Optimization
 Version: 0.3.3
 Authors@R: person("Yuya", "Matsumura", role = c("aut", "cre"), email = "mattu.yuya@gmail.com")
 Maintainer: Yuya Matsumura <mattu.yuya@gmail.com>
-Description: Hyper parameter tuning using bayesian
+Description: Hyper parameter tuning using Bayesian
     optimization for support vector machine,
-    random Forest, and extreme gradient boosting.
+    random forest, and extreme gradient boosting.
 Depends:
     R (>= 3.1.0)
 License: MIT + file LICENSE
