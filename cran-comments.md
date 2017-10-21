@@ -1,7 +1,9 @@
 ## Resubmission
 This is a resubmission. In this version I have:
 
-* Fixed capitalization bayesian -> Bayesian and Forest -> forest in my description
+* Written in DESCRIPTION file why this package should be used other than already existing packages (e.g. 'mlr', 'rBayesianOptimization', or 'xgboost').
+
+* Added references in the 'Description' field of my DESCRIPTION file.
 
 ## Test environments
 * local macOS install, R 3.4.2
