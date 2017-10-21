@@ -1,9 +1,11 @@
 ## Resubmission
 This is a resubmission. In this version I have:
 
-* Fixed typo in DESCRIPTION file.
+* Write in README why this package should be used other than already existing packages (e.g. 'mlr', 'rBayesianOptimization',...)
 
-* Fixed an invalid URL in the vignette.
+* Uncapitalize 'Optimization', 'Support Vector Machine', 'Random Forest', 'Extreme Gradient Boosting' in my description. 
+
+* Unwrap the examples if that is feasible and if they can be executed in < 5 sec for each Rd file
 
 ## Test environments
 * local macOS install, R 3.4.2
