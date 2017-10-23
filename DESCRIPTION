@@ -9,7 +9,7 @@ Description: Hyper parameter tuning using Bayesian
     optimization (Shahriari et al. <doi:10.1109/JPROC.2015.2494218>) for support vector machine,
     random forest, and extreme gradient boosting (Chen & Guestrin (2016) <doi:10.1145/2939672.2939785>). 
     Unlike already existing packages (e.g. 'mlr', 'rBayesianOptimization', or 'xgboost'), there is no need to change in accordance with the package or method of machine learning.
-    You just prepare a data frame with feature vectors and the label column that has any class('character', 'factor', 'integer').
+    You just prepare a data frame with feature vectors and the label column that has any class ('character', 'factor', 'integer').
     Moreover, to write a optimization function, you have only to specify the data and the column name of the label to classify.
 Depends:
     R (>= 3.1.0)
