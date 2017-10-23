@@ -1,7 +1,7 @@
 ## Resubmission
 This is a resubmission. In this version I have:
 
-* add space in my description between: class( --> classs (
+* Added space in my description between: class( --> classs (
 
 ## Test environments
 * local macOS install, R 3.4.2
