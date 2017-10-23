@@ -178,17 +178,30 @@ that specifies the type of correlation function along with the smoothness parame
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'>library</span>(<span class='no'>MlBayesOpt</span>)
+    <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>MlBayesOpt</span>)
 
-<span class='no'>res0</span> <span class='kw'>&lt;-</span> <span class='fu'>rf_opt</span>(<span class='kw'>train_data</span> <span class='kw'>=</span> <span class='no'>fashion_train</span>,
-               <span class='kw'>train_label</span> <span class='kw'>=</span> <span class='no'>y</span>,
-               <span class='kw'>test_data</span> <span class='kw'>=</span> <span class='no'>fashion_test</span>,
-               <span class='kw'>test_label</span> <span class='kw'>=</span> <span class='no'>y</span>,
-               <span class='kw'>mtry_range</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1L</span>, <span class='fu'>ncol</span>(<span class='no'>fashion_train</span>)),
+<span class='fu'>set.seed</span>(<span class='fl'>71</span>)
+<span class='no'>res0</span> <span class='kw'>&lt;-</span> <span class='fu'>rf_opt</span>(<span class='kw'>train_data</span> <span class='kw'>=</span> <span class='no'>iris_train</span>,
+               <span class='kw'>train_label</span> <span class='kw'>=</span> <span class='no'>Species</span>,
+               <span class='kw'>test_data</span> <span class='kw'>=</span> <span class='no'>iris_test</span>,
+               <span class='kw'>test_label</span> <span class='kw'>=</span> <span class='no'>Species</span>,
+               <span class='kw'>mtry_range</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1L</span>, <span class='fu'>ncol</span>(<span class='no'>iris_train</span>) - <span class='fl'>1</span>),
                <span class='kw'>num_tree</span> <span class='kw'>=</span> <span class='fl'>10L</span>,
-               <span class='kw'>kappa</span> <span class='kw'>=</span> <span class='fl'>10</span>)
-<span class='co'># }</span><div class='input'>
+               <span class='kw'>init_points</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+               <span class='kw'>n_iter</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; elapsed = 0.01	Round = 1	mtry_opt = 1.9988	min_node_size = 2.0000	Value = 0.9467 
+#&gt; elapsed = 0.25	Round = 2	mtry_opt = 2.6653	min_node_size = 6.0000	Value = 0.9467 
+#&gt; elapsed = 0.00	Round = 3	mtry_opt = 1.9821	min_node_size = 2.0000	Value = 0.9600 
+#&gt; elapsed = 0.00	Round = 4	mtry_opt = 1.6350	min_node_size = 6.0000	Value = 0.9600 
+#&gt; elapsed = 0.01	Round = 5	mtry_opt = 1.9484	min_node_size = 7.0000	Value = 0.9467 
+#&gt; elapsed = 0.00	Round = 6	mtry_opt = 3.8418	min_node_size = 6.0000	Value = 0.9600 
+#&gt; elapsed = 0.00	Round = 7	mtry_opt = 2.9851	min_node_size = 2.0000	Value = 0.9467 
+#&gt; elapsed = 0.00	Round = 8	mtry_opt = 3.6683	min_node_size = 7.0000	Value = 0.9467 
+#&gt; elapsed = 0.00	Round = 9	mtry_opt = 2.0140	min_node_size = 7.0000	Value = 0.9467 
+#&gt; elapsed = 0.00	Round = 10	mtry_opt = 2.3043	min_node_size = 7.0000	Value = 0.9333 
+#&gt; elapsed = 0.00	Round = 11	mtry_opt = 2.4541	min_node_size = 5.0000	Value = 0.9467 
+#&gt; 
+#&gt;  Best Parameters Found: 
+#&gt; Round = 3	mtry_opt = 1.9821	min_node_size = 2.0000	Value = 0.9600 </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

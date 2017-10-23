@@ -214,14 +214,16 @@ that specifies the type of correlation function along with the smoothness parame
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='fu'>library</span>(<span class='no'>MlBayesOpt</span>)
 
-<span class='co'># This takes a lot of time</span>
+<span class='fu'>set.seed</span>(<span class='fl'>71</span>)
 <span class='no'>res0</span> <span class='kw'>&lt;-</span> <span class='fu'>xgb_opt</span>(<span class='kw'>train_data</span> <span class='kw'>=</span> <span class='no'>fashion_train</span>,
                 <span class='kw'>train_label</span> <span class='kw'>=</span> <span class='no'>y</span>,
                 <span class='kw'>test_data</span> <span class='kw'>=</span> <span class='no'>fashion_test</span>,
                 <span class='kw'>test_label</span> <span class='kw'>=</span> <span class='no'>y</span>,
                 <span class='kw'>objectfun</span> <span class='kw'>=</span> <span class='st'>"multi:softmax"</span>,
                 <span class='kw'>evalmetric</span> <span class='kw'>=</span> <span class='st'>"merror"</span>,
-                <span class='kw'>classes</span> <span class='kw'>=</span> <span class='fl'>10</span>)
+                <span class='kw'>classes</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+                <span class='kw'>init_points</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+                <span class='kw'>n_iter</span> <span class='kw'>=</span> <span class='fl'>1</span>)
 <span class='co'># }</span><div class='input'>
 </div></pre>
   </div>

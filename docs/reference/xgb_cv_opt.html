@@ -211,17 +211,22 @@ that specifies the type of correlation function along with the smoothness parame
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'>library</span>(<span class='no'>MlBayesOpt</span>)
+    <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>MlBayesOpt</span>)
 
-<span class='co'># This takes a lot of time</span>
-<span class='no'>res0</span> <span class='kw'>&lt;-</span> <span class='fu'>xgb_cv_opt</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>fashion</span>,
-                   <span class='kw'>label</span> <span class='kw'>=</span> <span class='no'>y</span>,
+<span class='fu'>set.seed</span>(<span class='fl'>71</span>)
+<span class='no'>res0</span> <span class='kw'>&lt;-</span> <span class='fu'>xgb_cv_opt</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>,
+                   <span class='kw'>label</span> <span class='kw'>=</span> <span class='no'>Species</span>,
                    <span class='kw'>objectfun</span> <span class='kw'>=</span> <span class='st'>"multi:softmax"</span>,
-                   <span class='kw'>evalmetric</span> <span class='kw'>=</span> <span class='st'>"merror"</span>,
-                   <span class='kw'>n_folds</span> <span class='kw'>=</span> <span class='fl'>15</span>,
-                   <span class='kw'>classes</span> <span class='kw'>=</span> <span class='fl'>10</span>)
-<span class='co'># }</span><div class='input'>
+                   <span class='kw'>evalmetric</span> <span class='kw'>=</span> <span class='st'>"mlogloss"</span>,
+                   <span class='kw'>n_folds</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+                   <span class='kw'>classes</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+                   <span class='kw'>init_points</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+                   <span class='kw'>n_iter</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; elapsed = 0.06	Round = 1	eta_opt = 0.7235	max_depth_opt = 6.0000	nrounds_opt = 92.0318	subsample_opt = 0.1895	bytree_opt = 0.7112	Value = -0.2811 
+#&gt; elapsed = 0.13	Round = 2	eta_opt = 0.5299	max_depth_opt = 5.0000	nrounds_opt = 76.3611	subsample_opt = 0.3846	bytree_opt = 0.7972	Value = -0.2032 
+#&gt; elapsed = 0.01	Round = 3	eta_opt = 0.8745	max_depth_opt = 6.0000	nrounds_opt = 152.7652	subsample_opt = 0.5126	bytree_opt = 0.4380	Value = -0.6189 
+#&gt; 
+#&gt;  Best Parameters Found: 
+#&gt; Round = 2	eta_opt = 0.5299	max_depth_opt = 5.0000	nrounds_opt = 76.3611	subsample_opt = 0.3846	bytree_opt = 0.7972	Value = -0.2032 </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

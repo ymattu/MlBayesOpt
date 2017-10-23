@@ -185,14 +185,27 @@ that specifies the type of correlation function along with the smoothness parame
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'>library</span>(<span class='no'>MlBayesOpt</span>)
+    <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>MlBayesOpt</span>)
 
-<span class='co'># This takes a lot of time</span>
-<span class='no'>res0</span> <span class='kw'>&lt;-</span> <span class='fu'>svm_cv_opt</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>fashion</span>,
-                   <span class='kw'>label</span> <span class='kw'>=</span> <span class='no'>y</span>,
-                   <span class='kw'>n_folds</span> <span class='kw'>=</span> <span class='fl'>10</span>)
-<span class='co'># }</span><div class='input'>
+<span class='fu'>set.seed</span>(<span class='fl'>71</span>)
+<span class='no'>res0</span> <span class='kw'>&lt;-</span> <span class='fu'>svm_cv_opt</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>iris</span>,
+                   <span class='kw'>label</span> <span class='kw'>=</span> <span class='no'>Species</span>,
+                   <span class='kw'>n_folds</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+                   <span class='kw'>init_points</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+                   <span class='kw'>n_iter</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; elapsed = 0.01	Round = 1	gamma_opt = 3.3299	cost_opt = 11.7670	Value = 0.9333 
+#&gt; elapsed = 0.20	Round = 2	gamma_opt = 5.5515	cost_opt = 76.1740	Value = 0.9067 
+#&gt; elapsed = 0.01	Round = 3	gamma_opt = 3.2744	cost_opt = 14.1882	Value = 0.9400 
+#&gt; elapsed = 0.01	Round = 4	gamma_opt = 2.1175	cost_opt = 76.6932	Value = 0.9200 
+#&gt; elapsed = 0.01	Round = 5	gamma_opt = 3.1619	cost_opt = 84.2154	Value = 0.9600 
+#&gt; elapsed = 0.01	Round = 6	gamma_opt = 9.4727	cost_opt = 77.6772	Value = 0.8933 
+#&gt; elapsed = 0.01	Round = 7	gamma_opt = 6.6175	cost_opt = 13.3914	Value = 0.9267 
+#&gt; elapsed = 0.01	Round = 8	gamma_opt = 8.8943	cost_opt = 80.5955	Value = 0.8733 
+#&gt; elapsed = 0.01	Round = 9	gamma_opt = 3.3808	cost_opt = 89.6793	Value = 0.9333 
+#&gt; elapsed = 0.01	Round = 10	gamma_opt = 4.3481	cost_opt = 92.6987	Value = 0.9000 
+#&gt; elapsed = 0.01	Round = 11	gamma_opt = 2.9508	cost_opt = 84.8600	Value = 0.9467 
+#&gt; 
+#&gt;  Best Parameters Found: 
+#&gt; Round = 5	gamma_opt = 3.1619	cost_opt = 84.2154	Value = 0.9600 </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

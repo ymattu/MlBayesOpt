@@ -34,17 +34,17 @@
 ##'   \item \code{Pred} a \code{data.table} with validation/cross-validation prediction for each round of bayesian optimization history
 ##' }
 ##' @examples
-##' \dontrun{
 ##' library(MlBayesOpt)
 ##'
-##' res0 <- rf_opt(train_data = fashion_train,
-##'                train_label = y,
-##'                test_data = fashion_test,
-##'                test_label = y,
-##'                mtry_range = c(1L, ncol(fashion_train)),
+##' set.seed(71)
+##' res0 <- rf_opt(train_data = iris_train,
+##'                train_label = Species,
+##'                test_data = iris_test,
+##'                test_label = Species,
+##'                mtry_range = c(1L, ncol(iris_train) - 1),
 ##'                num_tree = 10L,
-##'                kappa = 10)
-##' }
+##'                init_points = 10,
+##'                n_iter = 1)
 ##'
 ##' @import ranger
 ##' @import rBayesianOptimization

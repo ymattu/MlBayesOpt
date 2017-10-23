@@ -67,13 +67,13 @@ The test accuracy and a list of Bayesian Optimization result is returned:
 This function estimates parameters for SVM(Gaussian Kernel) based on bayesian optimization
 }
 \examples{
-\dontrun{
 library(MlBayesOpt)
 
-# This takes a lot of time
-res0 <- svm_cv_opt(data = fashion,
-                   label = y,
-                   n_folds = 10)
-}
+set.seed(71)
+res0 <- svm_cv_opt(data = iris,
+                   label = Species,
+                   n_folds = 3,
+                   init_points = 10,
+                   n_iter = 1)
 
 }

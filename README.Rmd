@@ -12,7 +12,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# MlBayesOpt <img src="logo.png" align="right" />
+# MlBayesOpt <img src="man/figures/logo.png" align="right" />
 
 [![Build Status](https://travis-ci.org/ymattu/MlBayesOpt.svg?branch=master)](https://travis-ci.org/ymattu/MlBayesOpt)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ymattu/MlBayesOpt?branch=master&svg=true)](https://ci.appveyor.com/project/ymattu/MlBayesOpt)
@@ -22,13 +22,15 @@ knitr::opts_chunk$set(
 This is an R package to tune hyperparameters for machine learning algorithms
 using Bayesian Optimization based on Gaussian Processes. Algorithms currently supported are: Support Vector Machines, Random Forest, and XGboost. 
 
-## Dependencies
-- rBayesianOptimization
-- Matrix
-- e1071
-- ranger
-- xgboost
-- dplyr(>= 0.7.0)
+## Why MlBayesOpt ?
+### Easy to write
+It's very easy to write Bayesian Optimaization function, but you also able to customise your model very easily. You have only to specify the data and the column name of the label to classify.
+
+On XgBosst functions, your data frame is automatically transformed into `xgb.DMatrix` class.
+
+### Any label class is OK
+Any class (character, integer, factor) of label column is OK. The class of the label column is automatically transformed.
+
 
 ## Installation
 
@@ -52,7 +54,7 @@ devtools::install_github("ymattu/MlBayesOpt")
 `iris_train` and `iris_test` are included in this pacakge. `iris_train` is odd-numbered rows of `iris` data, and `iris_test`is even-numbered rows of `iris` data.
 
 ## Example
-3-fold cross validation for `iris` data, using SVM.
+### 3-fold cross validation for `iris` data, using SVM.
 ```{r load, echo=FALSE, message=FALSE}
 devtools::load_all()
 ```
@@ -67,6 +69,21 @@ res0 <- svm_cv_opt(data = iris,
                    init_points = 10,
                    n_iter = 1)
 ```
+
+
+### 3-fold cross validation for `iris` data, using Xgboost.
+```{r}
+res0 <- xgb_cv_opt(data = iris,
+                   label = Species,
+                   objectfun = "multi:softmax",
+                   evalmetric = "mlogloss",
+                   n_folds = 3,
+                   classes = 3,
+                   init_points = 10,
+                   n_iter = 1)
+
+```
+
 
 ## For Details
 See the [vignette](https://ymattu.github.io/MlBayesOpt/articles/MlBayesOpt.html) (Coming Soon!)

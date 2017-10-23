@@ -22,7 +22,7 @@ This is an R package to tune hyperparameters for machine learning algorithms usi
 This package has some features:
 
 - It's very easy to write Bayesian Optimaization function, but you also able to customise your model very easily.
-- Tidy.
+- Any class (character, integer, factor) of label column is OK.
 
 ### Hyperprameter Tuning in Machine Learning
 In many methods of machinelearning, it is very important to tune hyperparameters. "Grid Search" was often used to search the appropriate hyperaprameters, but it takes too much time to compute.
@@ -205,7 +205,7 @@ res0 <- xgb_cv_opt(data = fashion_train,
 
 ## Related Works
 - [rBayesianOptimization](https://github.com/yanyachen/rBayesianOptimization)
-- [e1071](https://cran.r-project.org/web/packages/e1071/index.html)
+- [e1071](https://cran.r-project.org/package=e1071)
 - [ranger](https://github.com/imbs-hl/ranger)
 - [xgboost](https://github.com/dmlc/xgboost)
 

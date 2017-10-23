@@ -1,3 +1,8 @@
+## Resubmission
+This is a resubmission. In this version I have:
+
+* Added space in my description between: class( --> classs (
+
 ## Test environments
 * local macOS install, R 3.4.2
 * ubuntu 14.04 (on travis-ci), R 3.4.2

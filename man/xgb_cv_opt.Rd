@@ -85,16 +85,16 @@ The score you specified in the evalmetric option and a list of Bayesian Optimiza
 Bayesian Optimization for XGboost (Cross Validation)
 }
 \examples{
-\dontrun{
 library(MlBayesOpt)
 
-# This takes a lot of time
-res0 <- xgb_cv_opt(data = fashion,
-                   label = y,
+set.seed(71)
+res0 <- xgb_cv_opt(data = iris,
+                   label = Species,
                    objectfun = "multi:softmax",
-                   evalmetric = "merror",
-                   n_folds = 15,
-                   classes = 10)
-}
+                   evalmetric = "mlogloss",
+                   n_folds = 3,
+                   classes = 3,
+                   init_points = 2,
+                   n_iter = 1)
 
 }
