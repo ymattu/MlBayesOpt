@@ -1,9 +1,7 @@
 ## Resubmission
 This is a resubmission. In this version I have:
 
-* Written in DESCRIPTION file why this package should be used other than already existing packages (e.g. 'mlr', 'rBayesianOptimization', or 'xgboost').
-
-* Added references in the 'Description' field of my DESCRIPTION file.
+* add space in my description between: class( --> classs (
 
 ## Test environments
 * local macOS install, R 3.4.2
