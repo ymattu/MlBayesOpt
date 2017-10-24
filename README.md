@@ -3,7 +3,7 @@
 MlBayesOpt <img src="man/figures/logo.png" align="right" />
 ===========================================================
 
-[![Build Status](https://travis-ci.org/ymattu/MlBayesOpt.svg?branch=master)](https://travis-ci.org/ymattu/MlBayesOpt) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ymattu/MlBayesOpt?branch=master&svg=true)](https://ci.appveyor.com/project/ymattu/MlBayesOpt) [![Coverage Status](https://img.shields.io/codecov/c/github/ymattu/MlBayesOpt/master.svg)](https://codecov.io/github/ymattu/MlBayesOpt?branch=master)
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/MlBayesOpt)](https://cran.r-project.org/package=MlBayesOpt) [![Build Status](https://travis-ci.org/ymattu/MlBayesOpt.svg?branch=master)](https://travis-ci.org/ymattu/MlBayesOpt) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ymattu/MlBayesOpt?branch=master&svg=true)](https://ci.appveyor.com/project/ymattu/MlBayesOpt) [![Coverage Status](https://img.shields.io/codecov/c/github/ymattu/MlBayesOpt/master.svg)](https://codecov.io/github/ymattu/MlBayesOpt?branch=master)
 
 Overview
 --------
@@ -26,7 +26,11 @@ Any class (character, integer, factor) of label column is OK. The class of the l
 Installation
 ------------
 
-You can install MlBayesOpt from github with:
+``` r
+install.packages("MlBayesOpt")
+```
+
+You can also install MlBayesOpt from github with:
 
 ``` r
 # install.packages("githubinstall")
@@ -63,8 +67,8 @@ res0 <- svm_cv_opt(data = iris,
                    n_folds = 3,
                    init_points = 10,
                    n_iter = 1)
-#> elapsed = 0.05   Round = 1   gamma_opt = 3.3299  cost_opt = 11.7670  Value = 0.9333 
-#> elapsed = 0.14   Round = 2   gamma_opt = 5.5515  cost_opt = 76.1740  Value = 0.9067 
+#> elapsed = 0.03   Round = 1   gamma_opt = 3.3299  cost_opt = 11.7670  Value = 0.9333 
+#> elapsed = 0.15   Round = 2   gamma_opt = 5.5515  cost_opt = 76.1740  Value = 0.9067 
 #> elapsed = 0.01   Round = 3   gamma_opt = 3.2744  cost_opt = 14.1882  Value = 0.9400 
 #> elapsed = 0.01   Round = 4   gamma_opt = 2.1175  cost_opt = 76.6932  Value = 0.9200 
 #> elapsed = 0.01   Round = 5   gamma_opt = 3.1619  cost_opt = 84.2154  Value = 0.9600 
@@ -90,8 +94,8 @@ res0 <- xgb_cv_opt(data = iris,
                    classes = 3,
                    init_points = 10,
                    n_iter = 1)
-#> elapsed = 0.07   Round = 1   eta_opt = 0.7235    max_depth_opt = 5.0000  nrounds_opt = 148.7789  subsample_opt = 0.9646  bytree_opt = 0.4860 Value = -0.6348 
-#> elapsed = 0.12   Round = 2   eta_opt = 0.5299    max_depth_opt = 6.0000  nrounds_opt = 100.5166  subsample_opt = 0.4912  bytree_opt = 0.5438 Value = -0.5967 
+#> elapsed = 0.06   Round = 1   eta_opt = 0.7235    max_depth_opt = 5.0000  nrounds_opt = 148.7789  subsample_opt = 0.9646  bytree_opt = 0.4860 Value = -0.6348 
+#> elapsed = 0.13   Round = 2   eta_opt = 0.5299    max_depth_opt = 6.0000  nrounds_opt = 100.5166  subsample_opt = 0.4912  bytree_opt = 0.5438 Value = -0.5967 
 #> elapsed = 0.01   Round = 3   eta_opt = 0.8751    max_depth_opt = 5.0000  nrounds_opt = 145.5496  subsample_opt = 0.7413  bytree_opt = 0.4354 Value = -0.6512 
 #> elapsed = 0.01   Round = 4   eta_opt = 0.4943    max_depth_opt = 5.0000  nrounds_opt = 101.2015  subsample_opt = 0.4600  bytree_opt = 0.7854 Value = -0.2085 
 #> elapsed = 0.01   Round = 5   eta_opt = 0.3203    max_depth_opt = 5.0000  nrounds_opt = 100.0397  subsample_opt = 0.3928  bytree_opt = 0.9258 Value = -0.1856 
@@ -109,7 +113,7 @@ res0 <- xgb_cv_opt(data = iris,
 For Details
 -----------
 
-See the [vignette](https://ymattu.github.io/MlBayesOpt/articles/MlBayesOpt.html) (Coming Soon!)
+See the [vignette](https://ymattu.github.io/MlBayesOpt/articles/MlBayesOpt.html)
 
 ToDo
 ----
