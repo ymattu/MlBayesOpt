@@ -43,6 +43,7 @@
 ##'   that specifies the type of correlation function along with the smoothness parameter. Popular choices are square exponential (default) or matern 5/2
 ##' @param classes set the number of classes. To use only with multiclass objectives.
 ##' @param seed set seed.(default is 0)
+##' @param nthread set the number number of threads xgboost should use. Default: 1
 ##'
 ##' @return The score you specified in the evalmetric option and a list of Bayesian Optimization result is returned:
 ##' \itemize{
@@ -88,7 +89,8 @@ xgb_cv_opt <- function(data,
                        eps = 0.0,
                        optkernel = list(type = "exponential", power = 2),
                        classes = NULL,
-                       seed = 0
+                       seed = 0,
+                       nthread = 1
 )
 {
   if(class(data)[1] == "dgCMatrix")
@@ -133,7 +135,7 @@ xgb_cv_opt <- function(data,
       eval_met <- evalmetric
 
       cv <- xgb.cv(params = list(booster = "gbtree",
-                                 nthread = 1,
+                                 nthread = nthread,
                                  objective = object_fun,
                                  eval_metric = eval_met,
                                  eta = eta_opt,
@@ -171,7 +173,7 @@ xgb_cv_opt <- function(data,
       num_classes <- classes
 
       cv <- xgb.cv(params = list(booster = "gbtree",
-                                 nthread = 1,
+                                 nthread = nthread,
                                  objective = object_fun,
                                  num_class = num_classes,
                                  eval_metric = eval_met,

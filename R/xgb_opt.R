@@ -44,6 +44,7 @@
 ##' @param optkernel Kernel (aka correlation function) for the underlying Gaussian Process. This parameter should be a list
 ##'   that specifies the type of correlation function along with the smoothness parameter. Popular choices are square exponential (default) or matern 5/2
 ##' @param classes set the number of classes. To use only with multiclass objectives.
+##' @param nthread set the number number of threads xgboost should use. Default: 1
 ##'
 ##' @return The test accuracy and a list of Bayesian Optimization result is returned:
 ##' \itemize{
@@ -93,7 +94,8 @@ xgb_opt <- function(train_data,
                     kappa = 2.576,
                     eps = 0.0,
                     optkernel = list(type = "exponential", power = 2),
-                    classes = NULL
+                    classes = NULL,
+                    nthread = 1
 )
 {
 
@@ -134,7 +136,7 @@ xgb_opt <- function(train_data,
 
       model <- xgb.train(params = list(objective = object_fun,
                                        eval_metric = eval_met,
-                                       nthread = 1,
+                                       nthread = nthread,
                                        eta = eta_opt,
                                        max_depth = max_depth_opt,
                                        subsample = subsample_opt,
@@ -162,7 +164,7 @@ xgb_opt <- function(train_data,
 
       model <- xgb.train(params = list(objective = object_fun,
                                        num_class = num_classes,
-                                       nthread = 1,
+                                       nthread = nthread,
                                        eval_metric = eval_met,
                                        eta = eta_opt,
                                        max_depth = max_depth_opt,
