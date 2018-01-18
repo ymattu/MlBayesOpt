@@ -9,7 +9,7 @@ xgb_opt(train_data, train_label, test_data, test_label, objectfun, evalmetric,
   nrounds_range = c(70, 160L), subsample_range = c(0.1, 1L),
   bytree_range = c(0.4, 1L), init_points = 4, n_iter = 10, acq = "ei",
   kappa = 2.576, eps = 0, optkernel = list(type = "exponential", power =
-  2), classes = NULL)
+  2), classes = NULL, nthread = 1)
 }
 \arguments{
 \item{train_data}{A data frame for training of xgboost}
@@ -72,6 +72,8 @@ increasing epsilon will make the optimized hyperparameters are more spread out a
 that specifies the type of correlation function along with the smoothness parameter. Popular choices are square exponential (default) or matern 5/2}
 
 \item{classes}{set the number of classes. To use only with multiclass objectives.}
+
+\item{nthread}{set the number number of threads xgboost should use. Default: 1}
 }
 \value{
 The test accuracy and a list of Bayesian Optimization result is returned:

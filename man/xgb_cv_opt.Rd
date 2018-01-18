@@ -9,7 +9,7 @@ xgb_cv_opt(data, label, objectfun, evalmetric, n_folds, eta_range = c(0.1,
   subsample_range = c(0.1, 1L), bytree_range = c(0.4, 1L),
   init_points = 4, n_iter = 10, acq = "ei", kappa = 2.576, eps = 0,
   optkernel = list(type = "exponential", power = 2), classes = NULL,
-  seed = 0)
+  seed = 0, nthread = 1)
 }
 \arguments{
 \item{data}{data}
@@ -71,6 +71,8 @@ that specifies the type of correlation function along with the smoothness parame
 \item{classes}{set the number of classes. To use only with multiclass objectives.}
 
 \item{seed}{set seed.(default is 0)}
+
+\item{nthread}{set the number number of threads xgboost should use. Default: 1}
 }
 \value{
 The score you specified in the evalmetric option and a list of Bayesian Optimization result is returned:
