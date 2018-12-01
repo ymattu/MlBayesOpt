@@ -104,7 +104,7 @@ res0 <- xgb_cv_opt(data = fashion,
 ## Installation
 You can install **MlBayesOpt** from CRAN:
 ```{r cran-installation, eval = FALSE}
-install.packages("MlbayesOpt")
+install.packages("MlBayesOpt")
 ```
 
 You can install MlBayesOpt (latest dev version) from github with:
