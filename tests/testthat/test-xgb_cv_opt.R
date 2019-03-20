@@ -4,6 +4,8 @@ context("xgb_cv_opt")
 
 tr <- MlBayesOpt:::tr
 
+suppressWarnings(RNGversion("3.5.0"))
+
 set.seed(71)
 res0 <- xgb_cv_opt(data = tr,
                    label = y,

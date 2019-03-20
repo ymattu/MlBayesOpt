@@ -42,6 +42,7 @@
 ##' @examples
 ##' library(MlBayesOpt)
 ##'
+##' suppressWarnings(RNGversion("3.5.0"))
 ##' set.seed(71)
 ##' res0 <- svm_opt(train_data = iris_train,
 ##'                 train_label = Species,

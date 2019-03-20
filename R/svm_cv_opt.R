@@ -42,6 +42,7 @@
 ##' library(MlBayesOpt)
 ##'
 ##' set.seed(71)
+##' suppressWarnings(RNGversion("3.5.0"))
 ##' res0 <- svm_cv_opt(data = iris,
 ##'                    label = Species,
 ##'                    n_folds = 3,
