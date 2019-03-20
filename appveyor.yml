@@ -10,8 +10,7 @@ init:
 install:
   ps: Bootstrap
   # Required package for R unit tests
-  cmd: R -e "install.packages(c('e1071'), repos='http://cran.us.r-project.org')"
-  cmd: R -e "packageVersion('e1071')"
+  cmd: R -e "install.packages(c('e1071'), repos='http://cran.us.r-project.org'); packageVersion('e1071')"
 
 
 cache:
