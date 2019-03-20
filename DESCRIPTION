@@ -1,7 +1,7 @@
 Package: MlBayesOpt
 Type: Package
 Title: Hyper Parameter Tuning for Machine Learning, Using Bayesian Optimization
-Version: 0.3.3
+Version: 0.3.4
 Authors@R: person("Yuya", "Matsumura", email = "mattu.yuya@gmail.com",
                   role = c("aut", "cre"))
 Maintainer: Yuya Matsumura <mattu.yuya@gmail.com>
