@@ -54,6 +54,7 @@
 ##' @examples
 ##' library(MlBayesOpt)
 ##'
+##' suppressWarnings(RNGversion("3.5.0"))
 ##' set.seed(71)
 ##' res0 <- xgb_cv_opt(data = iris,
 ##'                    label = Species,

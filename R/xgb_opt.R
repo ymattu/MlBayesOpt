@@ -56,6 +56,7 @@
 ##' \dontrun{
 ##' library(MlBayesOpt)
 ##'
+##' suppressWarnings(RNGversion("3.5.0"))
 ##' set.seed(71)
 ##' res0 <- xgb_opt(train_data = fashion_train,
 ##'                 train_label = y,
