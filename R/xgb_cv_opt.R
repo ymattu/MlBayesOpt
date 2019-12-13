@@ -174,7 +174,7 @@ xgb_cv_opt <- function(data,
       cv <- xgb.cv(params = list(booster = "gbtree",
                                  nthread = 1,
                                  objective = object_fun,
-                                 num_class = num_classes,
+                                 #num_class = num_classes,
                                  eval_metric = eval_met,
                                  eta = eta_opt,
                                  max_depth = max_depth_opt,
@@ -215,3 +215,29 @@ xgb_cv_opt <- function(data,
   return(opt_res)
 
 }
+
+
+library(MlBayesOpt)
+library(dplyr)
+library(Matrix)
+library(xgboost)
+library(rBayesianOptimization)
+df <- iris
+label_Species <- iris$Species
+xgb_cv_opt(data = df,
+           label = label_Species,
+           objectfun = "reg:linear", evalmetric = "rmse", n_folds = 2, eta_range = c(0.1, 1L),
+           max_depth_range = c(4L, 6L), nrounds_range = c(70, 160L),
+           subsample_range = c(0.1, 1L), bytree_range = c(0.4, 1L),
+           init_points = 4, n_iter = 10, acq = "ucb", kappa = 2.576, eps = 0,
+           optkernel = list(type = "exponential", power = 2), classes = NULL,
+           seed = 0)
+
+
+
+
+
+
+
+
+
